@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-09 15:55+0300\n"
+"POT-Creation-Date: 2022-11-09 18:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,34 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-#: templates/index.html:11
+#: templates/index.html:13
 msgid "WelcomeHeading"
-msgstr ""
+msgstr "Главная"
 
-#: templates/index.html:14
-msgid "WelcomeMessage"
-msgstr ""
+#: templates/index.html:18
+msgid "Task_manager"
+msgstr "Менеджер задач"
+
+#: templates/index.html:25
+msgid "Users"
+msgstr "Пользователи"
+
+#: templates/index.html:32
+msgid "Enter"
+msgstr "Вход"
+
+#: templates/index.html:35
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/index.html:53
+msgid "Hello"
+msgstr "Привет от Хекслета!"
+
+#: templates/index.html:54
+msgid "Description"
+msgstr "Практические курсы по программированию"
+
+#: templates/index.html:56
+msgid "Learn More"
+msgstr "Узнать больше"

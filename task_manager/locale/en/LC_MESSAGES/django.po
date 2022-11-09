@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-09 15:39+0300\n"
+"POT-Creation-Date: 2022-11-09 18:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: templates/index.html:9
+#: templates/index.html:13
 msgid "WelcomeHeading"
-msgstr ""
+msgstr "MainPage"
 
-#: templates/index.html:12
-msgid "WelcomeMessage"
-msgstr ""
+#: templates/index.html:18
+msgid "Task_manager"
+msgstr "Task manager"
+
+#: templates/index.html:25
+msgid "Users"
+msgstr "Users"
+
+#: templates/index.html:32
+msgid "Enter"
+msgstr "Enter"
+
+#: templates/index.html:35
+msgid "Registration"
+msgstr "Registration"
+
+#: templates/index.html:53
+msgid "Hello"
+msgstr "Hello from Hexlet!"
+
+#: templates/index.html:54
+msgid "Description"
+msgstr "Practical programming courses"
+
+#: templates/index.html:56
+msgid "LearnMoreMessage"
+msgstr "Learn more"
