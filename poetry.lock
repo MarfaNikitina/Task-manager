@@ -54,6 +54,20 @@ beautifulsoup4 = ">=4.8.0"
 Django = ">=3.2"
 
 [[package]]
+name = "gunicorn"
+version = "20.1.0"
+description = "WSGI HTTP Server for UNIX"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+eventlet = ["eventlet (>=0.24.1)"]
+gevent = ["gevent (>=1.4.0)"]
+setproctitle = ["setproctitle"]
+tornado = ["tornado (>=0.2)"]
+
+[[package]]
 name = "python-dotenv"
 version = "0.21.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -91,13 +105,14 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c08f01f715edfd721a2f4af15d096f7813de9be3b22ad3e0c99e986197362c82"
+content-hash = "66bf620465e67f02100126e1e857ff2c3a2a1a8c0535b3b2385ba6f6cb027e32"
 
 [metadata.files]
 asgiref = []
 beautifulsoup4 = []
 django = []
 django-bootstrap4 = []
+gunicorn = []
 python-dotenv = []
 soupsieve = []
 sqlparse = []
