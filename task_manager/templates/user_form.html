@@ -16,20 +16,24 @@
     <form method="post">
         {% csrf_token %}
         {% if got_error %}
-            <p>Заполните это поле</p>
+            <p>{% translate 'Заполните это поле' %}</p>
         {% endif %}
         
         {% for field in form %}
-         <div class="form-group form-control">
+         <div class="form-group">
             {{ field.label_tag }}
             {{ field.errors }}
-            {{ field }}
+            {{ field }} 
+             <br>{{ field.help_text }}
         </div>
         {% endfor %}
-
-        <button class="btn btn-primary type="submit">Зарегистрировать</button>
+        <button class="btn btn-primary type="submit">{% translate 'Зарегистрировать' %}</button>
     </form>
 {% endblock %}
 
+<!--{{ form.username }}-->
+<!--{{ form.username.errors }}-->
 
+<!--{{ form.email }}-->
+<!--{{ form.email.errors }}-->
 <!--class="form-style {% if fields.errors %} errors {% endif %}"-->

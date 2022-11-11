@@ -4,18 +4,21 @@ from django.utils.translation import gettext as _
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
+    password = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput,
+        help_text="Ваш пароль должен содержать как минимум 3 символа.")
+    password2 = forms.CharField(label='Подтверждение пароля',
+                                widget=forms.PasswordInput,
+                                help_text="Для подтверждения введите, пожалуйста, пароль ещё раз.")
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name']
+        fields = ['first_name', 'last_name', 'username']
         # fields = '__all__'
         labels = dict(username='Имя пользователя',
                       first_name='Имя',
                       last_name='Фамилия',
-                      password='Пароль',
-                      password2='Подтверждение пароля'
                       )
 
     def clean_password2(self):
