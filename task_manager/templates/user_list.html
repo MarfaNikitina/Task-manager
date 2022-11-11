@@ -7,7 +7,7 @@
 {% block title %} {% translate 'Пользователи' %} {% endblock %}
 
 {% block content %}    
-<h1 class="my-4">
+<h1 class="my-4 mx-auto">
         
 {% translate 'Пользователи' %}
 
@@ -31,9 +31,9 @@
         <td>{{ user.first_name }} {{ user.last_name }}</td>
         <td>{{ user.date_joined }}</td>
         <td>
-          <a href="">{% translate 'Изменить' %}</a>
+          <a href="{% url 'update' pk=user.id %}">{% translate 'Изменить' %}</a>
           <br>
-          <a href="">{% translate 'Удалить' %}</a>
+          <a href="{% url 'delete' pk=user.id %}">{% translate 'Удалить' %}</a>
         </td>
       </tr>
   </tbody>
