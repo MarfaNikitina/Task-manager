@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery=True %}
+{% load i18n %}
+
+{% block title %} {% translate 'Пользователи' %} {% endblock %}
+
+{% block content %}    
+<h1 class="my-4">
+        
+{% translate 'Пользователи' %}
+
+</h1>
+      
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>{% translate 'ID' %}</th>
+      <th>{% translate 'Имя пользователя' %}</th>
+      <th>{% translate 'Полное имя' %}</th>
+      <th>{% translate 'Дата создания' %}</th>
+      <th></th>
+    </tr>
+  </thead>
+    {% for user in object_list %}
+  <tbody>
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.first_name }} {{ user.last_name }}</td>
+        <td>{{ user.date_joined }}</td>
+        <td>
+          <a href="">{% translate 'Изменить' %}</a>
+          <br>
+          <a href="">{% translate 'Удалить' %}</a>
+        </td>
+      </tr>
+  </tbody>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}

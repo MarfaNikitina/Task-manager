@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery=True %}
+{% load i18n %}
+
+{% block title %} {% translate 'Регистрация' %} {% endblock %}
+
+{% block content %}    
+<h1 class="my-4">
+        
+{% translate 'Регистрация' %}
+
+</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {% if got_error %}
+            <p>Заполните это поле</p>
+        {% endif %}
+        
+        {% for field in form %}
+         <div class="form-group form-control">
+            {{ field.label_tag }}
+            {{ field.errors }}
+            {{ field }}
+        </div>
+        {% endfor %}
+
+        <button class="btn btn-primary type="submit">Зарегистрировать</button>
+    </form>
+{% endblock %}
+
+
+<!--class="form-style {% if fields.errors %} errors {% endif %}"-->
