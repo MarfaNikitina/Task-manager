@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery=True %}
+{% load i18n %}
+
+{% block title %} {% translate 'Регистрация' %} {% endblock %}
+
+{% block content %}    
+<h1 class="my-4 mx-auto">
+        
+{% translate 'Изменение пользователя' %}
+
+</h1>
+
+    <form method="post" class="mx-auto">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button class="btn btn-primary" type="submit" value="update"> {% translate 'Изменить' %} </button>
+    </form>
+{% endblock %}

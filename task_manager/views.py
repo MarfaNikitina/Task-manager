@@ -12,27 +12,31 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 
-class UserListView(ListView):
-    model = User
-    template_name = 'user_list.html'
+def login(request):
+    pass
 
 
-class UserCreateView(CreateView):
-    form_class = UserRegistrationForm
-    model = User
-    template_name = 'user_form.html'
-    success_url = '/login'
-
-
-class UserUpdateView(UpdateView):
-    model = User
-    form_class = UserRegistrationForm
-    template_name = 'user_update_form.html'
-    success_url = 'users/'
-
-
-class UserDeleteView(DeleteView):
-    model = User
-    success_url = reverse_lazy('users')
-    template_name = 'user_delete_form.html'
+# class UserListView(ListView):
+#     model = User
+#     template_name = 'user_list.html'
+# 
+# 
+# class UserCreateView(CreateView):
+#     form_class = UserRegistrationForm
+#     model = User
+#     template_name = 'user_form.html'
+#     success_url = '/login'
+# 
+# 
+# class UserUpdateView(UpdateView):
+#     model = User
+#     form_class = UserRegistrationForm
+#     template_name = 'user_update_form.html'
+#     success_url = 'users/'
+# 
+# 
+# class UserDeleteView(DeleteView):
+#     model = User
+#     success_url = reverse_lazy('users')
+#     template_name = 'user_delete_form.html'
 

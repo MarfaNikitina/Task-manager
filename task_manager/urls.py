@@ -14,27 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from task_manager.views import IndexView, UserListView, UserCreateView, UserUpdateView, UserDeleteView
+from django.urls import path, include
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view()),
-    path('users/', UserListView.as_view(), name='users'),
-    path('users/create/', UserCreateView.as_view()),
-    path('users/<int:pk>/update/', UserUpdateView.as_view(), name="update"),
-    path('users/<int:pk>/delete/', UserDeleteView.as_view(), name='delete'),
-    # path('login')
+    path('', views.IndexView.as_view()),
+    path('users/', include('users.urls')),
+    path('login/', views.login),
 ]
 
-
-# GET /users/ – страница со списком всех пользователей
-# GET /users/create/ – страница регистрации нового пользователя (создание)
-# POST /users/create/ – создание пользователя
-# GET /users/<int:pk>/update/ – страница редактирования пользователя
-# POST /users/<int:pk>/update/ – обновление пользователя
-# GET /users/<int:pk>/delete/ – страница удаления пользователя
-# POST /users/<int:pk>/delete/ – удаление пользователя
 # GET /login/ – страница входа
 # POST /login/ – аутентификация (вход)
 # POST /logout/ – завершение сессии (выход)
