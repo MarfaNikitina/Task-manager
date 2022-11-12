@@ -19,11 +19,12 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.IndexView.as_view()),
+    path('', views.IndexView.as_view(), name='home'),
     path('users/', include('users.urls')),
-    path('login/', views.login),
+    path('login/', views.LoginUser.as_view(), name='login'),
+    path('logout/', views.logout_view, name='logout')
 ]
 
-# GET /login/ – страница входа
-# POST /login/ – аутентификация (вход)
-# POST /logout/ – завершение сессии (выход)
+urlpatterns += [
+    path('', include('django.contrib.auth.urls')),
+]

@@ -25,16 +25,34 @@
           <li class="nav-item">
             <a class="nav-link" href="/users/">{% trans 'Пользователи' %}</a>
           </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="">{% trans 'Статусы' %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">{% trans 'Метки' %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">{% trans 'Задачи' %}</a>
+          </li>
+          {% endif %}
+
           
         </ul>
         <ul class="navbar-nav">
-          
+          {% if request.user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="/login/">{% trans 'Вход' %}</a>
+              <a class="nav-link" href="{% url 'logout' %}">{% trans 'Выход' %}</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users/create/">{% trans 'Регистрация' %}</a>
+              <a class="nav-link" href="{% url 'create' %}">{% trans 'Регистрация' %}</a>
             </li>
+            {% endif %}
+            
           
         </ul>
       </div>
