@@ -1,14 +1,12 @@
+from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-# from django.utils.translation import gettext as _
-from django.contrib.auth.models import User
-
-
-from task_manager.form import UserRegistrationForm
+from django.utils.translation import gettext as _
 
 
 class IndexView(TemplateView):
@@ -17,13 +15,24 @@ class IndexView(TemplateView):
 
 def logout_view(request):
     logout(request)
-    return redirect(('login'))
+    messages.info(request, _('Вы разлогинены.'))
+    return redirect('home')
 
 
-class LoginUser(LoginView):
+# class LoginUser(LoginView):
+#     form_class = AuthenticationForm
+#     template_name = 'registration/login.html'
+# 
+#     def get_success_url(self):
+#         messages.info(self.request, _('Вы залогинены'))
+#         return reverse_lazy('home')
+
+
+class LoginUser(SuccessMessageMixin, LoginView):
     form_class = AuthenticationForm
     template_name = 'registration/login.html'
-    success_url = reverse_lazy('')
+    success_message = _('Вы залогинены')
+
 
 
 

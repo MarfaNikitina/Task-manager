@@ -4,22 +4,24 @@
 {% bootstrap_javascript jquery=True %}
 {% load i18n %}
 
-{% block title %} {% translate 'Регистрация' %} {% endblock %}
+{% block title %} {% translate 'Удаление пользователя' %} {% endblock %}
 
-{% block content %}    
-<h1 class="my-4 mx-auto">
+{% block content %} 
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4 mx-auto">
         
 {% translate 'Удаление пользователя' %}
 
-</h1>
+    </h1>
 
  <form method="post" class="mx-auto">
         {% csrf_token %}
         {% bootstrap_form form %}
-<!--        <button class="btn btn-primary" type="submit" value="update"> {% translate 'Изменить' %} </button>-->
-<!--    </form>-->
     <p>{% trans 'Вы уверены, что хотите удалить' %} {{ object.first_name }} {{ object.last_name }}?</p>
-    {{ form }}
+        {% bootstrap_form form %}
     <input class="btn btn-danger" type="submit" value="{% trans 'Да, удалить' %}">
 </form>
 {% endblock %}
+
+
+    
