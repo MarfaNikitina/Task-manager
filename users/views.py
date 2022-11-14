@@ -1,14 +1,11 @@
 from django.contrib import messages
-from django.shortcuts import render
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
-from django.contrib.auth.mixins import LoginRequiredMixin
-
-from task_manager.form import UserRegistrationForm
+from users.forms import UserRegistrationForm
 
 
 class UserListView(ListView):
