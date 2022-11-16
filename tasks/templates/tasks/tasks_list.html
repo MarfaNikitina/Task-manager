@@ -23,7 +23,6 @@
       <th>{% translate 'Автор' %}</th>
       <th>{% translate 'Исполнитель' %}</th>
       <th>{% translate 'Дата создания' %}</th>
-      
       <th></th>
     </tr>
   </thead>
@@ -34,12 +33,12 @@
         <td>{{ task.name }}</td>
         <td>{{ task.status }}</td>
         <td>{{ task.author }}</td>
-        <td>{{ task. }}</td>
-        <td>{{ task.date_joined }}</td>
+        <td>{{ task.executor }}</td>
+        <td>{{ task.time_create }}</td>
         <td>
-          <a href="{% url 'update_status' pk=status.id %}">{% translate 'Изменить' %}</a>
+          <a href="{% url 'update_status' pk=task.id %}">{% translate 'Изменить' %}</a>
           <br>
-          <a href="{% url 'delete_status' pk=status.id %}">{% translate 'Удалить' %}</a>
+          <a href="{% url 'delete_status' pk=task.id %}">{% translate 'Удалить' %}</a>
         </td>
       </tr>
   </tbody>
