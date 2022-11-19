@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from statuses.models import Status
 
+
 class Task(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True)

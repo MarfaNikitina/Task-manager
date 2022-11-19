@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from statuses.forms import StatusForm
@@ -19,20 +20,39 @@ class TaskListView(ListView):
 
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    form_class = TaskForm
+    # form_class = TaskForm
     model = Task
-    fields = ['id', 'name', 'status',
-              'author', 'executor', 'time_create']
-    template_name = 'statuses/create_status.html'
+    fields = ['name', 'description', 'status',
+              'executor']
+    labels = {
+        'name': 'Имя',
+        'description': 'Описание',
+        'status': 'Статус',
+        'executor': 'Исполнитель'
+    }
+    template_name = 'tasks/create_task.html'
+    login_url = 'login'
+    extra_context = {'title': 'Создать задачу',
+                     'button_text': 'Создать'}
 
     def get_success_url(self):
         messages.success(self.request, _('Задача успешно создана'))
         return reverse_lazy('tasks')
 
+    # def handle_no_permission(self):
+    #     messages.warning(self.request, _('Задача успешно создана'))
+    #     return redirect(self.login_url)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        return super(TaskCreateView, self).form_valid(form)
+
 
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
-    model = Status
-    form_class = StatusForm
+    model = Task
+    form_class = TaskForm
     template_name = 'tasks/update_task.html'
 
     def get_success_url(self):
@@ -50,6 +70,6 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
         return reverse_lazy('tasks')
 
 
-class TaskDetail(DetailView):
+class TaskDetail(LoginRequiredMixin, DetailView):
     template_name = 'tasks/detail_task.html'
     model = Task

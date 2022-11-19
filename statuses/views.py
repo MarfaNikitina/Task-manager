@@ -8,7 +8,7 @@ from statuses.models import Status
 from django.utils.translation import gettext as _
 
 
-class StatusListView(ListView):
+class StatusListView(LoginRequiredMixin, ListView):
     model = Status
     template_name = 'statuses/list_statuses.html'
 
