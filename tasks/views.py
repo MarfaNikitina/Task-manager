@@ -13,12 +13,16 @@ from tasks.models import Task
 
 class TaskListView(ListView):
     model = Task
+    fields = ['id', 'name', 'status',
+              'author', 'executor', 'time_create']
     template_name = 'tasks/tasks_list.html'
 
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
     model = Task
+    fields = ['id', 'name', 'status',
+              'author', 'executor', 'time_create']
     template_name = 'statuses/create_status.html'
 
     def get_success_url(self):

@@ -3,6 +3,7 @@
     "model": "users.user",
     "pk": 1,
     "fields": {
+      "last_login": null,
       "username": "user one",
       "password": "12345",
       "first_name": "Ivan",
@@ -11,6 +12,7 @@
       "date_joined": "2022-10-06T05:54:52.947Z",
       "is_superuser": false,
       "is_staff": false,
+      "is_active": true
     }
   },
   {
