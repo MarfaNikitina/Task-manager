@@ -1,0 +1,49 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "username": "user one",
+      "password": "12345",
+      "first_name": "Ivan",
+      "last_name": "Ivanov",
+      "email": "Ivanov@mail.ru",
+      "date_joined": "2022-10-06T05:54:52.947Z",
+      "is_superuser": false,
+      "is_staff": false,
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "last_login": null,
+      "username": "OliverCrimson",
+      "first_name": "Михаил",
+      "is_superuser": true,
+      "email": "oliver@mail.ru",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-11-10 12:10:43", 
+      "last_name": "Жмудь",
+      "password": "pbkdf2_sha256$390000$VqbapuFkgTKCfmTWNYqkQi$F16Qv1sBehNSeiKIk80+Tzft6dSzGfJhDEWmEa2HE/g=",
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "last_login": "2022-11-19 07:59:34.074786",
+      "username": "marfa-nikitina",
+      "first_name": "Marfa",
+      "is_superuser": true,
+      "email": "marfa_n_nikitina@mail.ru",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-11-11 14:32:38.613689", 
+      "last_name": "",
+      "password": "pbkdf2_sha256$390000$Qzc1zDwilckjJrHtHMXlPE$ZzY2L2ca41TEDuXCshnRjoQ8OvC30mREMnau+nFSiUs="
+    }
+  }
+]
+

@@ -54,6 +54,17 @@ beautifulsoup4 = ">=4.8.0"
 Django = ">=3.2"
 
 [[package]]
+name = "django-extensions"
+version = "3.2.1"
+description = "Extensions for Django"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Django = ">=3.2"
+
+[[package]]
 name = "gunicorn"
 version = "20.1.0"
 description = "WSGI HTTP Server for UNIX"
@@ -105,13 +116,14 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "66bf620465e67f02100126e1e857ff2c3a2a1a8c0535b3b2385ba6f6cb027e32"
+content-hash = "6669cf0d7db605318969984e823681f46974378997a911325417cbf73c6ca976"
 
 [metadata.files]
 asgiref = []
 beautifulsoup4 = []
 django = []
 django-bootstrap4 = []
+django-extensions = []
 gunicorn = []
 python-dotenv = []
 soupsieve = []
