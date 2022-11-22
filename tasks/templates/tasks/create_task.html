@@ -16,6 +16,7 @@
     <form method="post" class="mx-auto">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button class="btn btn-primary type="submit">{{ button_text }}</button>
+        <select name="labels" class="form-control" title="" id="id_labels" multiple="">{% translate 'Метки' %}</select>
+        <button class="btn btn-primary type="submit"> {{ button_text }} </button>
     </form>
 {% endblock %}

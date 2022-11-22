@@ -12,7 +12,7 @@
 {% translate 'Метки' %}
 
 </h1>
-<h4><a href="{% url 'create_status' %}">{% translate 'Создать метку' %}</a></h4>
+<h4><a href="{% url 'create_label' %}">{% translate 'Создать метку' %}</a></h4>
       
 <table class="table table-striped">
   <thead>
@@ -28,7 +28,7 @@
       <tr>
         <td>{{ label.id }}</td>
         <td>{{ label.name }}</td>
-        <td>{{ label.date_joined }}</td>
+        <td>{{ label.created_at }}</td>
         <td>
           <a href="{% url 'update_label' pk=label.id %}">{% translate 'Изменить' %}</a>
           <br>

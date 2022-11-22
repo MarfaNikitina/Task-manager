@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-
 from labels.models import Label
 from statuses.models import Status
 
@@ -12,7 +11,14 @@ class Task(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     executor = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='executor')
     time_create = models.DateField(auto_now_add=True)
-    labels = models.ManyToManyField(Label)
+    labels = models.ManyToManyField(Label,
+                                    through='LabelForTask',
+                                    blank=True)
 
     def __str__(self):
         return self.name
+
+
+class LabelForTask(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, null=True)
+    labels = models.ForeignKey(Label, on_delete=models.PROTECT, null=True)
