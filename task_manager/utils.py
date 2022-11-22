@@ -19,4 +19,4 @@ def get_fixture_data(file_name):
 
 
 def get_test_data():
-    return get_fixture_data('test_data.json')
+    return get_fixture_data('users.json')

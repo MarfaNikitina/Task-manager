@@ -20,7 +20,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         messages.success(self.request, _('Пользователь успешно зарегистрирован'))
-        return reverse_lazy('home')
+        return reverse_lazy('login')
 
 
 class UserUpdateView(UpdateView):
