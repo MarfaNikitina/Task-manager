@@ -1,0 +1,26 @@
+[
+  {
+    "model": "labels.label",
+    "pk": 1,
+    "fields": {
+      "name": "Срочно!",
+      "created_at": "2022-11-21T12:03:43.712Z"
+    }
+  },
+  {
+    "model": "labels.label",
+    "pk": 2,
+    "fields": {
+      "name": "Повышенная сложность",
+      "created_at": "2022-11-21T12:10:35.977Z"
+    }
+  },
+  {
+    "model": "labels.label",
+    "pk": 3,
+    "fields": {
+      "name": "Для новичков",
+      "created_at": "2022-11-21T12:51:54.839Z"
+    }
+  }
+]

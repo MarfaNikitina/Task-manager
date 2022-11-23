@@ -154,3 +154,5 @@ CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
+
+AUTH_USER_MODEL = "users.User"

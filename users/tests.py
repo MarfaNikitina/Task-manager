@@ -1,29 +1,18 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
+from .models import User
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
 from task_manager.utils import get_test_data, get_fixture_data
 
 
 class UserTests(TestCase):
-    # fixtures = ['users.json']
-
-    # @classmethod
-    # def setUpTestData(cls):
-    #     cls.test_data = get_test_data()
+    fixtures = ['users.json']
 
     def setUp(self):
-        self.user1 = User.objects.create(
-            id=1,
-            username='MikeZh',
-            first_name='Mike',
-            password='1570127')
-        self.user2 = User.objects.create(
-            id=2,
-            username='MarfaN',
-            first_name='Marfa',
-            password='1234567'
-        )
+        self.user1 = User.objects.get(pk=1)
+        self.user2 = User.objects.get(pk=2)
         self.users_list = reverse('users')
         self.login = reverse('login')
         self.form_data = {'username': 'Woddie',
@@ -35,8 +24,8 @@ class UserTests(TestCase):
     def test_user_view(self):
         response = self.client.get(reverse('users'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'MikeZh')
-        self.assertContains(response, 'MarfaN')
+        self.assertContains(response, 'Mike')
+        self.assertContains(response, 'Marfa')
 
     def test_user_create(self):
         response = self.client.get(reverse('create'))

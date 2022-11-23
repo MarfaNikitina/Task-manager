@@ -5,17 +5,12 @@ from statuses.models import Status
 from task_manager.utils import get_test_data, get_fixture_data
 
 
-class UserTests(TestCase):
+class StatusTest(TestCase):
+    fixtures = ['statuses.json']
 
     def setUp(self):
-        self.status1 = Status.objects.create(
-            id=1,
-            name='Warning'
-        )
-        self.status2 = Status.objects.create(
-            id=2,
-            name='New'
-        )
+        self.status1 = Status.objects.get(pk=1)
+        self.status2 = Status.objects.get(pk=2)
         self.users_list = reverse('statuses')
         self.form_data = {'name': 'in process'}
 

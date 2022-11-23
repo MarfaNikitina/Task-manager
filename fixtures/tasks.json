@@ -1,0 +1,38 @@
+[
+  {
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+      "name": "The Alien",
+      "description": null,
+      "status": null,
+      "author": 3,
+      "executor": null,
+      "time_create": "2022-11-16"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 2,
+    "fields": {
+      "name": "Обновить список пользователей",
+      "description": null,
+      "status": null,
+      "author": 3,
+      "executor": null,
+      "time_create": "2022-11-19"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+      "name": "Task3",
+      "description": null,
+      "status": null,
+      "author": 10,
+      "executor": null,
+      "time_create": "2022-11-19"
+    }
+  }
+]

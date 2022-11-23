@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from users.models import User
 from labels.models import Label
 from statuses.models import Status
 

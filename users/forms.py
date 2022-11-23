@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from .models import User
 from django import forms
 from django.utils.translation import gettext as _
 
