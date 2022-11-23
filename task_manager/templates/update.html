@@ -4,18 +4,18 @@
 {% bootstrap_javascript jquery=True %}
 {% load i18n %}
 
-{% block title %} {% translate 'Регистрация' %} {% endblock %}
+{% block title %} {{ title }} {% endblock %}
 
 {% block content %}    
 <h1 class="my-4 mx-auto">
         
-{% translate 'Изменение пользователя' %}
+{{ title }}
 
 </h1>
 
     <form method="post" class="mx-auto">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button class="btn btn-primary" type="submit" value="update"> {% translate 'Изменить' %} </button>
+        <button class="btn btn-primary" type="submit" value="update"> {{ button_text}} </button>
     </form>
 {% endblock %}
