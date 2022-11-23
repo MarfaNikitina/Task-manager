@@ -11,15 +11,13 @@ from labels.models import Label
 
 class LabelListView(ListView):
     model = Label
-    # fields = ['id', 'name', 'status',
-    #           'author', 'executor', 'time_create']
-    template_name = 'labels/labels_list.html'
+    template_name = 'lists/label_list.html'
 
 
 class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = LabelForm
     model = Label
-    template_name = 'labels/create_label.html'
+    template_name = 'create.html'
     login_url = 'login'
     extra_context = {'title': _('Создать метку'),
                      'button_text': _('Создать')}
@@ -42,7 +40,9 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class LabelUpdateView(LoginRequiredMixin, UpdateView):
     model = Label
     form_class = LabelForm
-    template_name = 'labels/update_label.html'
+    template_name = 'update.html'
+    extra_context = {'title': _('Изменение метки'),
+                     'button_text': _('Изменить')}
 
     def get_success_url(self):
         messages.success(self.request, _('Метка успешно изменена'))
@@ -51,15 +51,11 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
 
 class LabelDeleteView(LoginRequiredMixin, DeleteView):
     model = Label
-    template_name = 'labels/delete_label.html'
+    template_name = 'delete.html'
+    extra_context = {'title': _('Удаление метки')}
 
     def get_success_url(self):
         # messages.error(self.request, _('Невозможно удалить статус, потому что он используется'))
         messages.success(self.request, _('Метка успешно удалена'))
         return reverse_lazy('labels')
-
-
-# class TaskDetail(LoginRequiredMixin, DetailView):
-#     template_name = 'tasks/detail_task.html'
-#     model = Task
 

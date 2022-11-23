@@ -13,7 +13,7 @@ class TaskListView(ListView):
     model = Task
     fields = ['id', 'name', 'status',
               'author', 'executor', 'time_create']
-    template_name = 'tasks/tasks_list.html'
+    template_name = 'lists/task_list.html'
 
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
