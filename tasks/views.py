@@ -5,20 +5,21 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.utils.translation import gettext as _
+from django_filters.views import FilterView
 
 from tasks.filter import TaskFilter
 from tasks.forms import TaskForm
 from tasks.models import Task
 
 
-class TaskListView(ListView):
+class TaskListView(FilterView):
     model = Task
     fields = ['id', 'name', 'status',
               'author', 'executor', 'time_create']
     template_name = 'lists/task_list.html'
 
     # def product_list(request):
-    filter = TaskFilter
+    filterset_class = TaskFilter
         # return render(request, 'lists/task_list.html', {'filter': f})
 
 
