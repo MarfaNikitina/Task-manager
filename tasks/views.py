@@ -1,10 +1,12 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.utils.translation import gettext as _
 
+from tasks.filter import TaskFilter
 from tasks.forms import TaskForm
 from tasks.models import Task
 
@@ -15,18 +17,14 @@ class TaskListView(ListView):
               'author', 'executor', 'time_create']
     template_name = 'lists/task_list.html'
 
+    # def product_list(request):
+    filter = TaskFilter
+        # return render(request, 'lists/task_list.html', {'filter': f})
+
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    # form_class = TaskForm
+    form_class = TaskForm
     model = Task
-    fields = ['name', 'description', 'status',
-              'executor']
-    labels = {
-        'name': 'Имя',
-        'description': 'Описание',
-        'status': 'Статус',
-        'executor': 'Исполнитель'
-    }
     template_name = 'tasks/create_task.html'
     login_url = 'login'
     extra_context = {'title': 'Создать задачу',

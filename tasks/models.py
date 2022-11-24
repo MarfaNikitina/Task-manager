@@ -11,7 +11,7 @@ class Task(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT, default=3)
     executor = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='executor')
     time_create = models.DateField(auto_now_add=True)
-    labels = models.ManyToManyField(Label,
+    label = models.ManyToManyField(Label,
                                     through='LabelForTask',
                                     blank=True)
 
@@ -21,4 +21,4 @@ class Task(models.Model):
 
 class LabelForTask(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE, null=True)
-    labels = models.ForeignKey(Label, on_delete=models.PROTECT, null=True)
+    label = models.ForeignKey(Label, on_delete=models.PROTECT, null=True)

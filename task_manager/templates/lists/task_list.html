@@ -13,7 +13,14 @@
 
 </h1>
 <h4><a href="{% url 'create_task' %}">{% translate 'Создать задачу' %}</a></h4>
-      
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+<!--    {% for obj in filter.qs %}-->
+<!--        {{ obj.name }} - ${{ obj.price }}<br />-->
+<!--    {% endfor %}-->
+<!--      -->
 <table class="table table-striped">
   <thead>
     <tr>

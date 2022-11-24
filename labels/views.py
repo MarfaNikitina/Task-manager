@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import ProtectedError
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -53,9 +55,23 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
     model = Label
     template_name = 'delete.html'
     extra_context = {'title': _('Удаление метки')}
+    success_url = reverse_lazy('labels')
 
-    def get_success_url(self):
-        # messages.error(self.request, _('Невозможно удалить статус, потому что он используется'))
-        messages.success(self.request, _('Метка успешно удалена'))
-        return reverse_lazy('labels')
-
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        try:
+            self.object.delete()
+            messages.success(self.request, _('Метка успешно удалена'))
+        except ProtectedError:
+            messages.error(self.request, _('Невозможно удалить метку, потому что она используется'))
+        finally:
+            return HttpResponseRedirect(success_url)
+            
+    # def handle_no_permission(self):
+    #     if self.request.user.is_authenticated:
+    #         try:
+    #             message = messages.success(self.request, _("Статус успешно удален."))
+    #             url = reverse_lazy('statuses')
+    #         except:
+    #             message = messages.warning(self.request, _('Невозможно удалить статус, потому что он используется'))
+    #     return redirect(self.url)
