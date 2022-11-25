@@ -1,12 +1,11 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.utils.translation import gettext as _
 from django_filters.views import FilterView
-
 from tasks.filter import TaskFilter
 from tasks.forms import TaskForm
 from tasks.models import Task
@@ -17,10 +16,7 @@ class TaskListView(FilterView):
     fields = ['id', 'name', 'status',
               'author', 'executor', 'time_create']
     template_name = 'lists/task_list.html'
-
-    # def product_list(request):
     filterset_class = TaskFilter
-        # return render(request, 'lists/task_list.html', {'filter': f})
 
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -36,7 +32,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return reverse_lazy('tasks')
 
     # def handle_no_permission(self):
-    #     messages.warning(self.request, _('Задача успешно создана'))
+    #     # messages.warning(self.request, _('У вас нет прав'))
     #     return redirect(self.login_url)
 
     def form_valid(self, form):

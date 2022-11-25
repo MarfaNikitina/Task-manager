@@ -1,0 +1,252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-25 17:12+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: labels/views.py:24
+msgid "Создать метку"
+msgstr ""
+
+#: labels/views.py:25 statuses/views.py:25
+msgid "Создать"
+msgstr "Create"
+
+#: labels/views.py:28
+msgid "Метка успешно создана"
+msgstr "Label successfully created"
+
+#: labels/views.py:46
+msgid "Изменение метки"
+msgstr "Label change"
+
+#: labels/views.py:47 statuses/views.py:39
+#: tasks/templates/tasks/detail_task.html:28
+#: tasks/templates/tasks/update_task.html:19 users/views.py:39
+msgid "Изменить"
+msgstr "Edit"
+
+#: labels/views.py:50
+msgid "Метка успешно изменена"
+msgstr "Label successfully changed"
+
+#: labels/views.py:57
+msgid "Удаление метки"
+msgstr "Label delete"
+
+#: labels/views.py:64
+msgid "Метка успешно удалена"
+msgstr "Label successfully deleted"
+
+#: labels/views.py:66
+msgid "Невозможно удалить метку, потому что она используется"
+msgstr "Can't delete label because it's in use"
+
+#: statuses/views.py:24
+msgid "Создать статус"
+msgstr "Create status"
+
+#: statuses/views.py:29
+msgid "Статус успешно создан"
+msgstr "Status successfully created"
+
+#: statuses/views.py:38
+msgid "Изменение статуса"
+msgstr "Status change"
+
+#: statuses/views.py:43
+msgid "Статус успешно изменён"
+msgstr "Status successfully changed"
+
+#: statuses/views.py:51
+msgid "Удаление статуса"
+msgstr "Status delete"
+
+#: statuses/views.py:59
+msgid "Статус успешно удалён"
+msgstr "Status successfully deleted"
+
+#: statuses/views.py:61
+msgid "Невозможно удалить статус, потому что он используется"
+msgstr "Can't delete status because it's in use"
+
+#: tasks/filter.py:22 tasks/forms.py:15
+#: tasks/templates/tasks/detail_task.html:18
+msgid "Статус"
+msgstr "Status"
+
+#: tasks/filter.py:24 tasks/forms.py:16
+#: tasks/templates/tasks/detail_task.html:17
+msgid "Исполнитель"
+msgstr "Executor"
+
+#: tasks/filter.py:26
+msgid "Метка"
+msgstr "Label"
+
+#: tasks/filter.py:29
+msgid "Только свои задачи"
+msgstr "Only your tasks"
+
+#: tasks/forms.py:13
+msgid "Имя"
+msgstr "Name"
+
+#: tasks/forms.py:14
+msgid "Описание"
+msgstr "Description"
+
+#: tasks/forms.py:17 tasks/templates/tasks/detail_task.html:20
+msgid "Метки"
+msgstr "Labels"
+
+#: tasks/templates/tasks/delete_task.html:7
+#: tasks/templates/tasks/delete_task.html:13
+msgid "Удаление задачи"
+msgstr "Task delete"
+
+#: tasks/templates/tasks/delete_task.html:20
+msgid "Вы уверены, что хотите удалить"
+msgstr "Are you sure you want to delete"
+
+#: tasks/templates/tasks/delete_task.html:22
+msgid "Да, удалить"
+msgstr "Yes, delete"
+
+#: tasks/templates/tasks/detail_task.html:9
+#: tasks/templates/tasks/detail_task.html:12
+msgid "Просмотр задачи"
+msgstr "Task view"
+
+#: tasks/templates/tasks/detail_task.html:16
+msgid "Автор"
+msgstr "Author"
+
+#: tasks/templates/tasks/detail_task.html:19
+msgid "Дата создания"
+msgstr "date of creation"
+
+#: tasks/templates/tasks/detail_task.html:30
+msgid "Удалить"
+msgstr "Delete"
+
+#: tasks/templates/tasks/update_task.html:7
+#: tasks/templates/tasks/update_task.html:12
+msgid "Изменение задачи"
+msgstr "Task change"
+
+#: tasks/views.py:31
+msgid "Задача успешно создана"
+msgstr "Task successfully created"
+
+#: tasks/views.py:51
+msgid "Задача успешно изменена"
+msgstr "Task successfully changed"
+
+#: tasks/views.py:61
+msgid "Задача успешно удалена"
+msgstr "Task successfully deleted"
+
+#: users/forms.py:28
+msgid "Введённые пароли не совпадают."
+msgstr "The entered passwords do not match."
+
+#: users/views.py:26
+msgid "Регистрация"
+msgstr "Registration"
+
+#: users/views.py:27
+msgid "Зарегистрировать"
+msgstr "Register"
+
+#: users/views.py:30
+msgid "Пользователь успешно зарегистрирован"
+msgstr "User successfully registered"
+
+#: users/views.py:38
+msgid "Изменение пользователя"
+msgstr "Edit user"
+
+#: users/views.py:49 users/views.py:79 users/views.py:95
+msgid "У вас нет прав для изменения другого пользователя."
+msgstr "You do not have permission to change another user."
+
+#: users/views.py:52 users/views.py:82
+msgid "Вы не авторизованы! Пожалуйста, выполните вход."
+msgstr "You are not authorized! Please log in."
+
+#: users/views.py:63
+msgid "Пользователь успешно изменён"
+msgstr "User successfully edited"
+
+#: users/views.py:70
+msgid "Удаление пользователя"
+msgstr "User delete"
+
+#: users/views.py:91
+msgid "Пользователь успешно удалён"
+msgstr "User successfully deleted"
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:409
+msgid "open('foo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:413
+msgid "open(\"foo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:417
+#, python-format
+msgid "%ls foo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:551
+msgid "a[0]."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:558
+msgid "a[0].r"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:566
+msgid "a[0].from_"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1375
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1397
+msgid "do not suppress"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1376
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1388
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1391
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1394
+msgid "suppress all"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1377
+msgid "suppress all but a"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1378
+msgid "suppress all but c"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/bootstrap4/components.py:17
+#: venv/lib/python3.10/site-packages/bootstrap4/templates/bootstrap4/form_errors.html:3
+#: venv/lib/python3.10/site-packages/bootstrap4/templates/bootstrap4/messages.html:4
+msgid "close"
+msgstr ""

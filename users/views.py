@@ -88,7 +88,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         success_url = self.get_success_url()
         try:
             self.object.delete()
-            messages.success(self.request, _('Пользователь успешно удален'))
+            messages.success(self.request, _('Пользователь успешно удалён'))
             return redirect(self.success_url)
         except ProtectedError:
             messages.warning(self.request,

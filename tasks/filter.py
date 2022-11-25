@@ -1,4 +1,5 @@
 import django_filters
+from django import forms
 from django_filters import filters
 from django_filters.widgets import BooleanWidget
 
@@ -11,16 +12,11 @@ from django.utils.translation import gettext as _
 
 class TaskFilter(django_filters.FilterSet):
 
-    # @property
-    # def qs(self):
-    #     parent = super().qs
-    #     author = getattr(self.request, 'user', None)
-    #     return parent.filter(author=author)
-
     def choose_author(self, queryset, name, value):
-        # construct the full lookup expression.
-        lookup = '__'.join([name, 'isnull'])
-        return queryset.filter(**{lookup: False})
+        if value:
+            author = getattr(self.request, 'user', None)
+            queryset = queryset.filter(author=author)
+        return queryset
 
     status = filters.ModelChoiceFilter(queryset=Status.objects.all(),
                                        label=_('Статус'))
@@ -32,9 +28,12 @@ class TaskFilter(django_filters.FilterSet):
         field_name='author',
         label=_('Только свои задачи'),
         method='choose_author',
-        widget=BooleanWidget()
-    )
+        widget=forms.widgets.CheckboxInput(attrs={'class': 'form-check-input is_valid center'})
+            )
 
     class Meta:
         model = Task
         fields = ['status', 'executor', 'label', 'author']
+
+# attrs={'class': 'form-check-input'}
+# BooleanWidget
