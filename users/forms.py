@@ -1,4 +1,5 @@
 # from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 from .models import User
 from django import forms
 from django.utils.translation import gettext as _
@@ -27,3 +28,13 @@ class UserRegistrationForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError(_('Введённые пароли не совпадают.'))
         return cd['password2']
+
+
+class UserAuthenticationForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        # fields = '__all__'
+        labels = dict(username=_('Имя пользователя'),
+                      password=_('Пароль'),
+                      )

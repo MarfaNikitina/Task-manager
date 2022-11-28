@@ -13,10 +13,10 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 
-def logout_view(request):
-    logout(request)
-    messages.info(request, _('Вы разлогинены.'))
-    return redirect('home')
+# def logout_view(request):
+#     logout(request)
+#     messages.info(request, _('Вы разлогинены.'))
+#     return redirect('home')
 
 
 # class LoginUser(LoginView):
@@ -28,10 +28,10 @@ def logout_view(request):
 #         return reverse_lazy('home')
 
 
-class LoginUser(SuccessMessageMixin, LoginView):
-    form_class = AuthenticationForm
-    template_name = 'registration/login.html'
-    success_message = _('Вы залогинены')
+# class LoginUser(SuccessMessageMixin, LoginView):
+#     form_class = AuthenticationForm
+#     template_name = 'registration/login.html'
+#     success_message = _('Вы залогинены')
 
 
 

@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from users import views as u_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,10 +25,6 @@ urlpatterns = [
     path('statuses/', include('statuses.urls')),
     path('tasks/', include('tasks.urls')),
     path('labels/', include('labels.urls')),
-    path('login/', views.LoginUser.as_view(), name='login'),
-    path('logout/', views.logout_view, name='logout')
-]
-
-urlpatterns += [
-    path('', include('django.contrib.auth.urls')),
+    path('login/', u_views.LoginUser.as_view(), name='login'),
+    path('logout/', u_views.logout_view, name='logout')
 ]
