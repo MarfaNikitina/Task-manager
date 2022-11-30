@@ -1,18 +1,18 @@
 # from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import User
 from django import forms
 from django.utils.translation import gettext as _
 
 
-class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(
-        label='Пароль',
-        widget=forms.PasswordInput,
-        help_text="Ваш пароль должен содержать как минимум 3 символа.")
-    password2 = forms.CharField(label='Подтверждение пароля',
-                                widget=forms.PasswordInput,
-                                help_text="Для подтверждения введите, пожалуйста, пароль ещё раз.")
+class UserRegistrationForm(UserCreationForm):
+    # password = forms.CharField(
+    #     label='Пароль',
+    #     widget=forms.PasswordInput,
+    #     help_text="Ваш пароль должен содержать как минимум 3 символа.")
+    # password2 = forms.CharField(label='Подтверждение пароля',
+    #                             widget=forms.PasswordInput,
+    #                             help_text="Для подтверждения введите, пожалуйста, пароль ещё раз.")
 
     class Meta:
         model = User
@@ -23,18 +23,12 @@ class UserRegistrationForm(forms.ModelForm):
                       last_name='Фамилия',
                       )
 
-    def clean_password2(self):
-        cd = self.cleaned_data
-        if cd['password'] != cd['password2']:
-            raise forms.ValidationError(_('Введённые пароли не совпадают.'))
-        return cd['password2']
 
-
-class UserAuthenticationForm(AuthenticationForm):
-    class Meta:
-        model = User
-        fields = ['username', 'password']
-        # fields = '__all__'
-        labels = dict(username=_('Имя пользователя'),
-                      password=_('Пароль'),
-                      )
+# class UserAuthenticationForm(AuthenticationForm):
+#     class Meta:
+#         model = User
+#         fields = ['username', 'password']
+#         # fields = '__all__'
+#         labels = dict(username=_('Имя пользователя'),
+#                       password=_('Пароль'),
+#                       )

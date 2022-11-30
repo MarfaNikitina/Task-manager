@@ -5,12 +5,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin,\
     UserPassesTestMixin
 from django.db.models import ProtectedError
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
-from users.forms import UserRegistrationForm, UserAuthenticationForm
+from users.forms import UserRegistrationForm
 from users.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -38,7 +38,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'update.html'
     extra_context = {'title': _('Изменение пользователя'),
                      'button_text': _('Изменить')}
-    success_url = reverse_lazy('users')
+    success_url = reverse_lazy('users:users')
     login_url = reverse_lazy('login')
 
     def test_func(self):
@@ -48,12 +48,16 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
             message = _("У вас нет прав для изменения другого пользователя.")
-            url = reverse_lazy('users')
+            url = reverse_lazy('users:users')
         else:
             message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
             url = self.login_url
         messages.warning(self.request, message)
         return redirect(url)
+
+    def get_success_url(self):
+        messages.success(self.request, _('Пользователь успешно изменён'))
+        return redirect(reverse_lazy('users:users'))
 
     def form_valid(self, form):
         form.save()
@@ -69,7 +73,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = User
     template_name = 'delete.html'
     extra_context = {'title': _('Удаление пользователя')}
-    success_url = reverse_lazy('users')
+    success_url = reverse_lazy('users:users')
 
     def test_func(self):
         user = self.get_object()
@@ -78,7 +82,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
             message = _("У вас нет прав для изменения другого пользователя.")
-            url = reverse_lazy('users')
+            url = reverse_lazy('users:users')
         else:
             message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
             url = self.login_url
@@ -97,14 +101,14 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return redirect(success_url)
 
 
-def logout_view(request):
-    logout(request)
-    messages.info(request, _('Вы разлогинены.'))
-    return redirect('home')
-
-
-class LoginUser(SuccessMessageMixin, LoginView):
-    model = User
-    form_class = UserAuthenticationForm
-    template_name = 'registration/login.html'
-    success_message = _('Вы залогинены')
+# def logout_view(request):
+#     logout(request)
+#     messages.info(request, _('Вы разлогинены.'))
+#     return redirect('home')
+# 
+# 
+# class LoginUser(SuccessMessageMixin, LoginView):
+#     form_class = AuthenticationForm
+#     template_name = 'registration/login.html'
+#     success_message = _('Вы залогинены')
+#     redirect_field_name = reverse_lazy('home')

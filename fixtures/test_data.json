@@ -1,0 +1,24 @@
+{
+  "users": {
+    "new": {
+      "first_name": "Ivan",
+      "last_name": "Ivanov",
+      "password": "12345abc",
+      "username": "IvanIvanov"
+    },
+    "existing": {
+      "first_name": "Nikita",
+      "last_name": "Nikitin",
+      "password": "12345abcd",
+      "username": "NikitaNikitin"
+    }
+  },
+  "statuses": {
+    "new": {
+      "name": "new_status"
+    },
+    "existing": {
+      "name": "first_status"
+    }
+  }
+}

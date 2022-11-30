@@ -28,15 +28,15 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         messages.success(self.request, _('Метка успешно создана'))
         return reverse_lazy('labels')
 
-    # def handle_no_permission(self):
-    #     messages.warning(self.request, _('Задача успешно создана'))
-    #     return redirect(self.login_url)
+    def handle_no_permission(self):
+        messages.warning(self.request, _('Вы не авторизованы! Пожалуйста, выполните вход.'))
+        return redirect(self.login_url)
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.author = self.request.user
-        self.object.save()
-        return super(LabelCreateView, self).form_valid(form)
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.author = self.request.user
+    #     self.object.save()
+    #     return super(LabelCreateView, self).form_valid(form)
 
 
 class LabelUpdateView(LoginRequiredMixin, UpdateView):
@@ -50,12 +50,20 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, _('Метка успешно изменена'))
         return reverse_lazy('labels')
 
+    def handle_no_permission(self):
+        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        return redirect(self.login_url)
+
 
 class LabelDeleteView(LoginRequiredMixin, DeleteView):
     model = Label
     template_name = 'delete.html'
     extra_context = {'title': _('Удаление метки')}
     success_url = reverse_lazy('labels')
+
+    def handle_no_permission(self):
+        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        return redirect(self.login_url)
 
     def form_valid(self, form):
         success_url = self.get_success_url()
@@ -66,12 +74,3 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
             messages.error(self.request, _('Невозможно удалить метку, потому что она используется'))
         finally:
             return HttpResponseRedirect(success_url)
-            
-    # def handle_no_permission(self):
-    #     if self.request.user.is_authenticated:
-    #         try:
-    #             message = messages.success(self.request, _("Статус успешно удален."))
-    #             url = reverse_lazy('statuses')
-    #         except:
-    #             message = messages.warning(self.request, _('Невозможно удалить статус, потому что он используется'))
-    #     return redirect(self.url)

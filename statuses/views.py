@@ -15,6 +15,10 @@ class StatusListView(LoginRequiredMixin, ListView):
     model = Status
     template_name = 'lists/status_list.html'
 
+    def handle_no_permission(self):
+        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        return redirect(self.login_url)
+
 
 class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = StatusForm
@@ -28,6 +32,10 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     def get_success_url(self):
         messages.success(self.request, _('Статус успешно создан'))
         return reverse_lazy('statuses')
+
+    def handle_no_permission(self):
+        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        return redirect(self.login_url)
 
 
 class StatusUpdateView(LoginRequiredMixin, UpdateView):
@@ -43,6 +51,10 @@ class StatusUpdateView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, _('Статус успешно изменён'))
         return reverse_lazy('statuses')
 
+    def handle_no_permission(self):
+        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        return redirect(self.login_url)
+
 
 class StatusDeleteView(LoginRequiredMixin, DeleteView):
     model = Status
@@ -51,6 +63,10 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
         'title': _('Удаление статуса')
     }
     success_url = reverse_lazy('statuses')
+
+    def handle_no_permission(self):
+        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        return redirect(self.login_url)
 
     def form_valid(self, form):
         success_url = self.get_success_url()
