@@ -20,5 +20,13 @@
     "existing": {
       "name": "first_status"
     }
+  },
+  "labels": {
+    "new": {
+      "name": "new_label"
+    },
+    "existing": {
+      "name": "first_label"
+    }
   }
 }

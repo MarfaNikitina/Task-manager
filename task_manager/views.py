@@ -8,6 +8,8 @@ from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 
+from users.models import User
+
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -20,19 +22,10 @@ def logout_view(request):
 
 
 class LoginUser(LoginView):
+    model = User
     form_class = AuthenticationForm
     template_name = 'registration/login.html'
 
     def get_success_url(self):
         messages.info(self.request, _('Вы залогинены'))
         return reverse_lazy('home')
-
-
-# class LoginUser(SuccessMessageMixin, LoginView):
-#     form_class = AuthenticationForm
-#     template_name = 'registration/login.html'
-#     success_message = _('Вы залогинены')
-
-
-
-

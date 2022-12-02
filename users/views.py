@@ -44,10 +44,14 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         user = self.get_object()
         return self.request.user.id == user.id
+    
+    def get_success_url(self):
+        messages.success(self.request, _('Пользователь успешно изменён'))
+        return redirect(reverse_lazy('users:users'))
 
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
-            message = _("У вас нет прав для изменения другого пользователя.")
+            message =_("У вас нет прав для изменения другого пользователя.")
             url = reverse_lazy('users:users')
         else:
             message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
@@ -55,18 +59,14 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         messages.warning(self.request, message)
         return redirect(url)
 
-    def get_success_url(self):
-        messages.success(self.request, _('Пользователь успешно изменён'))
-        return redirect(reverse_lazy('users:users'))
-
-    def form_valid(self, form):
-        form.save()
-        username = self.request.POST['username']
-        password = self.request.POST['password']
-        user = authenticate(username=username, password=password)
-        login(self.request, user)
-        messages.success(self.request, _('Пользователь успешно изменён'))
-        return redirect(self.success_url)
+    # def form_valid(self, form):
+    #     form.save()
+    #     username = self.request.POST['username']
+    #     password = self.request.POST['password']
+    #     user = authenticate(username=username, password=password)
+    #     login(self.request, user)
+    #     messages.success(self.request, _('Пользователь успешно изменён'))
+    #     return redirect(self.success_url)
 
 
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
