@@ -14,11 +14,23 @@ jobs:
       - name: Run linter and pytest
         run: |
           make check
-      - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v2.7.5
+      - name: Create Reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+      - name: Test
+        run: |
+          make test-cov
+      - name: Sending Reporter
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID_CODECLIMATE }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        with:
-          coverageCommand: make test-coverage
-          debug: true
+          GITHUB_TOKEN: ${{ secrets.TEST_REPORTER_ID }}
+        run: |
+          ./cc-test-reporter after-build -r "$GITHUB_TOKEN"
+#        uses: paambaati/codeclimate-action@v2.7.5
+#        env:
+#          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+##          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+#        with:
+#          coverageCommand: make test-coverage
+#          debug: true
