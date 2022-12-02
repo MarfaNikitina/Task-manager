@@ -13,11 +13,14 @@
 
 </h1>
 <h4><a href="{% url 'create_task' %}">{% translate 'Создать задачу' %}</a></h4>
-    <form class="card  center" method="get">
+    <form class="card  center  is-valid" method="get">
         {{ filter.form.as_p }}
        <input class="btn btn-primary" type="submit" value="{% trans 'Показать' %}">
 
     </form>
+<br>
+<br>
+
 <table class="table table-striped">
   <thead>
     <tr>

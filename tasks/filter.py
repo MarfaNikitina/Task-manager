@@ -26,10 +26,9 @@ class TaskFilter(django_filters.FilterSet):
                                       label=_('Метка'))
     author = filters.BooleanFilter(
         field_name='author',
+        widget=forms.widgets.CheckboxInput(attrs={'class': 'form-check center'}),
         label=_('Только свои задачи'),
-        method='choose_author',
-        widget=forms.widgets.CheckboxInput(attrs={'class': 'form-check-input is_valid center'})
-            )
+        method='choose_author')
 
     class Meta:
         model = Task
