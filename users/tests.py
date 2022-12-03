@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
 from .models import User
 # from django.contrib.auth import get_user_model
@@ -9,12 +9,9 @@ from task_manager.utils import get_test_data
 class UserTest(TestCase):
     fixtures = ['users.json']
 
-    # @classmethod
-    # def setUpTestData(cls):
-    #     cls.test_data = get_test_data()
-    #     cls.user = User.objects.get(pk=1)
-
     def setUp(self):
+        self.client = Client()
+
         self.user = User.objects.get(pk=1)
         self.user2 = User.objects.get(pk=2)
         self.users_list = reverse('users:users')
@@ -58,9 +55,10 @@ class UserTest(TestCase):
             reverse('users:update', args=[self.user.pk, ]),
             self.test_data['users']['new'],
         )
-        # self.assertRedirects(response, reverse('users:users'))
-        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, reverse('users:users'))
+        # # self.assertEqual(response.status_code, 200)
         updated_user = User.objects.get(first_name=self.test_data['users']['new']['first_name'])
+        # updated_user = User.objects.get(first_name='Marfa')
         self.assertUser(updated_user, self.test_data['users']['new'])
 
     def test_delete_page(self):
@@ -74,4 +72,3 @@ class UserTest(TestCase):
         self.assertRedirects(response, reverse('users:users'))
         with self.assertRaises(ObjectDoesNotExist):
             User.objects.get(username=self.user.username)
-

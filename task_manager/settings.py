@@ -29,8 +29,6 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv('DEBUG')
-# DEBUG = True
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
@@ -68,9 +66,9 @@ MIDDLEWARE = [
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware'
 ]
 
-
+POST_SERVER_ITEM_ACCESS_TOKEN = os.getenv("POST_SERVER_ITEM_ACCESS_TOKEN")
 ROLLBAR = {
-    'access_token': '08698d418aaa4321a6290f71859f6998',
+    'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,
