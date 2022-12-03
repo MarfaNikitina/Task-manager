@@ -1,18 +1,15 @@
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin,\
     UserPassesTestMixin
 from django.db.models import ProtectedError
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
 from users.forms import UserRegistrationForm
 from users.models import User
-from django.contrib.auth import authenticate, login, logout
 
 
 class UserListView(ListView):
@@ -32,7 +29,10 @@ class UserCreateView(SuccessMessageMixin, CreateView):
         return reverse_lazy('login')
 
 
-class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+class UserUpdateView(
+    LoginRequiredMixin, UserPassesTestMixin,
+    SuccessMessageMixin, UpdateView
+):
     model = User
     form_class = UserRegistrationForm
     template_name = 'update.html'
@@ -48,7 +48,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
     def handle_no_permission(self):
         # if self.request.user.is_authenticated:
-        message =_("У вас нет прав для изменения другого пользователя.")
+        message = _("У вас нет прав для изменения другого пользователя.")
         url = reverse_lazy('users:users')
         # else:
         #     message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
@@ -89,5 +89,6 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return redirect(self.success_url)
         except ProtectedError:
             messages.warning(self.request,
-                             _("У вас нет прав для изменения другого пользователя."))
+                             _("У вас нет прав"
+                               " для изменения другого пользователя."))
             return redirect(success_url)

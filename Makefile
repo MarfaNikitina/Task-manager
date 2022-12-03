@@ -3,7 +3,7 @@ install:
 	poetry install
 
 lint:
-	poetry run flake8
+	poetry run flake8 .
 
 test-coverage:
 	poetry run coverage run --source='.' manage.py test
@@ -24,9 +24,5 @@ start:
 check:
 	poetry check
 
-lint:
-	poetry run flake8 .
-
 test:
 	poetry run python manage.py test
-

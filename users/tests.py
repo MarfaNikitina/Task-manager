@@ -46,7 +46,9 @@ class UserTest(TestCase):
 
     def test_update_page(self):
         self.client.force_login(self.user2)
-        response = self.client.get(reverse('users:update', args=(self.user2.pk, )))
+        response = self.client.get(
+            reverse('users:update', args=(self.user2.pk, ))
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_update(self):
@@ -57,18 +59,24 @@ class UserTest(TestCase):
         )
         self.assertRedirects(response, reverse('users:users'))
         # # self.assertEqual(response.status_code, 200)
-        updated_user = User.objects.get(first_name=self.test_data['users']['new']['first_name'])
+        updated_user = User.objects.get(
+            first_name=self.test_data['users']['new']['first_name']
+        )
         # updated_user = User.objects.get(first_name='Marfa')
         self.assertUser(updated_user, self.test_data['users']['new'])
 
     def test_delete_page(self):
         self.client.force_login(self.user)
-        response = self.client.get(reverse('users:delete', args=(self.user.pk, )))
+        response = self.client.get(
+            reverse('users:delete', args=(self.user.pk, ))
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_delete(self):
         self.client.force_login(self.user)
-        response = self.client.post(reverse('users:delete', args=(self.user.pk, )))
+        response = self.client.post(
+            reverse('users:delete', args=(self.user.pk, ))
+        )
         self.assertRedirects(response, reverse('users:users'))
         with self.assertRaises(ObjectDoesNotExist):
             User.objects.get(username=self.user.username)
