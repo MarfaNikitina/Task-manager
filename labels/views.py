@@ -10,6 +10,8 @@ from django.utils.translation import gettext as _
 from labels.forms import LabelForm
 from labels.models import Label
 
+NO_PERMISSION_MESSAGE = _('Вы не авторизованы! Пожалуйста, выполните вход.')
+
 
 class LabelListView(ListView):
     model = Label
@@ -29,7 +31,7 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return reverse_lazy('labels')
 
     def handle_no_permission(self):
-        messages.warning(self.request, _('Вы не авторизованы! Пожалуйста, выполните вход.'))
+        messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
     # def form_valid(self, form):
@@ -51,7 +53,7 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
         return reverse_lazy('labels')
 
     def handle_no_permission(self):
-        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
 
@@ -62,7 +64,7 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('labels')
 
     def handle_no_permission(self):
-        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
     def form_valid(self, form):
@@ -71,6 +73,8 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
             self.object.delete()
             messages.success(self.request, _('Метка успешно удалена'))
         except ProtectedError:
-            messages.error(self.request, _('Невозможно удалить метку, потому что она используется'))
+            messages.error(self.request, _(
+                'Невозможно удалить метку, потому что она используется')
+                           )
         finally:
             return HttpResponseRedirect(success_url)
