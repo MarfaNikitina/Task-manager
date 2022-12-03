@@ -2,19 +2,31 @@
 install:
 	poetry install
 
-build:
-	poetry build
-
-package-install:
-	python3 -m pip install dist/*.whl
-
 lint:
-	poetry run flake8 page_loader
-
-check:
-	poetry run pytest
+	poetry run flake8
 
 test-coverage:
 	poetry run coverage run --source='.' manage.py test
 	poetry run coverage report
 	poetry run coverage xml
+
+migrate:
+	poetry run python manage.py migrate
+
+setup:
+	cp -n .env.example .env || true
+	make install
+	make migrate
+
+start:
+	poetry run python manage.py runserver 7778
+
+check:
+	poetry check
+
+lint:
+	poetry run flake8 .
+
+test:
+	poetry run python manage.py test
+
