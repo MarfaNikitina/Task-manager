@@ -3,7 +3,7 @@ install:
 	poetry install
 
 lint:
-	poetry run flake8 .
+	poetry run flake8 . --exclude=*/migrations/*
 
 test-coverage:
 	poetry run coverage run --source='.' manage.py test
