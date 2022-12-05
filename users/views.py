@@ -13,6 +13,8 @@ from users.models import User
 
 NO_PERMISSION_MESSAGE = _("У вас нет прав для изменения другого пользователя.")
 CREATE_MESSAGE = _('Пользователь успешно зарегистрирован')
+NO_LOGIN_MESSAGE = _("Вы не авторизованы! Пожалуйста, выполните вход.")
+PROTECTED_ERROR_MESSAGE = _("Нельзя удалить пользователя, так как он используется")
 
 
 class UserListView(ListView):
@@ -50,38 +52,38 @@ class UserUpdateView(
         return self.request.user.id == user.id
 
     def handle_no_permission(self):
-        # if self.request.user.is_authenticated:
-        # message = _("У вас нет прав для изменения другого пользователя.")
-        url = reverse_lazy('users:users')
-        # else:
-        #     message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
-        #     url = self.login_url
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
+        if self.request.user.is_authenticated:
+            messages.warning(self.request, NO_PERMISSION_MESSAGE)
+            url = reverse_lazy('users:users')
+        else:
+            url = self.login_url
+            messages.warning(self.request, NO_LOGIN_MESSAGE)
         return redirect(url)
 
-    # def form_valid(self, form):
-    #     form.save()
-    #     username = self.request.POST['username']
-    #     password = self.request.POST['password']
-    #     user = authenticate(username=username, password=password)
-    #     login(self.request, user)
-    #     messages.success(self.request, _('Пользователь успешно изменён'))
-    #     return redirect(self.success_url)
 
-
-class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixin,
+                     UserPassesTestMixin,
+                     SuccessMessageMixin,
+                     DeleteView):
     model = User
     template_name = 'delete.html'
     extra_context = {'title': _('Удаление пользователя')}
     success_url = reverse_lazy('users:users')
+    login_url = reverse_lazy('login')
+    success_message = _('Пользователь успешно удалён')
 
     def test_func(self):
         user = self.get_object()
         return self.request.user.id == user.id
 
     def handle_no_permission(self):
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
-        return redirect(reverse_lazy('users:users'))
+        if self.request.user.is_authenticated:
+            messages.warning(self.request, NO_PERMISSION_MESSAGE)
+            url = reverse_lazy('users:users')
+        else:
+            url = self.login_url
+            messages.warning(self.request, NO_LOGIN_MESSAGE)
+        return redirect(url)
 
     def form_valid(self, form):
         success_url = self.get_success_url()
@@ -90,5 +92,5 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             messages.success(self.request, _('Пользователь успешно удалён'))
             return redirect(self.success_url)
         except ProtectedError:
-            messages.warning(self.request, NO_PERMISSION_MESSAGE)
+            messages.warning(self.request, PROTECTED_ERROR_MESSAGE)
             return redirect(success_url)
