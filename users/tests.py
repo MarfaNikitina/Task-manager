@@ -18,6 +18,9 @@ class UserTest(TestCase):
         self.test_data = get_test_data()
         self.login = reverse('login')
 
+    def test_user_exists(self):
+        self.assertTrue(User.objects.count() == 3)
+
     def assertUser(self, user, user_data):
         # self.assertEqual(user.__str__(), user_data['name'])
         self.assertEqual(user.first_name, user_data['first_name'])
@@ -39,7 +42,14 @@ class UserTest(TestCase):
 
     def test_create(self):
         new_user_data = self.test_data['users']['new']
-        response = self.client.post(reverse('users:create'), new_user_data)
+        # print('####', new_user_data)
+        response = self.client.post(
+            reverse('users:create'),
+            new_user_data)
+        self.assertRedirects(response, reverse('login'))
+        print(response.status_code)
+        u = User.objects.all()
+        print(u)
         created_user = User.objects.get(username=new_user_data['username'])
         self.assertRedirects(response, reverse('login'))
         self.assertUser(created_user, new_user_data)

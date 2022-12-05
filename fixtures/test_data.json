@@ -5,12 +5,6 @@
       "last_name": "Ivanov",
       "password": "12345abc",
       "username": "IvanIvanov"
-    },
-    "existing": {
-      "first_name": "Nikita",
-      "last_name": "Nikitin",
-      "password": "12345abcd",
-      "username": "NikitaNikitin"
     }
   },
   "statuses": {
@@ -27,6 +21,13 @@
     },
     "existing": {
       "name": "first_label"
+    }
+  },
+  "tasks": {
+    "new": {
+      "name": "new_task",
+      "author": 3,
+      "executor": 1
     }
   }
 }

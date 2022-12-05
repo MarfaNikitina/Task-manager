@@ -7,7 +7,7 @@
       "description": null,
       "status": null,
       "author": 3,
-      "executor": null,
+      "executor": 2,
       "time_create": "2022-11-16"
     }
   },
@@ -19,7 +19,7 @@
       "description": null,
       "status": null,
       "author": 3,
-      "executor": null,
+      "executor": 3,
       "time_create": "2022-11-19"
     }
   },
@@ -30,8 +30,8 @@
       "name": "Task3",
       "description": null,
       "status": null,
-      "author": 10,
-      "executor": null,
+      "author": 2,
+      "executor": 1,
       "time_create": "2022-11-19"
     }
   }
