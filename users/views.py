@@ -12,6 +12,7 @@ from users.forms import UserRegistrationForm
 from users.models import User
 
 NO_PERMISSION_MESSAGE = _("У вас нет прав для изменения другого пользователя.")
+CREATE_MESSAGE = _('Пользователь успешно зарегистрирован')
 
 
 class UserListView(ListView):
@@ -27,7 +28,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
                      'button_text': _('Зарегистрировать')}
 
     def get_success_url(self):
-        messages.success(self.request, _('Пользователь успешно зарегистрирован'))
+        messages.success(self.request, CREATE_MESSAGE)
         return reverse_lazy('login')
 
 
