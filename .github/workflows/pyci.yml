@@ -16,10 +16,19 @@ jobs:
           make lint
       - name: Test
         run: |
-          make test-cov
-      - name: Sending Reporter
-        env:
-          GITHUB_TOKEN: ${{ secrets.TEST_REPORTER_ID }}
+          make test
+      - name: Test & publish code coverage
+          uses: paambaati/codeclimate-action@v2.7.4
+          env:
+            CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          with:
+            coverageCommand: make test-coverage
+            debug: true
+            
+            
+#      - name: Sending Reporter
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.TEST_REPORTER_ID }}
 #        run: |
 #          ./cc-test-reporter after-build -r "$GITHUB_TOKEN"
 #        uses: paambaati/codeclimate-action@v2.7.5
