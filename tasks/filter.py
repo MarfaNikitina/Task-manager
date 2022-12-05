@@ -1,7 +1,7 @@
 import django_filters
 from django import forms
 from django_filters import filters
-from django_filters.widgets import BooleanWidget
+# from django_filters.widgets import BooleanWidget
 
 from labels.models import Label
 from statuses.models import Status

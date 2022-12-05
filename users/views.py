@@ -11,6 +11,8 @@ from django.utils.translation import gettext as _
 from users.forms import UserRegistrationForm
 from users.models import User
 
+NO_PERMISSION_MESSAGE = _("У вас нет прав для изменения другого пользователя.")
+
 
 class UserListView(ListView):
     model = User
@@ -48,12 +50,12 @@ class UserUpdateView(
 
     def handle_no_permission(self):
         # if self.request.user.is_authenticated:
-        message = _("У вас нет прав для изменения другого пользователя.")
+        # message = _("У вас нет прав для изменения другого пользователя.")
         url = reverse_lazy('users:users')
         # else:
         #     message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
         #     url = self.login_url
-        messages.warning(self.request, message)
+        messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(url)
 
     # def form_valid(self, form):
@@ -77,8 +79,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user.id == user.id
 
     def handle_no_permission(self):
-        message = _("У вас нет прав для изменения другого пользователя.")
-        messages.warning(self.request, message)
+        messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(reverse_lazy('users:users'))
 
     def form_valid(self, form):
@@ -88,7 +89,5 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             messages.success(self.request, _('Пользователь успешно удалён'))
             return redirect(self.success_url)
         except ProtectedError:
-            messages.warning(self.request,
-                             _("У вас нет прав"
-                               " для изменения другого пользователя."))
+            messages.warning(self.request, NO_PERMISSION_MESSAGE)
             return redirect(success_url)
