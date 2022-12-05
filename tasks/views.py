@@ -2,14 +2,16 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import ProtectedError
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.utils.translation import gettext as _
 from django_filters.views import FilterView
 from tasks.filter import TaskFilter
 from tasks.forms import TaskForm
 from tasks.models import Task
+
+NO_PERMISSION_MESSAGE = _("Вы не авторизованы! Пожалуйста, выполните вход.")
 
 
 class TaskListView(FilterView):
@@ -33,7 +35,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return reverse_lazy('tasks')
 
     def handle_no_permission(self):
-        messages.warning(self.request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+        messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(reverse_lazy('login'))
 
     def form_valid(self, form):
@@ -54,8 +56,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
         return reverse_lazy('tasks')
 
     def handle_no_permission(self):
-        message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
-        messages.warning(self.request, message)
+        messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
 
@@ -73,7 +74,7 @@ class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             message = _("Задачу может удалить только её автор")
             url = reverse_lazy('tasks')
         else:
-            message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
+            message = NO_PERMISSION_MESSAGE
             url = self.login_url
         messages.warning(self.request, message)
         return redirect(url)
@@ -94,6 +95,5 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
 
     def handle_no_permission(self):
-        message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
-        messages.warning(self.request, message)
+        messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)

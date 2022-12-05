@@ -47,7 +47,10 @@ class LabelTest(TestCase):
 
     def test_update_label_page(self):
         self.client.force_login(self.user)
-        response = self.client.get(reverse('update_label', args=(self.label.pk, )))
+        response = self.client.get(reverse(
+            'update_label',
+            args=(self.label.pk, ))
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_update_label(self):
@@ -64,12 +67,18 @@ class LabelTest(TestCase):
 
     def test_delete_page(self):
         self.client.force_login(self.user)
-        response = self.client.get(reverse('delete_label', args=(self.label.pk, )))
+        response = self.client.get(reverse(
+            'delete_label',
+            args=(self.label.pk, ))
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_delete_label(self):
         self.client.force_login(self.user)
-        response = self.client.post(reverse('delete_label', args=(self.label.pk, )))
+        response = self.client.post(reverse(
+            'delete_label',
+            args=(self.label.pk, ))
+        )
         self.assertRedirects(response, reverse('labels'))
         with self.assertRaises(ObjectDoesNotExist):
             Label.objects.get(name=self.label.name)
