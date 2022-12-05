@@ -14,7 +14,9 @@ from users.models import User
 NO_PERMISSION_MESSAGE = _("У вас нет прав для изменения другого пользователя.")
 CREATE_MESSAGE = _('Пользователь успешно зарегистрирован')
 NO_LOGIN_MESSAGE = _("Вы не авторизованы! Пожалуйста, выполните вход.")
-PROTECTED_ERROR_MESSAGE = _("Нельзя удалить пользователя, так как он используется")
+PROTECTED_ERROR_MESSAGE = _(
+    "Нельзя удалить пользователя, так как он используется"
+)
 
 
 class UserListView(ListView):
