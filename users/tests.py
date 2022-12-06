@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, Client
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from .models import User
 # from django.contrib.auth import get_user_model
 from task_manager.utils import get_test_data
@@ -45,7 +45,7 @@ class UserTest(TestCase):
     #     # cnew_user_data.pop('username')
     #     # new_user_data = ''
     #     print('####', new_user_data)
-    #     response = self.client.post('/users/create', new_user_data, follow=True)
+    #     response = self.client.post('/users/create', new_user_data)
     #     print(response.status_code, response)
     #     u = User.objects.all()
     #     print(u)

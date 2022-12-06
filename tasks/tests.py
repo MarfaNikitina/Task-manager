@@ -58,7 +58,7 @@ class TaskTest(TestCase):
     #         reverse('update_task', args=[self.task.pk]),
     #         new_task_data,
     #     )
-    # 
+
     #     self.assertRedirects(response, reverse('statuses'))
     #     updated_task = Task.objects.get(name=new_task_data['name'])
     #     self.assertStatus(updated_task, new_task_data)
