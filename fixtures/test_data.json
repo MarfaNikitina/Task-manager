@@ -4,7 +4,6 @@
       "first_name": "Ivan",
       "last_name": "Ivanov",
       "password": "12345abc",
-      "password2": "12345abc",
       "username": "IvanIvanov"
     }
   },
