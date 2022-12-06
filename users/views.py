@@ -96,3 +96,5 @@ class UserDeleteView(LoginRequiredMixin,
         except ProtectedError:
             messages.warning(self.request, PROTECTED_ERROR_MESSAGE)
             return redirect(success_url)
+
+# DATABASE_URL=postgresql://postgres:EP4dS1GGo2To9LPdtbaQ@containers-us-west-59.railway.app:7551/railway

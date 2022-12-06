@@ -116,20 +116,31 @@ DATABASES['default'].update(my_db)
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', # noqa
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', # noqa
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', # noqa
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', # noqa
+#     },
+# ]
+
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', # noqa
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', # noqa
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', # noqa
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', # noqa
-    },
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {
+            "min_length": 3,
+        }
+    }
 ]
+
+AUTH_USER_MODEL = "users.User"
 
 
 # Internationalization
@@ -169,4 +180,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
 
-AUTH_USER_MODEL = "users.User"
+
