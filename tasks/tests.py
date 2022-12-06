@@ -40,9 +40,8 @@ class TaskTest(TestCase):
         self.client.force_login(self.user)
         new_task_data = self.test_data['tasks']['new']
         response = self.client.post(reverse('create_task'), new_task_data)
-
-        self.assertRedirects(response, reverse('tasks'))
         created_task = Task.objects.get(name=new_task_data['name'])
+        self.assertRedirects(response, reverse('tasks'))
         self.assertTask(created_task, new_task_data)
 
     def test_update_task_page(self):

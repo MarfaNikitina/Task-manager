@@ -42,14 +42,16 @@ class UserTest(TestCase):
 
     def test_create(self):
         new_user_data = self.test_data['users']['new']
-        # print('####', new_user_data)
+        print('####', new_user_data)
         response = self.client.post(
             reverse('users:create'),
             new_user_data)
-        self.assertRedirects(response, reverse('login'))
+
         print(response.status_code)
+        print(response)
         u = User.objects.all()
         print(u)
+        self.assertRedirects(response, reverse('login'))
         created_user = User.objects.get(username=new_user_data['username'])
         self.assertRedirects(response, reverse('login'))
         self.assertUser(created_user, new_user_data)

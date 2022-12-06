@@ -35,6 +35,12 @@ class UserCreateView(SuccessMessageMixin, CreateView):
         messages.success(self.request, CREATE_MESSAGE)
         return reverse_lazy('login')
 
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 
 class UserUpdateView(
     LoginRequiredMixin, UserPassesTestMixin,
