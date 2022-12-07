@@ -13,5 +13,5 @@ class TaskForm(forms.ModelForm):
             'description': _('Описание'),
             'status': _('Статус'),
             'executor': _('Исполнитель'),
-            'labels': _('Метки')
+            'label': _('Метки')
         }
