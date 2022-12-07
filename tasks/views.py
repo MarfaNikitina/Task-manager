@@ -27,8 +27,8 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Task
     template_name = 'tasks/create_task.html'
     login_url = 'login'
-    extra_context = {'title': 'Создать задачу',
-                     'button_text': 'Создать'}
+    extra_context = {'title': _('Создать задачу'),
+                     'button_text': _('Создать')}
 
     def get_success_url(self):
         messages.success(self.request, _('Задача успешно создана'))

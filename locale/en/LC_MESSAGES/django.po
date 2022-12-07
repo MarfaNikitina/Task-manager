@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 17:12+0300\n"
+"POT-Creation-Date: 2022-12-07 11:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,99 +17,104 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: labels/views.py:24
-msgid "Создать метку"
-msgstr ""
 
-#: labels/views.py:25 statuses/views.py:25
+#: labels/views.py:13 statuses/views.py:14 tasks/views.py:14 users/views.py:16
+msgid "Вы не авторизованы! Пожалуйста, выполните вход."
+msgstr "You are not authorized! Please log in."
+
+#: labels/views.py:26
+msgid "Создать метку"
+msgstr "Create label"
+
+#: labels/views.py:27 statuses/views.py:32 tasks/views.py:31
 msgid "Создать"
 msgstr "Create"
 
-#: labels/views.py:28
+#: labels/views.py:30
 msgid "Метка успешно создана"
 msgstr "Label successfully created"
 
-#: labels/views.py:46
+#: labels/views.py:48
 msgid "Изменение метки"
 msgstr "Label change"
 
-#: labels/views.py:47 statuses/views.py:39
+#: labels/views.py:49 statuses/views.py:50
 #: tasks/templates/tasks/detail_task.html:28
-#: tasks/templates/tasks/update_task.html:19 users/views.py:39
+#: tasks/templates/tasks/update_task.html:19 users/views.py:47
 msgid "Изменить"
 msgstr "Edit"
 
-#: labels/views.py:50
+#: labels/views.py:52
 msgid "Метка успешно изменена"
 msgstr "Label successfully changed"
 
-#: labels/views.py:57
+#: labels/views.py:63
 msgid "Удаление метки"
 msgstr "Label delete"
 
-#: labels/views.py:64
+#: labels/views.py:74
 msgid "Метка успешно удалена"
 msgstr "Label successfully deleted"
 
-#: labels/views.py:66
+#: labels/views.py:77
 msgid "Невозможно удалить метку, потому что она используется"
 msgstr "Can't delete label because it's in use"
 
-#: statuses/views.py:24
+#: statuses/views.py:31
 msgid "Создать статус"
 msgstr "Create status"
 
-#: statuses/views.py:29
+#: statuses/views.py:36
 msgid "Статус успешно создан"
 msgstr "Status successfully created"
 
-#: statuses/views.py:38
+#: statuses/views.py:49
 msgid "Изменение статуса"
 msgstr "Status change"
 
-#: statuses/views.py:43
+#: statuses/views.py:54
 msgid "Статус успешно изменён"
 msgstr "Status successfully changed"
 
-#: statuses/views.py:51
+#: statuses/views.py:66
 msgid "Удаление статуса"
 msgstr "Status delete"
 
-#: statuses/views.py:59
+#: statuses/views.py:78
 msgid "Статус успешно удалён"
 msgstr "Status successfully deleted"
 
-#: statuses/views.py:61
+#: statuses/views.py:81
 msgid "Невозможно удалить статус, потому что он используется"
 msgstr "Can't delete status because it's in use"
 
-#: tasks/filter.py:22 tasks/forms.py:15
+#: tasks/filter.py:23 tasks/forms.py:14
 #: tasks/templates/tasks/detail_task.html:18
 msgid "Статус"
 msgstr "Status"
 
-#: tasks/filter.py:24 tasks/forms.py:16
+#: tasks/filter.py:26 tasks/forms.py:15
 #: tasks/templates/tasks/detail_task.html:17
 msgid "Исполнитель"
 msgstr "Executor"
 
-#: tasks/filter.py:26
+#: tasks/filter.py:28
 msgid "Метка"
 msgstr "Label"
 
-#: tasks/filter.py:29
+#: tasks/filter.py:34
 msgid "Только свои задачи"
 msgstr "Only your tasks"
 
-#: tasks/forms.py:13
+#: tasks/forms.py:12 users/forms.py:13
 msgid "Имя"
 msgstr "Name"
 
-#: tasks/forms.py:14
+#: tasks/forms.py:13
 msgid "Описание"
 msgstr "Description"
 
-#: tasks/forms.py:17 tasks/templates/tasks/detail_task.html:20
+#: tasks/forms.py:16 tasks/templates/tasks/detail_task.html:20
 msgid "Метки"
 msgstr "Labels"
 
@@ -148,55 +153,73 @@ msgstr "Delete"
 msgid "Изменение задачи"
 msgstr "Task change"
 
-#: tasks/views.py:31
+#: tasks/views.py:30
+#, fuzzy
+#| msgid "Создать статус"
+msgid "Создать задачу"
+msgstr "Create status"
+
+#: tasks/views.py:34
 msgid "Задача успешно создана"
 msgstr "Task successfully created"
 
-#: tasks/views.py:51
+#: tasks/views.py:55
 msgid "Задача успешно изменена"
 msgstr "Task successfully changed"
 
-#: tasks/views.py:61
+#: tasks/views.py:74 tasks/views.py:89
+msgid "Задачу может удалить только её автор"
+msgstr "A task can only be deleted by its author"
+
+#: tasks/views.py:85
 msgid "Задача успешно удалена"
 msgstr "Task successfully deleted"
 
-#: users/forms.py:28
-msgid "Введённые пароли не совпадают."
-msgstr "The entered passwords do not match."
-
-#: users/views.py:26
-msgid "Регистрация"
-msgstr "Registration"
-
-#: users/views.py:27
-msgid "Зарегистрировать"
-msgstr "Register"
-
-#: users/views.py:30
-msgid "Пользователь успешно зарегистрирован"
-msgstr "User successfully registered"
-
-#: users/views.py:38
-msgid "Изменение пользователя"
+#: users/forms.py:12
+#, fuzzy
+#| msgid "Изменение пользователя"
+msgid "Имя пользователя"
 msgstr "Edit user"
 
-#: users/views.py:49 users/views.py:79 users/views.py:95
+#: users/forms.py:14
+msgid "Фамилия"
+msgstr "Last name"
+
+#: users/views.py:14
 msgid "У вас нет прав для изменения другого пользователя."
 msgstr "You do not have permission to change another user."
 
-#: users/views.py:52 users/views.py:82
-msgid "Вы не авторизованы! Пожалуйста, выполните вход."
-msgstr "You are not authorized! Please log in."
+#: users/views.py:15
+msgid "Пользователь успешно зарегистрирован"
+msgstr "User successfully registered"
 
-#: users/views.py:63
+#: users/views.py:18
+#, fuzzy
+#| msgid "Невозможно удалить метку, потому что она используется"
+msgid "Нельзя удалить пользователя, так как он используется"
+msgstr "Can't delete label because it's in use"
+
+#: users/views.py:31
+msgid "Регистрация"
+msgstr "Registration"
+
+#: users/views.py:32
+msgid "Зарегистрировать"
+msgstr "Register"
+
+#: users/views.py:46
+msgid "Изменение пользователя"
+msgstr "Edit user"
+
+#: users/views.py:49
 msgid "Пользователь успешно изменён"
 msgstr "User successfully edited"
 
-#: users/views.py:70
+#: users/views.py:72
 msgid "Удаление пользователя"
 msgstr "User delete"
 
-#: users/views.py:91
+#: users/views.py:75 users/views.py:94
 msgid "Пользователь успешно удалён"
 msgstr "User successfully deleted"
 
@@ -250,3 +273,6 @@ msgstr ""
 #: venv/lib/python3.10/site-packages/bootstrap4/templates/bootstrap4/messages.html:4
 msgid "close"
 msgstr ""
+
+#~ msgid "Введённые пароли не совпадают."
+#~ msgstr "The entered passwords do not match."
