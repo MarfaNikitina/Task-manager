@@ -32,6 +32,7 @@ class TaskFilter(django_filters.FilterSet):
             attrs={'class': 'form-check center'}
         ),
         label=_('Только свои задачи'),
+        # label_suffix="",
         method='choose_author'
     )
 

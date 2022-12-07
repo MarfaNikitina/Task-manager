@@ -14,7 +14,7 @@
 </h1>
 <h4><a href="{% url 'create_task' %}">{% translate 'Создать задачу' %}</a></h4>
     <form class="card  center  is-valid" method="get">
-        {{ filter.form.as_p }}
+        {% bootstrap_form filter.form %}
        <input class="btn btn-primary" type="submit" value="{% trans 'Показать' %}">
 
     </form>
