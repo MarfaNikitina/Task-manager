@@ -1,5 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
+packages = [{ include = "task_manager" }]
 version = "0.1.0"
 description = ""
 authors = ["Marfa Nikitina <marfik93@mail.ru>"]
