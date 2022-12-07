@@ -15,7 +15,7 @@ class TaskFilter(django_filters.FilterSet):
     def choose_author(self, queryset, name, value):
         if value:
             author = getattr(self.request, 'user', None)
-            queryset = queryset.filter(author=author)
+            return queryset.filter(author=author)
         return queryset
 
     status = filters.ModelChoiceFilter(
@@ -26,17 +26,18 @@ class TaskFilter(django_filters.FilterSet):
                                          label=_('Исполнитель'))
     label = filters.ModelChoiceFilter(queryset=Label.objects.all(),
                                       label=_('Метка'))
-    author = filters.BooleanFilter(
+    self_author = filters.BooleanFilter(
         field_name='author',
         widget=forms.widgets.CheckboxInput(
             attrs={'class': 'form-check center'}
         ),
         label=_('Только свои задачи'),
-        method='choose_author')
+        method='choose_author'
+    )
 
     class Meta:
         model = Task
-        fields = ['status', 'executor', 'label', 'author']
+        fields = ['status', 'executor', 'label']
 
 # attrs={'class': 'form-check-input'}
 # BooleanWidget
