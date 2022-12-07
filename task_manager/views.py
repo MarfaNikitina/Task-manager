@@ -38,5 +38,3 @@ class LoginUser(SuccessMessageMixin, LoginView):
     # def get_success_url(self):
     #     messages.info(self.request, _('Вы залогинены'))
     #     return reverse_lazy('home')
-
-# DATABASE_URL=postgresql://postgres:EP4dS1GGo2To9LPdtbaQ@$containers-us-west-152.railway.app:5919/railway
