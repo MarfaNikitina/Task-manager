@@ -38,7 +38,7 @@ class TaskFilter(django_filters.FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'executor', 'label']
+        fields = ['status', 'executor', 'labels']
 
 # attrs={'class': 'form-check-input'}
 # BooleanWidget
