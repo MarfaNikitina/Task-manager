@@ -69,7 +69,6 @@ class UserTest(TestCase):
         updated_user = User.objects.get(
             first_name=self.form_data['first_name']
         )
-        # updated_user = User.objects.get(first_name='Timofey')
         self.assertUser(updated_user, self.form_data)
 
     def test_delete_page(self):

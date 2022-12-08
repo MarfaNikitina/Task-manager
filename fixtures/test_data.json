@@ -27,8 +27,10 @@
   "tasks": {
     "new": {
       "name": "new_task",
+      "description": "lalala",
       "author": 3,
-      "executor": 1
+      "executor": 1,
+      "labels": 1
     }
   }
 }

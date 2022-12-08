@@ -14,6 +14,11 @@ class TaskTest(TestCase):
         cls.test_data = get_test_data()
         cls.task = Task.objects.get(pk=1)
         cls.user = User.objects.get(pk=1)
+        cls.form_data = {'name': 'new task',
+                         'status': 1,
+                         'description': 'lalala',
+                         'executor': 2,
+                         'labels': [1, 2]}
 
     def assertTask(self, task, task_data):
         self.assertEqual(task.__str__(), task_data['name'])
@@ -36,13 +41,17 @@ class TaskTest(TestCase):
         response = self.client.get(reverse('create_task'))
         self.assertEqual(response.status_code, 200)
 
-    # def test_create_task(self):
-    #     self.client.force_login(self.user)
-    #     new_task_data = self.test_data['tasks']['new']
-    #     response = self.client.post(reverse('create_task'), new_task_data)
-    #     created_task = Task.objects.get(name=new_task_data['name'])
-    #     self.assertRedirects(response, reverse('tasks'))
-    #     self.assertTask(created_task, new_task_data)
+    def test_create_task(self):
+        self.client.force_login(self.user)
+        new_task_data = self.form_data
+        response = self.client.post(
+            reverse('create_task'),
+            new_task_data,
+            follow=True
+        )
+        created_task = Task.objects.get(name=new_task_data['name'])
+        self.assertRedirects(response, reverse('tasks'))
+        self.assertTask(created_task, new_task_data)
 
     def test_update_task_page(self):
         self.client.force_login(self.user)
@@ -51,17 +60,17 @@ class TaskTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # def test_update_task(self):
-    #     self.client.force_login(self.user)
-    #     new_task_data = self.test_data['tasks']['new']
-    #     response = self.client.post(
-    #         reverse('update_task', args=[self.task.pk]),
-    #         new_task_data,
-    #     )
+    def test_update_task(self):
+        self.client.force_login(self.user)
+        new_task_data = self.form_data
+        response = self.client.post(
+            reverse('update_task', args=[self.task.pk]),
+            new_task_data,
+        )
 
-    #     self.assertRedirects(response, reverse('statuses'))
-    #     updated_task = Task.objects.get(name=new_task_data['name'])
-    #     self.assertStatus(updated_task, new_task_data)
+        self.assertRedirects(response, reverse('tasks'))
+        updated_task = Task.objects.get(name=new_task_data['name'])
+        self.assertTask(updated_task, new_task_data)
 
     def test_delete_page(self):
         self.client.force_login(self.user)
