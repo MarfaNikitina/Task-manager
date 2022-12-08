@@ -19,7 +19,7 @@
     <ol>{% translate 'Дата создания' %}  {{ task.time_create }}</ol>
     <ol>{% translate 'Метки' %} 
         <ul>
-            {% for label in task.label.all %}
+            {% for label in task.labels.all %}
             <li> {{ label }} </li>
             {% endfor %}
         </ul>

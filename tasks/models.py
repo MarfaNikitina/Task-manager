@@ -16,7 +16,7 @@ class Task(models.Model):
         related_name='executor'
     )
     time_create = models.DateField(auto_now_add=True)
-    label = models.ManyToManyField(
+    labels = models.ManyToManyField(
         Label,
         through='LabelForTask',
         blank=True
