@@ -17,6 +17,11 @@ class UserTest(TestCase):
         self.users_list = reverse('users:users')
         self.test_data = get_test_data()
         self.login = reverse('login')
+        self.form_data = {'username': 'Tim',
+                          'last_name': 'Timofey',
+                          'first_name': 'Kn',
+                          'password1': 'Password123',
+                          'password2': 'Password123'}
 
     def test_user_exists(self):
         self.assertTrue(User.objects.count() == 3)
@@ -40,17 +45,21 @@ class UserTest(TestCase):
         response = self.client.get(reverse('users:create'))
         self.assertEqual(response.status_code, 200)
 
+    def test_create_user(self):
+        create_user = reverse('users:create')
+        """ POST """
+        post_response = self.client.post(create_user,
+                                         self.form_data, follow=True)
+        self.assertRedirects(post_response, self.login)
+        self.assertTrue(User.objects.get(id=4))
+
+
     # def test_create(self):
     #     new_user_data = self.test_data['users']['new']
-    #     # cnew_user_data.pop('username')
-    #     # new_user_data = ''
-    #     print('####', new_user_data)
-    #     response = self.client.post('/users/create', new_user_data)
+    #     response = self.client.post(reverse('users:create'), new_user_data)
     #     print(response.status_code, response)
     #     u = User.objects.all()
-    #     print(u)
     #     created_user = User.objects.get(username=new_user_data['username'])
-    #     self.assertRedirects(response, reverse('login'))
     #     self.assertRedirects(response, reverse('login'))
     #     self.assertUser(created_user, new_user_data)
 

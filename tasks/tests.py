@@ -1,4 +1,4 @@
-# from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from django.urls import reverse
 from tasks.models import Task
@@ -76,5 +76,5 @@ class TaskTest(TestCase):
             reverse('delete_task', args=(self.user.pk, ))
         )
         self.assertRedirects(response, reverse('tasks'))
-        # with self.assertRaises(ObjectDoesNotExist):
-        #     Task.objects.get(name=self.task.name)
+        with self.assertRaises(ObjectDoesNotExist):
+            Task.objects.get(name=self.task.name)
