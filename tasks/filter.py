@@ -24,7 +24,7 @@ class TaskFilter(django_filters.FilterSet):
     )
     executor = filters.ModelChoiceFilter(queryset=User.objects.all(),
                                          label=_('Исполнитель'))
-    label = filters.ModelChoiceFilter(queryset=Label.objects.all(),
+    labels = filters.ModelChoiceFilter(queryset=Label.objects.all(),
                                       label=_('Метка'))
     self_author = filters.BooleanFilter(
         field_name='author',
