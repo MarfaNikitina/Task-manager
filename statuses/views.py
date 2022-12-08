@@ -12,6 +12,8 @@ from django.utils.translation import gettext as _
 
 NO_PERMISSION_MESSAGE = _("Вы не авторизованы! "
                           "Пожалуйста, выполните вход.")
+NO_DELETE_MESSAGE = _('Невозможно удалить статус, '
+                      'потому что он используется')
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -77,9 +79,6 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
             self.object.delete()
             messages.success(self.request, _('Статус успешно удалён'))
         except ProtectedError:
-            messages.error(self.request, _(
-                'Невозможно удалить статус,'
-                ' потому что он используется')
-                           )
+            messages.error(self.request, NO_DELETE_MESSAGE)
         finally:
             return HttpResponseRedirect(success_url)
