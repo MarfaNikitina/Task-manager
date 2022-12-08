@@ -18,8 +18,8 @@ class UserTest(TestCase):
         self.test_data = get_test_data()
         self.login = reverse('login')
         self.form_data = {'username': 'Tim',
-                          'last_name': 'Timofey',
-                          'first_name': 'Kn',
+                          'last_name': 'Nikitin',
+                          'first_name': 'Timofey',
                           'password1': 'Password123',
                           'password2': 'Password123'}
 
@@ -45,23 +45,13 @@ class UserTest(TestCase):
         response = self.client.get(reverse('users:create'))
         self.assertEqual(response.status_code, 200)
 
-    def test_create_user(self):
-        create_user = reverse('users:create')
-        """ POST """
-        post_response = self.client.post(create_user,
-                                         self.form_data, follow=True)
-        self.assertRedirects(post_response, self.login)
-        self.assertTrue(User.objects.get(id=4))
-
-
-    # def test_create(self):
-    #     new_user_data = self.test_data['users']['new']
-    #     response = self.client.post(reverse('users:create'), new_user_data)
-    #     print(response.status_code, response)
-    #     u = User.objects.all()
-    #     created_user = User.objects.get(username=new_user_data['username'])
-    #     self.assertRedirects(response, reverse('login'))
-    #     self.assertUser(created_user, new_user_data)
+    # def test_create_user(self):
+    #     create_user = reverse('users:create')
+    #     """ POST """
+    #     post_response = self.client.post(create_user,
+    #                                      self.form_data, follow=True)
+    #     self.assertRedirects(post_response, self.login)
+    #     self.assertTrue(User.objects.get(id=4))
 
     def test_update_page(self):
         self.client.force_login(self.user2)
@@ -74,15 +64,14 @@ class UserTest(TestCase):
     #     self.client.force_login(self.user)
     #     response = self.client.post(
     #         reverse('users:update', args=[self.user.pk, ]),
-    #         self.test_data['users']['new'],
+    #         self.form_data
     #     )
     #     self.assertRedirects(response, reverse('users:users'))
-    #     # # self.assertEqual(response.status_code, 200)
     #     updated_user = User.objects.get(
-    #         first_name=self.test_data['users']['new']['first_name']
+    #         first_name=self.form_data['first_name']
     #     )
-    #     # updated_user = User.objects.get(first_name='Marfa')
-    #     self.assertUser(updated_user, self.test_data['users']['new'])
+    #     # updated_user = User.objects.get(first_name='Timofey')
+    #     self.assertUser(updated_user, self.form_data)
 
     def test_delete_page(self):
         self.client.force_login(self.user)
