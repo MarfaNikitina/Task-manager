@@ -10,8 +10,8 @@ from statuses.forms import StatusForm
 from statuses.models import Status
 from django.utils.translation import gettext as _
 
-NO_PERMISSION_MESSAGE = _(
-            "Вы не авторизованы! Пожалуйста, выполните вход.")
+NO_PERMISSION_MESSAGE = _("Вы не авторизованы! "
+                          "Пожалуйста, выполните вход.")
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -78,7 +78,8 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
             messages.success(self.request, _('Статус успешно удалён'))
         except ProtectedError:
             messages.error(self.request, _(
-                'Невозможно удалить статус, потому что он используется')
+                'Невозможно удалить статус,'
+                ' потому что он используется')
                            )
         finally:
             return HttpResponseRedirect(success_url)

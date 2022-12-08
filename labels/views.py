@@ -11,6 +11,7 @@ from labels.forms import LabelForm
 from labels.models import Label
 
 NO_PERMISSION_MESSAGE = _('Вы не авторизованы! Пожалуйста, выполните вход.')
+NO_DELETE_MASSAGE = _('Невозможно удалить метку, потому что она используется')
 
 
 class LabelListView(ListView):
@@ -73,8 +74,6 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
             self.object.delete()
             messages.success(self.request, _('Метка успешно удалена'))
         except ProtectedError:
-            messages.error(self.request, _(
-                'Невозможно удалить метку, потому что она используется')
-                           )
+            messages.error(self.request, NO_DELETE_MASSAGE)
         finally:
             return HttpResponseRedirect(success_url)
