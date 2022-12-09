@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -31,5 +30,7 @@ class LoginUser(SuccessMessageMixin, LoginView):
 
 
 class LogoutUser(SuccessMessageMixin, LogoutView):
-    success_url = reverse_lazy('home')
-    success_message = _('Вы разлогинены.')
+
+    def get_success_url(self):
+        messages.success(self.request, _('Вы разлогинены.'))
+        return reverse_lazy('home')
