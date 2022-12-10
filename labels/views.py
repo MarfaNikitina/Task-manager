@@ -22,7 +22,7 @@ class LabelListView(ListView):
 class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = LabelForm
     model = Label
-    template_name = 'create.html'
+    template_name = 'edit.html'
     login_url = 'login'
     extra_context = {'title': _('Создать метку'),
                      'button_text': _('Создать')}
@@ -35,17 +35,11 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.author = self.request.user
-    #     self.object.save()
-    #     return super(LabelCreateView, self).form_valid(form)
-
 
 class LabelUpdateView(LoginRequiredMixin, UpdateView):
     model = Label
     form_class = LabelForm
-    template_name = 'update.html'
+    template_name = 'edit.html'
     extra_context = {'title': _('Изменение метки'),
                      'button_text': _('Изменить')}
 

@@ -28,7 +28,7 @@ class StatusListView(LoginRequiredMixin, ListView):
 class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = StatusForm
     model = Status
-    template_name = 'create.html'
+    template_name = 'edit.html'
     extra_context = {
         'title': _('Создать статус'),
         'button_text': _('Создать')
@@ -46,7 +46,7 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class StatusUpdateView(LoginRequiredMixin, UpdateView):
     model = Status
     form_class = StatusForm
-    template_name = 'update.html'
+    template_name = 'edit.html'
     extra_context = {
         'title': _('Изменение статуса'),
         'button_text': _('Изменить')

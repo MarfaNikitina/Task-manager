@@ -27,7 +27,7 @@ class UserListView(ListView):
 class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = UserRegistrationForm
     model = User
-    template_name = 'create.html'
+    template_name = 'edit.html'
     extra_context = {'title': _('Регистрация'),
                      'button_text': _('Зарегистрировать')}
 
@@ -42,7 +42,7 @@ class UserUpdateView(
 ):
     model = User
     form_class = UserRegistrationForm
-    template_name = 'update.html'
+    template_name = 'edit.html'
     extra_context = {'title': _('Изменение пользователя'),
                      'button_text': _('Изменить')}
     success_url = reverse_lazy('users:users')

@@ -25,7 +25,7 @@ class TaskListView(FilterView):
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
     model = Task
-    template_name = 'tasks/create_task.html'
+    template_name = 'edit.html'
     login_url = 'login'
     extra_context = {'title': _('Создать задачу'),
                      'button_text': _('Создать')}
@@ -49,7 +49,9 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
     login_url = 'login'
-    template_name = 'tasks/update_task.html'
+    template_name = 'edit.html'
+    extra_context = {'title': _('Изменение задачи'),
+                     'button_text': _('Изменить')}
 
     def get_success_url(self):
         messages.success(self.request, _('Задача успешно изменена'))
