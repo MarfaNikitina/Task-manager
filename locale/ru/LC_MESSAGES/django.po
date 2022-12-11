@@ -279,7 +279,7 @@ msgstr "Полное имя"
 
 #: task_manager/templates/registration/login.html:19
 msgid "Entry"
-msgstr "Вход"
+msgstr "Войти"
 
 #: tasks/filter.py:26
 msgid "Label"
