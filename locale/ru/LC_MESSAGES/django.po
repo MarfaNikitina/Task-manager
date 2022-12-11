@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 19:27+0300\n"
+"POT-Creation-Date: 2022-12-11 19:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
 #: labels/forms.py:11 statuses/forms.py:11 tasks/forms.py:11 users/forms.py:13
 msgid "Name"
 msgstr "Имя"
@@ -27,7 +28,7 @@ msgstr "Имя"
 msgid "Create label"
 msgstr "Создание метки"
 
-#: labels/views.py:27 statuses/views.py:31 tasks/views.py:31
+#: labels/views.py:27 statuses/views.py:32 tasks/views.py:31
 msgid "Create"
 msgstr "Создать"
 
@@ -35,7 +36,7 @@ msgstr "Создать"
 msgid "Update label"
 msgstr "Изменение метки"
 
-#: labels/views.py:43 statuses/views.py:49
+#: labels/views.py:43 statuses/views.py:50
 #: tasks/templates/tasks/detail_task.html:28 tasks/views.py:54
 #: users/views.py:43
 msgid "Update"
@@ -45,15 +46,95 @@ msgstr "Изменить"
 msgid "Delete label"
 msgstr "Удаление метки"
 
-#: statuses/views.py:30
+#: messages.py:4
+msgid "You do not have permissions to change another user."
+msgstr "У вас нет прав для изменения другого пользователя."
+
+#: messages.py:6 messages.py:17
+msgid "You are not authorized! Please sign in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: messages.py:8
+msgid "Cannot delete user because user is in use"
+msgstr "Нельзя удалить пользователя, потому что он используется"
+
+#: messages.py:10
+msgid "User created successfully"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: messages.py:11
+msgid "User updated successfully"
+msgstr "Пользователь успешно изменён"
+
+#: messages.py:12
+msgid "User deleted successfully"
+msgstr "Пользователь успешно удалён"
+
+#: messages.py:14
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: messages.py:15
+msgid "You are logged out"
+msgstr "Вы разлогинены"
+
+#: messages.py:18
+msgid "A task can only be deleted by its author."
+msgstr "Задачу может удалить только её автор"
+
+#: messages.py:19
+msgid "Task created successfully"
+msgstr "Задача успешно создана"
+
+#: messages.py:20
+msgid "Task updated successfully"
+msgstr "Задача успешно изменена"
+
+#: messages.py:21
+msgid "Task deleted successfully"
+msgstr "Задача успешно удалена"
+
+#: messages.py:23
+msgid "Can't delete status because it's in use"
+msgstr "Нельзя удалить статус, потому что он используется."
+
+#: messages.py:24
+msgid "Status created successfully"
+msgstr "Статус успешно создан"
+
+#: messages.py:25
+msgid "Status updated successfully"
+msgstr "Статус успешно изменён"
+
+#: messages.py:26
+msgid "Status deleted successfully"
+msgstr "Статус успешно удалён"
+
+#: messages.py:28
+msgid "Can't delete label because it's in use"
+msgstr "Нельзя удалить метку, потому что она используется"
+
+#: messages.py:29
+msgid "Label created successfully"
+msgstr "Метка успешно создана"
+
+#: messages.py:30
+msgid "Label updated successfully"
+msgstr "Метка успешно изменена"
+
+#: messages.py:31
+msgid "Label deleted successfully"
+msgstr "Метка успешно удалена"
+
+#: statuses/views.py:31
 msgid "Create status"
 msgstr "Создание статуса"
 
-#: statuses/views.py:48
+#: statuses/views.py:49
 msgid "Update status"
 msgstr "Изменение статуса"
 
-#: statuses/views.py:65
+#: statuses/views.py:66
 msgid "Delete status"
 msgstr "Удаление статуса"
 

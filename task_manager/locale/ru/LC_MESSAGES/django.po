@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 19:27+0300\n"
+"POT-Creation-Date: 2022-12-11 19:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,88 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
-#: task_manager/messages.py:3
-msgid "You do not have permissions to change another user."
-msgstr ""
-
-#: task_manager/messages.py:4 task_manager/messages.py:15
-msgid "You are not authorized! Please sign in."
-msgstr ""
-
-#: task_manager/messages.py:6
-msgid "Cannot delete user because user is in use"
-msgstr ""
-
-#: task_manager/messages.py:8
-msgid "User created successfully"
-msgstr ""
-
-#: task_manager/messages.py:9
-msgid "User updated successfully"
-msgstr ""
-
-#: task_manager/messages.py:10
-msgid "User deleted successfully"
-msgstr ""
-
-#: task_manager/messages.py:12
-msgid "You are logged in"
-msgstr ""
-
-#: task_manager/messages.py:13
-msgid "You are logged out"
-msgstr ""
-
-#: task_manager/messages.py:16
-msgid "A task can only be deleted by its author."
-msgstr ""
-
-#: task_manager/messages.py:17
-msgid "Task created successfully"
-msgstr ""
-
-#: task_manager/messages.py:18
-msgid "Task updated successfully"
-msgstr ""
-
-#: task_manager/messages.py:19
-msgid "Task deleted successfully"
-msgstr ""
-
-#: task_manager/messages.py:21
-msgid "Can't delete status because it's in use"
-msgstr ""
-
-#: task_manager/messages.py:22
-msgid "Status created successfully"
-msgstr ""
-
-#: task_manager/messages.py:23
-msgid "Status updated successfully"
-msgstr ""
-
-#: task_manager/messages.py:24
-msgid "Status deleted successfully"
-msgstr ""
-
-#: task_manager/messages.py:26
-msgid "Can't delete label because it's in use"
-msgstr ""
-
-#: task_manager/messages.py:27
-msgid "Label created successfully"
-msgstr ""
-
-#: task_manager/messages.py:28
-msgid "Label updated successfully"
-msgstr ""
-
-#: task_manager/messages.py:29
-msgid "Label deleted successfully"
-msgstr ""
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: task_manager/settings.py:152
 msgid "English"
@@ -107,46 +28,50 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: task_manager/templates/base.html:19
+#: task_manager/templates/base.html:13 task_manager/templates/index.html:4
+msgid "Main page"
+msgstr ""
+
+#: task_manager/templates/base.html:18
 msgid "Task manager"
 msgstr ""
 
-#: task_manager/templates/base.html:26
+#: task_manager/templates/base.html:25
 #: task_manager/templates/lists/user_list.html:7
 #: task_manager/templates/lists/user_list.html:12
 msgid "Users"
 msgstr ""
 
-#: task_manager/templates/base.html:30
+#: task_manager/templates/base.html:29
 #: task_manager/templates/lists/status_list.html:7
 #: task_manager/templates/lists/status_list.html:12
 msgid "Statuses"
 msgstr ""
 
-#: task_manager/templates/base.html:33
+#: task_manager/templates/base.html:32
 #: task_manager/templates/lists/label_list.html:7
 #: task_manager/templates/lists/label_list.html:12
 msgid "Labels"
 msgstr ""
 
-#: task_manager/templates/base.html:36
+#: task_manager/templates/base.html:35
 #: task_manager/templates/lists/task_list.html:7
 #: task_manager/templates/lists/task_list.html:12
 msgid "Tasks"
 msgstr ""
 
-#: task_manager/templates/base.html:45
+#: task_manager/templates/base.html:44
 msgid "Logout"
 msgstr ""
 
-#: task_manager/templates/base.html:49
+#: task_manager/templates/base.html:48
 #: task_manager/templates/registration/login.html:7
 #: task_manager/templates/registration/login.html:12
 #: task_manager/templates/registration/login.html:19
 msgid "Log in"
 msgstr ""
 
-#: task_manager/templates/base.html:52
+#: task_manager/templates/base.html:51
 msgid "Registration"
 msgstr ""
 
@@ -156,10 +81,6 @@ msgstr ""
 
 #: task_manager/templates/delete.html:22
 msgid "Yes, delete"
-msgstr ""
-
-#: task_manager/templates/index.html:4
-msgid "Main page"
 msgstr ""
 
 #: task_manager/templates/index.html:9

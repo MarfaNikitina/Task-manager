@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-from task_manager.messages import SUCCESS_LOGIN_MESSAGE, SUCCESS_LOGOUT_MESSAGE
+from messages import SUCCESS_LOGIN_MESSAGE, SUCCESS_LOGOUT_MESSAGE
 from users.models import User
 
 
