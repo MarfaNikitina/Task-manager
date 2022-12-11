@@ -9,8 +9,9 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from statuses.forms import StatusForm
 from statuses.models import Status
 from django.utils.translation import gettext as _
-from task_manager.messages import NO_PERMISSION_MESSAGE, STATUS_CREATE_MESSAGE, \
-    STATUS_UPDATE_MESSAGE, STATUS_DELETE_MESSAGE, NO_DELETE_STATUS_MESSAGE
+from task_manager.messages import NO_PERMISSION_MESSAGE,\
+    STATUS_CREATE_MESSAGE, STATUS_UPDATE_MESSAGE,\
+    STATUS_DELETE_MESSAGE, NO_DELETE_STATUS_MESSAGE
 
 
 class StatusListView(LoginRequiredMixin, ListView):

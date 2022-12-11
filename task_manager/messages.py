@@ -1,6 +1,8 @@
 from django.utils.translation import gettext as _
 
-NO_USER_PERMISSION_MESSAGE = _("You do not have permissions to change another user.")
+NO_USER_PERMISSION_MESSAGE = _(
+    "You do not have permissions to change another user."
+)
 NO_AUTHORIZATION_MESSAGE = _('You are not authorized! Please sign in.')
 PROTECTED_ERROR_MESSAGE = _(
     "Cannot delete user because user is in use"
