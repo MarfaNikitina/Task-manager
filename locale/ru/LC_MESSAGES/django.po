@@ -132,7 +132,7 @@ msgstr "Метка успешно удалена"
 
 #: statuses/views.py:31 templates/lists/status_list.html:15
 msgid "Create status"
-msgstr "Создание статуса"
+msgstr "Создать статус"
 
 #: statuses/views.py:49
 msgid "Update status"
@@ -206,7 +206,7 @@ msgstr "Удалить"
 
 #: tasks/views.py:30 templates/lists/task_list.html:15
 msgid "Create task"
-msgstr "Создание задачи"
+msgstr "Создать задачу"
 
 #: tasks/views.py:53
 msgid "Update task"
@@ -225,7 +225,7 @@ msgstr "Менеджер задач"
 #, fuzzy
 #| msgid "Username"
 msgid "Users"
-msgstr "Имя пользователя"
+msgstr "Пользователи"
 
 #: templates/base.html:29 templates/lists/status_list.html:7
 #: templates/lists/status_list.html:12
