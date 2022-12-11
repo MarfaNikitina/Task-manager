@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 19:47+0300\n"
+"POT-Creation-Date: 2022-12-11 20:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,13 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: labels/forms.py:11 statuses/forms.py:11 tasks/forms.py:11 users/forms.py:13
+#: labels/forms.py:11 statuses/forms.py:11 tasks/forms.py:11
+#: templates/lists/label_list.html:21 templates/lists/status_list.html:21
+#: templates/lists/task_list.html:28 users/forms.py:13
 msgid "Name"
 msgstr "Имя"
 
-#: labels/views.py:26
+#: labels/views.py:26 templates/lists/label_list.html:15
 msgid "Create label"
 msgstr "Создание метки"
 
@@ -38,6 +40,8 @@ msgstr "Изменение метки"
 
 #: labels/views.py:43 statuses/views.py:50
 #: tasks/templates/tasks/detail_task.html:28 tasks/views.py:54
+#: templates/lists/label_list.html:33 templates/lists/status_list.html:33
+#: templates/lists/task_list.html:46 templates/lists/user_list.html:34
 #: users/views.py:43
 msgid "Update"
 msgstr "Изменить"
@@ -126,7 +130,7 @@ msgstr "Метка успешно изменена"
 msgid "Label deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: statuses/views.py:31
+#: statuses/views.py:31 templates/lists/status_list.html:15
 msgid "Create status"
 msgstr "Создание статуса"
 
@@ -139,12 +143,12 @@ msgid "Delete status"
 msgstr "Удаление статуса"
 
 #: tasks/filter.py:21 tasks/forms.py:13
-#: tasks/templates/tasks/detail_task.html:18
+#: tasks/templates/tasks/detail_task.html:18 templates/lists/task_list.html:29
 msgid "Status"
 msgstr "Статус"
 
 #: tasks/filter.py:24 tasks/forms.py:14
-#: tasks/templates/tasks/detail_task.html:17
+#: tasks/templates/tasks/detail_task.html:17 templates/lists/task_list.html:31
 msgid "Executor"
 msgstr "Исполнитель"
 
@@ -161,6 +165,8 @@ msgid "Description"
 msgstr "Описание"
 
 #: tasks/forms.py:15 tasks/templates/tasks/detail_task.html:20
+#: templates/base.html:32 templates/lists/label_list.html:7
+#: templates/lists/label_list.html:12
 msgid "Labels"
 msgstr "Метки"
 
@@ -169,11 +175,11 @@ msgstr "Метки"
 msgid "Delete task"
 msgstr "Удаление задачи"
 
-#: tasks/templates/tasks/delete_task.html:20
+#: tasks/templates/tasks/delete_task.html:20 templates/delete.html:20
 msgid "Are you sure you want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
-#: tasks/templates/tasks/delete_task.html:22
+#: tasks/templates/tasks/delete_task.html:22 templates/delete.html:22
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
@@ -182,25 +188,102 @@ msgstr "Да, удалить"
 msgid "Task view"
 msgstr "Просмотр задачи"
 
-#: tasks/templates/tasks/detail_task.html:16
+#: tasks/templates/tasks/detail_task.html:16 templates/lists/task_list.html:30
 msgid "Author"
 msgstr "Автор"
 
-#: tasks/templates/tasks/detail_task.html:19
+#: tasks/templates/tasks/detail_task.html:19 templates/lists/label_list.html:22
+#: templates/lists/status_list.html:22 templates/lists/task_list.html:32
+#: templates/lists/user_list.html:22
 msgid "Date of creation"
 msgstr "Дата создания"
 
-#: tasks/templates/tasks/detail_task.html:30
+#: tasks/templates/tasks/detail_task.html:30 templates/lists/label_list.html:35
+#: templates/lists/status_list.html:35 templates/lists/task_list.html:48
+#: templates/lists/user_list.html:36
 msgid "Delete"
 msgstr "Удалить"
 
-#: tasks/views.py:30
+#: tasks/views.py:30 templates/lists/task_list.html:15
 msgid "Create task"
 msgstr "Создание задачи"
 
 #: tasks/views.py:53
 msgid "Update task"
 msgstr "Изменение задачи"
+
+#: templates/base.html:13 templates/index.html:4
+msgid "Main page"
+msgstr "Главная"
+
+#: templates/base.html:18
+msgid "Task manager"
+msgstr "Менеджер задач"
+
+#: templates/base.html:25 templates/lists/user_list.html:7
+#: templates/lists/user_list.html:12
+#, fuzzy
+#| msgid "Username"
+msgid "Users"
+msgstr "Имя пользователя"
+
+#: templates/base.html:29 templates/lists/status_list.html:7
+#: templates/lists/status_list.html:12
+#, fuzzy
+#| msgid "Status"
+msgid "Statuses"
+msgstr "Статусы"
+
+#: templates/base.html:35 templates/lists/task_list.html:7
+#: templates/lists/task_list.html:12
+msgid "Tasks"
+msgstr "Задачи"
+
+#: templates/base.html:44
+msgid "Logout"
+msgstr "Выход"
+
+#: templates/base.html:48 templates/registration/login.html:7
+#: templates/registration/login.html:12 templates/registration/login.html:19
+msgid "Log in"
+msgstr "Вход"
+
+#: templates/base.html:51 users/views.py:27
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/index.html:9
+msgid "Hello from Hexlet!"
+msgstr "Привет от Хекслета!"
+
+#: templates/index.html:10
+msgid "Practical programming courses"
+msgstr "Практические курсы по программированию"
+
+#: templates/index.html:12
+msgid "Learn more"
+msgstr "Узнать больше"
+
+#: templates/lists/label_list.html:20 templates/lists/status_list.html:20
+#: templates/lists/task_list.html:27 templates/lists/user_list.html:19
+msgid "ID"
+msgstr "ID"
+
+#: templates/lists/task_list.html:18
+msgid "Show"
+msgstr "Показать"
+
+#: templates/lists/user_list.html:20
+#, fuzzy
+#| msgid "Username"
+msgid "User name"
+msgstr "Имя пользователя"
+
+#: templates/lists/user_list.html:21
+#, fuzzy
+#| msgid "Surname"
+msgid "Full name"
+msgstr "Фамилия"
 
 #: users/forms.py:12
 msgid "Username"
@@ -209,10 +292,6 @@ msgstr "Имя пользователя"
 #: users/forms.py:14
 msgid "Surname"
 msgstr "Фамилия"
-
-#: users/views.py:27
-msgid "Registration"
-msgstr "Регистрация"
 
 #: users/views.py:28
 msgid "Register"
