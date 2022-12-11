@@ -30,7 +30,7 @@ msgstr "Имя"
 
 #: labels/views.py:26 task_manager/templates/lists/label_list.html:15
 msgid "Create label"
-msgstr "Создание метки"
+msgstr "Создать метку"
 
 #: labels/views.py:27 statuses/views.py:32 tasks/views.py:31
 msgid "Create"
@@ -270,14 +270,10 @@ msgid "Executor"
 msgstr "Исполнитель"
 
 #: task_manager/templates/lists/user_list.html:20
-#, fuzzy
-#| msgid "Username"
 msgid "User name"
 msgstr "Имя пользователя"
 
 #: task_manager/templates/lists/user_list.html:21
-#, fuzzy
-#| msgid "Surname"
 msgid "Full name"
 msgstr "Полное имя"
 
