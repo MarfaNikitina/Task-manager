@@ -17,8 +17,8 @@
  <form method="post" class="mx-auto">
         {% csrf_token %}
         {% bootstrap_form form %}
-    <p>{% trans 'Вы уверены, что хотите удалить' %} {{ object }}?</p>
+    <p>{% trans 'Are you sure you want to delete' %} {{ object }}?</p>
         {% bootstrap_form form %}
-    <input class="btn btn-danger" type="submit" value="{% trans 'Да, удалить' %}">
+    <input class="btn btn-danger" type="submit" value="{% trans 'Yes, delete' %}">
 </form>
-{% endblock %}`
+{% endblock %}

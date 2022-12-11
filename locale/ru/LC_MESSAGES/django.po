@@ -1,0 +1,197 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-11 19:27+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+#: labels/forms.py:11 statuses/forms.py:11 tasks/forms.py:11 users/forms.py:13
+msgid "Name"
+msgstr "Имя"
+
+#: labels/views.py:26
+msgid "Create label"
+msgstr "Создание метки"
+
+#: labels/views.py:27 statuses/views.py:31 tasks/views.py:31
+msgid "Create"
+msgstr "Создать"
+
+#: labels/views.py:42
+msgid "Update label"
+msgstr "Изменение метки"
+
+#: labels/views.py:43 statuses/views.py:49
+#: tasks/templates/tasks/detail_task.html:28 tasks/views.py:54
+#: users/views.py:43
+msgid "Update"
+msgstr "Изменить"
+
+#: labels/views.py:57
+msgid "Delete label"
+msgstr "Удаление метки"
+
+#: statuses/views.py:30
+msgid "Create status"
+msgstr "Создание статуса"
+
+#: statuses/views.py:48
+msgid "Update status"
+msgstr "Изменение статуса"
+
+#: statuses/views.py:65
+msgid "Delete status"
+msgstr "Удаление статуса"
+
+#: tasks/filter.py:21 tasks/forms.py:13
+#: tasks/templates/tasks/detail_task.html:18
+msgid "Status"
+msgstr "Статус"
+
+#: tasks/filter.py:24 tasks/forms.py:14
+#: tasks/templates/tasks/detail_task.html:17
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: tasks/filter.py:26
+msgid "Label"
+msgstr "Метка"
+
+#: tasks/filter.py:32
+msgid "Only your tasks"
+msgstr "Только свои задачи"
+
+#: tasks/forms.py:12
+msgid "Description"
+msgstr "Описание"
+
+#: tasks/forms.py:15 tasks/templates/tasks/detail_task.html:20
+msgid "Labels"
+msgstr "Метки"
+
+#: tasks/templates/tasks/delete_task.html:7
+#: tasks/templates/tasks/delete_task.html:13
+msgid "Delete task"
+msgstr "Удаление задачи"
+
+#: tasks/templates/tasks/delete_task.html:20
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: tasks/templates/tasks/delete_task.html:22
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: tasks/templates/tasks/detail_task.html:9
+#: tasks/templates/tasks/detail_task.html:12
+msgid "Task view"
+msgstr "Просмотр задачи"
+
+#: tasks/templates/tasks/detail_task.html:16
+msgid "Author"
+msgstr "Автор"
+
+#: tasks/templates/tasks/detail_task.html:19
+msgid "Date of creation"
+msgstr "Дата создания"
+
+#: tasks/templates/tasks/detail_task.html:30
+msgid "Delete"
+msgstr "Удалить"
+
+#: tasks/views.py:30
+msgid "Create task"
+msgstr "Создание задачи"
+
+#: tasks/views.py:53
+msgid "Update task"
+msgstr "Изменение задачи"
+
+#: users/forms.py:12
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: users/forms.py:14
+msgid "Surname"
+msgstr "Фамилия"
+
+#: users/views.py:27
+msgid "Registration"
+msgstr "Регистрация"
+
+#: users/views.py:28
+msgid "Register"
+msgstr "Зарегистрировать"
+
+#: users/views.py:42
+msgid "Update user"
+msgstr "Изменение пользователя"
+
+#: users/views.py:68
+msgid "Delete user"
+msgstr "Удаление пользователя"
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:409
+msgid "open('foo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:413
+msgid "open(\"foo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:417
+#, python-format
+msgid "%ls foo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:551
+msgid "a[0]."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:558
+msgid "a[0].r"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:566
+msgid "a[0].from_"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1375
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1397
+msgid "do not suppress"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1376
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1388
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1391
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1394
+msgid "suppress all"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1377
+msgid "suppress all but a"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1378
+msgid "suppress all but c"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/bootstrap4/components.py:17
+#: venv/lib/python3.10/site-packages/bootstrap4/templates/bootstrap4/form_errors.html:3
+#: venv/lib/python3.10/site-packages/bootstrap4/templates/bootstrap4/messages.html:4
+msgid "close"
+msgstr ""

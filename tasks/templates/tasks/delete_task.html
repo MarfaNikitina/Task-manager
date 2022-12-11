@@ -4,22 +4,22 @@
 {% bootstrap_javascript jquery=True %}
 {% load i18n %}
 
-{% block title %} {% translate 'Удаление задачи' %} {% endblock %}
+{% block title %} {% translate 'Delete task' %} {% endblock %}
 
 {% block content %} 
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4 mx-auto">
         
-{% translate 'Удаление задачи' %}
+{% translate 'Delete task' %}
 
     </h1>
 
  <form method="post" class="mx-auto">
         {% csrf_token %}
         {% bootstrap_form form %}
-    <p>{% trans 'Вы уверены, что хотите удалить' %} {{ object.name }}?</p>
+    <p>{% trans 'Are you sure you want to delete' %} {{ object.name }}?</p>
         {% bootstrap_form form %}
-    <input class="btn btn-danger" type="submit" value="{% trans 'Да, удалить' %}">
+    <input class="btn btn-danger" type="submit" value="{% trans 'Yes, delete' %}">
 </form>
 {% endblock %}
     

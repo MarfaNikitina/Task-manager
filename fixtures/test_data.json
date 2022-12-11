@@ -3,8 +3,8 @@
     "new": {
       "first_name": "Ivan",
       "last_name": "Ivanov",
-      "password1": "12345abc",
-      "password2": "12345abc",
+      "password1": "NewPassword123",
+      "password2": "NewPassword123",
       "username": "IvanIvanov"
     }
   },
@@ -28,9 +28,9 @@
     "new": {
       "name": "new_task",
       "description": "lalala",
-      "author": 3,
+      "status": 3,
       "executor": 1,
-      "labels": 1
+      "labels": [1, 2]
     }
   }
 }

@@ -1,8 +1,6 @@
 import django_filters
 from django import forms
 from django_filters import filters
-# from django_filters.widgets import BooleanWidget
-
 from labels.models import Label
 from statuses.models import Status
 from tasks.models import Task
@@ -20,25 +18,21 @@ class TaskFilter(django_filters.FilterSet):
 
     status = filters.ModelChoiceFilter(
         queryset=Status.objects.all(),
-        label=_('Статус')
+        label=_('Status')
     )
     executor = filters.ModelChoiceFilter(queryset=User.objects.all(),
-                                         label=_('Исполнитель'))
+                                         label=_('Executor'))
     labels = filters.ModelChoiceFilter(queryset=Label.objects.all(),
-                                       label=_('Метка'))
+                                       label=_('Label'))
     self_author = filters.BooleanFilter(
         field_name='author',
         widget=forms.widgets.CheckboxInput(
             attrs={'class': 'form-check center'}
         ),
-        label=_('Только свои задачи'),
-        # label_suffix="",
+        label=_('Only your tasks'),
         method='choose_author'
     )
 
     class Meta:
         model = Task
         fields = ['status', 'executor', 'labels']
-
-# attrs={'class': 'form-check-input'}
-# BooleanWidget

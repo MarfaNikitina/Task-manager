@@ -4,8 +4,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-from django.utils.translation import gettext as _
-
+from task_manager.messages import SUCCESS_LOGIN_MESSAGE, SUCCESS_LOGOUT_MESSAGE
 from users.models import User
 
 
@@ -18,11 +17,11 @@ class LoginUser(SuccessMessageMixin, LoginView):
     form_class = AuthenticationForm
     template_name = 'registration/login.html'
     success_url = reverse_lazy('home')
-    success_message = _('Вы залогинены')
+    success_message = SUCCESS_LOGIN_MESSAGE
 
 
 class LogoutUser(SuccessMessageMixin, LogoutView):
 
     def get_success_url(self):
-        messages.success(self.request, _('Вы разлогинены.'))
+        messages.success(self.request, SUCCESS_LOGOUT_MESSAGE)
         return reverse_lazy('home')

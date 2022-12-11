@@ -4,18 +4,18 @@
 {% bootstrap_javascript jquery=True %}
 {% load i18n %}
 
-{% block title %} {% translate 'Задачи' %} {% endblock %}
+{% block title %} {% translate 'Tasks' %} {% endblock %}
 
 {% block content %}    
 <h1 class="my-4 mx-auto">
         
-{% translate 'Задачи' %}
+{% translate 'Tasks' %}
 
 </h1>
-<h4><a href="{% url 'create_task' %}">{% translate 'Создать задачу' %}</a></h4>
+<h4><a href="{% url 'create_task' %}">{% translate 'Create task' %}</a></h4>
     <form class="card  center  is-valid" method="get">
         {% bootstrap_form filter.form %}
-       <input class="btn btn-primary" type="submit" value="{% trans 'Показать' %}">
+       <input class="btn btn-primary" type="submit" value="{% trans 'Show' %}">
 
     </form>
 <br>
@@ -25,11 +25,11 @@
   <thead>
     <tr>
       <th>{% translate 'ID' %}</th>
-      <th>{% translate 'Имя' %}</th>
-      <th>{% translate 'Статус' %}</th>
-      <th>{% translate 'Автор' %}</th>
-      <th>{% translate 'Исполнитель' %}</th>
-      <th>{% translate 'Дата создания' %}</th>
+      <th>{% translate 'Name' %}</th>
+      <th>{% translate 'Status' %}</th>
+      <th>{% translate 'Author' %}</th>
+      <th>{% translate 'Executor' %}</th>
+      <th>{% translate 'Date of creation' %}</th>
       <th></th>
     </tr>
   </thead>
@@ -43,9 +43,9 @@
         <td>{{ task.executor }}</td>
         <td>{{ task.time_create }}</td>
         <td>
-          <a href="{% url 'update_task' pk=task.id %}">{% translate 'Изменить' %}</a>
+          <a href="{% url 'update_task' pk=task.id %}">{% translate 'Update' %}</a>
           <br>
-          <a href="{% url 'delete_task' pk=task.id %}">{% translate 'Удалить' %}</a>
+          <a href="{% url 'delete_task' pk=task.id %}">{% translate 'Delete' %}</a>
         </td>
       </tr>
   </tbody>

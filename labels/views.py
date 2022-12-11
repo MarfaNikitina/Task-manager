@@ -9,9 +9,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
 from labels.forms import LabelForm
 from labels.models import Label
-
-NO_PERMISSION_MESSAGE = _('Вы не авторизованы! Пожалуйста, выполните вход.')
-NO_DELETE_MASSAGE = _('Невозможно удалить метку, потому что она используется')
+from task_manager.messages import LABEL_CREATE_MESSAGE, NO_PERMISSION_MESSAGE,\
+    LABEL_UPDATE_MESSAGE, LABEL_DELETE_MESSAGE, NO_DELETE_LABEL_MESSAGE
 
 
 class LabelListView(ListView):
@@ -24,11 +23,11 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Label
     template_name = 'edit.html'
     login_url = 'login'
-    extra_context = {'title': _('Создать метку'),
-                     'button_text': _('Создать')}
+    extra_context = {'title': _('Create label'),
+                     'button_text': _('Create')}
 
     def get_success_url(self):
-        messages.success(self.request, _('Метка успешно создана'))
+        messages.success(self.request, LABEL_CREATE_MESSAGE)
         return reverse_lazy('labels')
 
     def handle_no_permission(self):
@@ -40,11 +39,11 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
     model = Label
     form_class = LabelForm
     template_name = 'edit.html'
-    extra_context = {'title': _('Изменение метки'),
-                     'button_text': _('Изменить')}
+    extra_context = {'title': _('Update label'),
+                     'button_text': _('Update')}
 
     def get_success_url(self):
-        messages.success(self.request, _('Метка успешно изменена'))
+        messages.success(self.request, LABEL_UPDATE_MESSAGE)
         return reverse_lazy('labels')
 
     def handle_no_permission(self):
@@ -55,7 +54,7 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
 class LabelDeleteView(LoginRequiredMixin, DeleteView):
     model = Label
     template_name = 'delete.html'
-    extra_context = {'title': _('Удаление метки')}
+    extra_context = {'title': _('Delete label')}
     success_url = reverse_lazy('labels')
 
     def handle_no_permission(self):
@@ -66,8 +65,8 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
         success_url = self.get_success_url()
         try:
             self.object.delete()
-            messages.success(self.request, _('Метка успешно удалена'))
+            messages.success(self.request, LABEL_DELETE_MESSAGE)
         except ProtectedError:
-            messages.error(self.request, NO_DELETE_MASSAGE)
+            messages.error(self.request, NO_DELETE_LABEL_MESSAGE)
         finally:
             return HttpResponseRedirect(success_url)

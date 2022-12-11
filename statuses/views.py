@@ -9,11 +9,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from statuses.forms import StatusForm
 from statuses.models import Status
 from django.utils.translation import gettext as _
-
-NO_PERMISSION_MESSAGE = _("Вы не авторизованы! "
-                          "Пожалуйста, выполните вход.")
-NO_DELETE_MESSAGE = _('Невозможно удалить статус, '
-                      'потому что он используется')
+from task_manager.messages import NO_PERMISSION_MESSAGE, STATUS_CREATE_MESSAGE, \
+    STATUS_UPDATE_MESSAGE, STATUS_DELETE_MESSAGE, NO_DELETE_STATUS_MESSAGE
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -30,12 +27,12 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Status
     template_name = 'edit.html'
     extra_context = {
-        'title': _('Создать статус'),
-        'button_text': _('Создать')
+        'title': _('Create status'),
+        'button_text': _('Create')
     }
 
     def get_success_url(self):
-        messages.success(self.request, _('Статус успешно создан'))
+        messages.success(self.request, STATUS_CREATE_MESSAGE)
         return reverse_lazy('statuses')
 
     def handle_no_permission(self):
@@ -48,12 +45,12 @@ class StatusUpdateView(LoginRequiredMixin, UpdateView):
     form_class = StatusForm
     template_name = 'edit.html'
     extra_context = {
-        'title': _('Изменение статуса'),
-        'button_text': _('Изменить')
+        'title': _('Update status'),
+        'button_text': _('Update')
     }
 
     def get_success_url(self):
-        messages.success(self.request, _('Статус успешно изменён'))
+        messages.success(self.request, STATUS_UPDATE_MESSAGE)
         return reverse_lazy('statuses')
 
     def handle_no_permission(self):
@@ -65,7 +62,7 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
     model = Status
     template_name = 'delete.html'
     extra_context = {
-        'title': _('Удаление статуса')
+        'title': _('Delete status')
     }
     success_url = reverse_lazy('statuses')
 
@@ -77,8 +74,8 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
         success_url = self.get_success_url()
         try:
             self.object.delete()
-            messages.success(self.request, _('Статус успешно удалён'))
+            messages.success(self.request, STATUS_DELETE_MESSAGE)
         except ProtectedError:
-            messages.error(self.request, NO_DELETE_MESSAGE)
+            messages.error(self.request, NO_DELETE_STATUS_MESSAGE)
         finally:
             return HttpResponseRedirect(success_url)

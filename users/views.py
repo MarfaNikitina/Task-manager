@@ -8,15 +8,11 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
+
+from task_manager.messages import USER_CREATE_MESSAGE, USER_UPDATE_MESSAGE, NO_USER_PERMISSION_MESSAGE, \
+    NO_AUTHORIZATION_MESSAGE, USER_DELETE_MESSAGE, PROTECTED_ERROR_MESSAGE
 from users.forms import UserRegistrationForm
 from users.models import User
-
-NO_PERMISSION_MESSAGE = _("У вас нет прав для изменения другого пользователя.")
-CREATE_MESSAGE = _('Пользователь успешно зарегистрирован')
-NO_LOGIN_MESSAGE = _("Вы не авторизованы! Пожалуйста, выполните вход.")
-PROTECTED_ERROR_MESSAGE = _(
-    "Нельзя удалить пользователя, так как он используется"
-)
 
 
 class UserListView(ListView):
@@ -28,11 +24,11 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = UserRegistrationForm
     model = User
     template_name = 'edit.html'
-    extra_context = {'title': _('Регистрация'),
-                     'button_text': _('Зарегистрировать')}
+    extra_context = {'title': _('Registration'),
+                     'button_text': _('Register')}
 
     def get_success_url(self):
-        messages.success(self.request, CREATE_MESSAGE)
+        messages.success(self.request, USER_CREATE_MESSAGE)
         return reverse_lazy('login')
 
 
@@ -43,10 +39,10 @@ class UserUpdateView(
     model = User
     form_class = UserRegistrationForm
     template_name = 'edit.html'
-    extra_context = {'title': _('Изменение пользователя'),
-                     'button_text': _('Изменить')}
+    extra_context = {'title': _('Update user'),
+                     'button_text': _('Update')}
     success_url = reverse_lazy('users:users')
-    success_message = _('Пользователь успешно изменён')
+    success_message = USER_UPDATE_MESSAGE
     login_url = reverse_lazy('login')
 
     def test_func(self):
@@ -55,11 +51,11 @@ class UserUpdateView(
 
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
-            messages.warning(self.request, NO_PERMISSION_MESSAGE)
+            messages.warning(self.request, NO_USER_PERMISSION_MESSAGE)
             url = reverse_lazy('users:users')
         else:
             url = self.login_url
-            messages.warning(self.request, NO_LOGIN_MESSAGE)
+            messages.warning(self.request, NO_AUTHORIZATION_MESSAGE)
         return redirect(url)
 
 
@@ -69,10 +65,10 @@ class UserDeleteView(LoginRequiredMixin,
                      DeleteView):
     model = User
     template_name = 'delete.html'
-    extra_context = {'title': _('Удаление пользователя')}
+    extra_context = {'title': _('Delete user')}
     success_url = reverse_lazy('users:users')
     login_url = reverse_lazy('login')
-    success_message = _('Пользователь успешно удалён')
+    success_message = USER_DELETE_MESSAGE
 
     def test_func(self):
         user = self.get_object()
@@ -80,22 +76,19 @@ class UserDeleteView(LoginRequiredMixin,
 
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
-            messages.warning(self.request, NO_PERMISSION_MESSAGE)
+            messages.warning(self.request, NO_USER_PERMISSION_MESSAGE)
             url = reverse_lazy('users:users')
         else:
             url = self.login_url
-            messages.warning(self.request, NO_LOGIN_MESSAGE)
+            messages.warning(self.request, NO_AUTHORIZATION_MESSAGE)
         return redirect(url)
 
     def form_valid(self, form):
         success_url = self.get_success_url()
         try:
             self.object.delete()
-            messages.success(self.request, _('Пользователь успешно удалён'))
+            messages.success(self.request, USER_DELETE_MESSAGE)
             return redirect(self.success_url)
         except ProtectedError:
             messages.warning(self.request, PROTECTED_ERROR_MESSAGE)
             return redirect(success_url)
-
-# DATABASE_URL=postgresql:
-# //postgres:EP4dS1GGo2To9LPdtbaQ@containers-us-west-59.railway.app:7551/railway

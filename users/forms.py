@@ -9,7 +9,7 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username']
-        labels = dict(username=_('Имя пользователя'),
-                      first_name=_('Имя'),
-                      last_name=_('Фамилия'),
+        labels = dict(username=_('Username'),
+                      first_name=_('Name'),
+                      last_name=_('Surname'),
                       )

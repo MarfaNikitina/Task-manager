@@ -6,18 +6,18 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 
-{% block title %} {% translate 'Просмотр задачи' %}{% endblock %}
+{% block title %} {% translate 'Task view' %}{% endblock %}
 
 {% block content %}
-<h2> {% translate 'Просмотр задачи' %} </h2>
+<h2> {% translate 'Task view' %} </h2>
 <h3 class="card-header bg-secondary text-white" > {{ task.name }}</h3>
 <h3> {{ task.description }}</h3>
 <ul class="card-body bg-light">
-    <ol>{% translate 'Автор' %} {{ task.author }}</ol>
-    <ol>{% translate 'Исполнитель' %} {{ task.executor }}</ol>
-    <ol>{% translate 'Статус' %} {{ task.status }}</ol>
-    <ol>{% translate 'Дата создания' %}  {{ task.time_create }}</ol>
-    <ol>{% translate 'Метки' %} 
+    <ol>{% translate 'Author' %} {{ task.author }}</ol>
+    <ol>{% translate 'Executor' %} {{ task.executor }}</ol>
+    <ol>{% translate 'Status' %} {{ task.status }}</ol>
+    <ol>{% translate 'Date of creation' %}  {{ task.time_create }}</ol>
+    <ol>{% translate 'Labels' %} 
         <ul>
             {% for label in task.labels.all %}
             <li> {{ label }} </li>
@@ -25,7 +25,7 @@
         </ul>
     </ol>
 </ul>
-          <a href="{% url 'update_status' pk=task.id %}">{% translate 'Изменить' %}</a>
+          <a href="{% url 'update_status' pk=task.id %}">{% translate 'Update' %}</a>
           <br>
-          <a href="{% url 'delete_status' pk=task.id %}">{% translate 'Удалить' %}</a>
+          <a href="{% url 'delete_status' pk=task.id %}">{% translate 'Delete' %}</a>
 {% endblock %}

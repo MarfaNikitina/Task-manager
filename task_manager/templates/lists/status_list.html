@@ -4,22 +4,22 @@
 {% bootstrap_javascript jquery=True %}
 {% load i18n %}
 
-{% block title %} {% translate 'Статусы' %} {% endblock %}
+{% block title %} {% translate 'Statuses' %} {% endblock %}
 
 {% block content %}    
 <h1 class="my-4 mx-auto">
         
-{% translate 'Статусы' %}
+{% translate 'Statuses' %}
 
 </h1>
-<h4><a href="{% url 'create_status' %}">{% translate 'Создать статус' %}</a></h4>
+<h4><a href="{% url 'create_status' %}">{% translate 'Create status' %}</a></h4>
       
 <table class="table table-striped">
   <thead>
     <tr>
       <th>{% translate 'ID' %}</th>
-      <th>{% translate 'Имя' %}</th>
-      <th>{% translate 'Дата создания' %}</th>
+      <th>{% translate 'Name' %}</th>
+      <th>{% translate 'Date of creation' %}</th>
       <th></th>
     </tr>
   </thead>
@@ -30,9 +30,9 @@
         <td>{{ status.name }}</td>
         <td>{{ status.created_at }}</td>
         <td>
-          <a href="{% url 'update_status' pk=status.id %}">{% translate 'Изменить' %}</a>
+          <a href="{% url 'update_status' pk=status.id %}">{% translate 'Update' %}</a>
           <br>
-          <a href="{% url 'delete_status' pk=status.id %}">{% translate 'Удалить' %}</a>
+          <a href="{% url 'delete_status' pk=status.id %}">{% translate 'Delete' %}</a>
         </td>
       </tr>
   </tbody>

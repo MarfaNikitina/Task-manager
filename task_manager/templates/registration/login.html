@@ -4,19 +4,19 @@
 {% bootstrap_javascript jquery=True %}
 {% load i18n %}
 
-{% block title %} {% translate 'Вход' %} {% endblock %}
+{% block title %} {% translate 'Log in' %} {% endblock %}
 
 {% block content %}
 <h1 class="my-4 mx-auto">
         
-{% translate 'Вход' %}
+{% translate 'Log in' %}
 
 </h1>
 
 <form method="post" class="mx-auto" action="{% url 'login' %}">
 {% bootstrap_form form %} 
     {% csrf_token %}
-  <button class="btn btn-primary" type="submit">{% translate 'Войти' %}</button>
+  <button class="btn btn-primary" type="submit">{% translate 'Log in' %}</button>
 </form>
 
 {% endblock %}

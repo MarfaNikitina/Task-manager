@@ -14,11 +14,6 @@ class TaskTest(TestCase):
         cls.test_data = get_test_data()
         cls.task = Task.objects.get(pk=1)
         cls.user = User.objects.get(pk=1)
-        cls.form_data = {'name': 'new task',
-                         'status': 1,
-                         'description': 'lalala',
-                         'executor': 2,
-                         'labels': [1, 2]}
 
     def assertTask(self, task, task_data):
         self.assertEqual(task.__str__(), task_data['name'])
@@ -43,7 +38,7 @@ class TaskTest(TestCase):
 
     def test_create_task(self):
         self.client.force_login(self.user)
-        new_task_data = self.form_data
+        new_task_data = self.test_data["tasks"]["new"]
         response = self.client.post(
             reverse('create_task'),
             new_task_data,
@@ -62,7 +57,7 @@ class TaskTest(TestCase):
 
     def test_update_task(self):
         self.client.force_login(self.user)
-        new_task_data = self.form_data
+        new_task_data = self.test_data["tasks"]["new"]
         response = self.client.post(
             reverse('update_task', args=[self.task.pk]),
             new_task_data,

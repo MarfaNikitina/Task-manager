@@ -2,7 +2,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, Client
 from django.urls import reverse
 from .models import User
-# from django.contrib.auth import get_user_model
 from task_manager.utils import get_test_data
 
 
@@ -17,17 +16,11 @@ class UserTest(TestCase):
         self.users_list = reverse('users:users')
         self.test_data = get_test_data()
         self.login = reverse('login')
-        self.form_data = {'username': 'NewName',
-                          'last_name': 'L',
-                          'first_name': 'F',
-                          'password1': 'NewPassword123',
-                          'password2': 'NewPassword123'}
 
     def test_user_exists(self):
         self.assertTrue(User.objects.count() == 3)
 
     def assertUser(self, user, user_data):
-        # self.assertEqual(user.__str__(), user_data['name'])
         self.assertEqual(user.first_name, user_data['first_name'])
         self.assertEqual(user.last_name, user_data['last_name'])
 
@@ -47,8 +40,9 @@ class UserTest(TestCase):
 
     def test_create_user(self):
         create_user = reverse('users:create')
+        new_user_data = self.test_data["users"]["new"]
         post_response = self.client.post(create_user,
-                                         self.form_data, follow=True)
+                                         new_user_data, follow=True)
         self.assertRedirects(post_response, self.login)
         self.assertTrue(User.objects.get(id=4))
 
@@ -62,14 +56,14 @@ class UserTest(TestCase):
     def test_update(self):
         self.client.force_login(self.user)
         response = self.client.post(
-            reverse('users:update', args=[1]),
-            self.form_data
+            reverse('users:update', args=(self.user.pk, )),
+            self.test_data["users"]["new"]
         )
         self.assertRedirects(response, reverse('users:users'))
         updated_user = User.objects.get(
-            first_name=self.form_data['first_name']
+            first_name=self.test_data["users"]["new"]['first_name']
         )
-        self.assertUser(updated_user, self.form_data)
+        self.assertUser(updated_user, self.test_data["users"]["new"])
 
     def test_delete_page(self):
         self.client.force_login(self.user)
