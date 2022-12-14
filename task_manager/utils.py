@@ -10,7 +10,7 @@ def get_fixture_path(file_name):
 def read(file_path):
     with open(file_path, 'r') as file:
         content = file.read()
-    return content
+        return content
 
 
 def get_fixture_data(file_name):

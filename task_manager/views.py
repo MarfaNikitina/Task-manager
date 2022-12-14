@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-from messages import SUCCESS_LOGIN_MESSAGE, SUCCESS_LOGOUT_MESSAGE
+from task_manager.messages import SUCCESS_LOGIN_MESSAGE, SUCCESS_LOGOUT_MESSAGE
 from users.models import User
 
 
@@ -21,7 +21,8 @@ class LoginUser(SuccessMessageMixin, LoginView):
 
 
 class LogoutUser(SuccessMessageMixin, LogoutView):
+    success_url = reverse_lazy('home')
 
-    def get_success_url(self):
+    def get(self, request, *args, **kwargs):
         messages.success(self.request, SUCCESS_LOGOUT_MESSAGE)
-        return reverse_lazy('home')
+        return super().post(request, *args, **kwargs)

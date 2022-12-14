@@ -9,13 +9,13 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
 from labels.forms import LabelForm
 from labels.models import Label
-from messages import LABEL_CREATE_MESSAGE, NO_PERMISSION_MESSAGE,\
+from task_manager.messages import LABEL_CREATE_MESSAGE, NO_PERMISSION_MESSAGE,\
     LABEL_UPDATE_MESSAGE, LABEL_DELETE_MESSAGE, NO_DELETE_LABEL_MESSAGE
 
 
 class LabelListView(ListView):
     model = Label
-    template_name = 'lists/label_list.html'
+    template_name = 'lists/label.html'
 
 
 class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):

@@ -44,7 +44,7 @@ class UserTest(TestCase):
         post_response = self.client.post(create_user,
                                          new_user_data, follow=True)
         self.assertRedirects(post_response, self.login)
-        self.assertTrue(User.objects.get(id=4))
+        self.assertTrue(User.objects.get(username=new_user_data['username']))
 
     def test_update_page(self):
         self.client.force_login(self.user2)

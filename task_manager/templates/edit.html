@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base-layout.html' %}
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery=True %}
@@ -16,6 +16,6 @@
     <form method="post" class="mx-auto">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button class="btn btn-primary type="submit">{{ button_text }}</button>
+        <button class="btn btn-primary" type="submit">{{ button_text }}</button>
     </form>
 {% endblock %}

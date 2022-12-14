@@ -1,4 +1,4 @@
-`{% extends 'base.html' %}
+`{% extends 'base-layout.html' %}
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery=True %}
@@ -21,4 +21,5 @@
         {% bootstrap_form form %}
     <input class="btn btn-danger" type="submit" value="{% trans 'Yes, delete' %}">
 </form>
+</div>
 {% endblock %}

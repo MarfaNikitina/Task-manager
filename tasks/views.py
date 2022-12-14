@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.utils.translation import gettext as _
 from django_filters.views import FilterView
-from messages import TASK_CREATE_MESSAGE, NO_PERMISSION_MESSAGE,\
+from task_manager.messages import TASK_CREATE_MESSAGE, NO_PERMISSION_MESSAGE,\
     TASK_UPDATE_MESSAGE, NO_DELETE_TASK_MESSAGE, TASK_DELETE_MESSAGE
 from tasks.filter import TaskFilter
 from tasks.forms import TaskForm
@@ -18,7 +18,7 @@ class TaskListView(FilterView):
     model = Task
     fields = ['id', 'name', 'status',
               'author', 'executor', 'time_create']
-    template_name = 'lists/task_list.html'
+    template_name = 'lists/task.html'
     filterset_class = TaskFilter
 
 

@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
-from messages import USER_CREATE_MESSAGE, USER_UPDATE_MESSAGE,\
+from task_manager.messages import USER_CREATE_MESSAGE, USER_UPDATE_MESSAGE,\
     NO_USER_PERMISSION_MESSAGE, NO_AUTHORIZATION_MESSAGE,\
     USER_DELETE_MESSAGE, PROTECTED_ERROR_MESSAGE
 from users.forms import UserRegistrationForm
@@ -17,7 +17,7 @@ from users.models import User
 
 class UserListView(ListView):
     model = User
-    template_name = 'lists/user_list.html'
+    template_name = 'lists/user.html'
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
