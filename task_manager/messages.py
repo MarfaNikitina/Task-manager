@@ -10,6 +10,7 @@ PROTECTED_ERROR_MESSAGE = _(
 USER_CREATE_MESSAGE = _("User created successfully")
 USER_UPDATE_MESSAGE = _("User updated successfully")
 USER_DELETE_MESSAGE = _("User deleted successfully")
+USER_EXIST_MESSAGE = _("A user with the same name already exists.")
 
 SUCCESS_LOGIN_MESSAGE = _("You are logged in")
 SUCCESS_LOGOUT_MESSAGE = _("You are logged out")
@@ -29,3 +30,4 @@ NO_DELETE_LABEL_MESSAGE = _("Can't delete label because it's in use")
 LABEL_CREATE_MESSAGE = _("Label created successfully")
 LABEL_UPDATE_MESSAGE = _("Label updated successfully")
 LABEL_DELETE_MESSAGE = _("Label deleted successfully")
+

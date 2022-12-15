@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-15 11:26+0300\n"
+"POT-Creation-Date: 2022-12-15 23:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: labels/forms.py:11 statuses/forms.py:11
 #: task_manager/templates/lists/label.html:21
-#: task_manager/templates/lists/task.html:28 tasks/forms.py:11
+#: task_manager/templates/lists/task.html:28 tasks/forms.py:11 users/forms.py:8
 #: users/forms.py:15
 msgid "Name"
 msgstr "Имя"
@@ -68,7 +68,7 @@ msgstr "Удаление статуса"
 msgid "You do not have permissions to change another user."
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: task_manager/messages.py:6 task_manager/messages.py:17
+#: task_manager/messages.py:6 task_manager/messages.py:18
 msgid "You are not authorized! Please sign in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
@@ -88,67 +88,71 @@ msgstr "Пользователь успешно изменён"
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удалён"
 
-#: task_manager/messages.py:14
+#: task_manager/messages.py:13
+msgid "A user with the same name already exists."
+msgstr "Пользователь с таким именем уже существует."
+
+#: task_manager/messages.py:15
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/messages.py:15
+#: task_manager/messages.py:16
 msgid "You are logged out"
 msgstr "Вы разлогинены"
 
-#: task_manager/messages.py:18
+#: task_manager/messages.py:19
 msgid "A task can only be deleted by its author."
 msgstr "Задачу может удалить только её автор"
 
-#: task_manager/messages.py:19
+#: task_manager/messages.py:20
 msgid "Task created successfully"
 msgstr "Задача успешно создана"
 
-#: task_manager/messages.py:20
+#: task_manager/messages.py:21
 msgid "Task updated successfully"
 msgstr "Задача успешно изменена"
 
-#: task_manager/messages.py:21
+#: task_manager/messages.py:22
 msgid "Task deleted successfully"
 msgstr "Задача успешно удалена"
 
-#: task_manager/messages.py:23
+#: task_manager/messages.py:24
 msgid "Can't delete status because it's in use"
 msgstr "Нельзя удалить статус, потому что он используется."
 
-#: task_manager/messages.py:24
+#: task_manager/messages.py:25
 msgid "Status created successfully"
 msgstr "Статус успешно создан"
 
-#: task_manager/messages.py:25
+#: task_manager/messages.py:26
 msgid "Status updated successfully"
 msgstr "Статус успешно изменён"
 
-#: task_manager/messages.py:26
+#: task_manager/messages.py:27
 msgid "Status deleted successfully"
 msgstr "Статус успешно удалён"
 
-#: task_manager/messages.py:28
+#: task_manager/messages.py:29
 msgid "Can't delete label because it's in use"
 msgstr "Нельзя удалить метку, потому что она используется"
 
-#: task_manager/messages.py:29
+#: task_manager/messages.py:30
 msgid "Label created successfully"
 msgstr "Метка успешно создана"
 
-#: task_manager/messages.py:30
+#: task_manager/messages.py:31
 msgid "Label updated successfully"
 msgstr "Метка успешно изменена"
 
-#: task_manager/messages.py:31
+#: task_manager/messages.py:32
 msgid "Label deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: task_manager/settings.py:152
+#: task_manager/settings.py:155
 msgid "English"
 msgstr ""
 
-#: task_manager/settings.py:153
+#: task_manager/settings.py:156
 msgid "Russian"
 msgstr ""
 
@@ -301,13 +305,17 @@ msgstr "Просмотр задачи"
 msgid "Update task"
 msgstr "Изменение задачи"
 
+#: users/forms.py:9 users/forms.py:16
+msgid "Surname"
+msgstr "Фамилия"
+
 #: users/forms.py:14
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: users/forms.py:16
-msgid "Surname"
-msgstr "Фамилия"
+#: users/tests.py:58
+msgid "Пользователь с таким именем уже существует."
+msgstr ""
 
 #: users/views.py:28
 msgid "Register"

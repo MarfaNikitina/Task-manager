@@ -13,7 +13,7 @@ class TaskTest(TestCase):
     def setUpTestData(cls):
         cls.test_data = get_test_data()
         cls.task = Task.objects.get(pk=1)
-        cls.user = User.objects.get(pk=1)
+        cls.user = User.objects.get(pk=2)
 
     def assertTask(self, task, task_data):
         self.assertEqual(task.__str__(), task_data['name'])
@@ -64,14 +64,14 @@ class TaskTest(TestCase):
     def test_delete_page(self):
         self.client.force_login(self.user)
         response = self.client.get(
-            reverse('delete_task', args=(self.user.pk, ))
+            reverse('delete_task', args=(self.task.pk, ))
         )
         self.assertEqual(response.status_code, 200)
 
     def test_delete(self):
         self.client.force_login(self.user)
         response = self.client.post(
-            reverse('delete_task', args=(self.user.pk,))
+            reverse('delete_task', args=(self.task.pk,))
         )
         self.assertRedirects(response, reverse('tasks'))
         with self.assertRaises(ObjectDoesNotExist):

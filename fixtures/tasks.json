@@ -6,7 +6,7 @@
       "name": "The Alien",
       "description": null,
       "status": null,
-      "author": 1,
+      "author": 2,
       "executor": 2,
       "time_create": "2022-11-16"
     }
@@ -31,7 +31,7 @@
       "description": null,
       "status": null,
       "author": 2,
-      "executor": 1,
+      "executor": 3,
       "time_create": "2022-11-19"
     }
   }

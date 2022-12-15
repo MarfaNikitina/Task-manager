@@ -6,6 +6,13 @@
       "password1": "NewPassword123",
       "password2": "NewPassword123",
       "username": "IvanIvanov"
+    },
+    "already_exist": {
+      "first_name": "Mike",
+      "last_name": "Ivanov",
+      "password1": "NewPassword1234",
+      "password2": "NewPassword1234",
+      "username": "Michail"
     }
   },
   "statuses": {
@@ -29,7 +36,7 @@
       "name": "new_task",
       "description": "lalala",
       "status": 3,
-      "executor": 1,
+      "executor": 2,
       "labels": [1, 2]
     }
   }

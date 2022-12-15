@@ -3,11 +3,12 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from .models import User
 from task_manager.utils import get_test_data
-from task_manager.messages import NO_USER_PERMISSION_MESSAGE
+from task_manager.messages import USER_EXIST_MESSAGE
+from django.utils.translation import gettext as _
 
 
 class UserTest(TestCase):
-    fixtures = ['users.json', 'statuses.json']
+    fixtures = ['users.json', 'statuses.json', 'tasks.json']
 
     def setUp(self):
         self.client = Client()
@@ -47,6 +48,15 @@ class UserTest(TestCase):
         self.assertRedirects(post_response, self.login)
         self.assertTrue(User.objects.get(username=new_user_data['username']))
 
+    def test_create_exist_user(self):
+        create_user = reverse('users:create')
+        new_user_data = self.test_data["users"]["already_exist"]
+        post_response = self.client.post(create_user,
+                                         new_user_data, follow=True)
+        self.assertEqual(post_response.status_code, 200)
+        self.assertContains(
+            post_response, text=USER_EXIST_MESSAGE)
+
     def test_update_page(self):
         self.client.force_login(self.user2)
         response = self.client.get(
@@ -78,6 +88,10 @@ class UserTest(TestCase):
             reverse('users:delete', args=(self.user.pk, ))
         )
         self.assertEqual(response.status_code, 200)
+        response_no_permission = self.client.get(
+            reverse('users:delete', args=(self.user2.pk,))
+        )
+        self.assertRedirects(response_no_permission, reverse('users:users'))
 
     def test_delete(self):
         self.client.force_login(self.user)
