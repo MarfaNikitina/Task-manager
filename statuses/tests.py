@@ -70,7 +70,8 @@ class StatusTest(TestCase):
 
     def test_delete(self):
         self.client.force_login(self.user)
-        response = self.client.post(reverse('delete_status', args=(self.user.pk,)), )
+        response = self.client.post(reverse(
+            'delete_status', args=(self.user.pk,)))
         self.assertRedirects(response, reverse('statuses'))
         with self.assertRaises(ObjectDoesNotExist):
             Status.objects.get(name=self.status.name)
