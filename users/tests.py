@@ -3,6 +3,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from .models import User
 from task_manager.utils import get_test_data
+from task_manager.messages import NO_USER_PERMISSION_MESSAGE
 
 
 class UserTest(TestCase):
@@ -52,6 +53,12 @@ class UserTest(TestCase):
             reverse('users:update', args=(self.user2.pk, ))
         )
         self.assertEqual(response.status_code, 200)
+        response_no_permission = self.client.get(
+            reverse('users:update', args=(self.user.pk, ))
+        )
+        self.assertRedirects(response_no_permission, reverse('users:users'))
+        # self.assertContains(
+        #     response_no_permission, text=NO_USER_PERMISSION_MESSAGE)
 
     def test_update(self):
         self.client.force_login(self.user)
