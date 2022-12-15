@@ -39,7 +39,7 @@ class TaskTest(TestCase):
     def test_create_task(self):
         self.client.force_login(self.user)
         new_task_data = self.test_data["tasks"]["new"]
-        response = self.client.post(reverse('create_task'), )
+        response = self.client.post(reverse('create_task'), new_task_data)
         created_task = Task.objects.get(name=new_task_data['name'])
         self.assertRedirects(response, reverse('tasks'))
         self.assertTask(created_task, new_task_data)
@@ -54,8 +54,9 @@ class TaskTest(TestCase):
     def test_update_task(self):
         self.client.force_login(self.user)
         new_task_data = self.test_data["tasks"]["new"]
-        response = self.client.post(reverse('update_task', args=[self.task.pk]), )
-
+        response = self.client.post(reverse(
+            'update_task', args=[self.task.pk]), new_task_data
+        )
         self.assertRedirects(response, reverse('tasks'))
         updated_task = Task.objects.get(name=new_task_data['name'])
         self.assertTask(updated_task, new_task_data)
@@ -69,7 +70,9 @@ class TaskTest(TestCase):
 
     def test_delete(self):
         self.client.force_login(self.user)
-        response = self.client.post(reverse('delete_task', args=(self.user.pk,)), )
+        response = self.client.post(
+            reverse('delete_task', args=(self.user.pk,))
+        )
         self.assertRedirects(response, reverse('tasks'))
         with self.assertRaises(ObjectDoesNotExist):
             Task.objects.get(name=self.task.name)

@@ -39,8 +39,8 @@ class StatusTest(TestCase):
     def test_create_status(self):
         self.client.force_login(self.user)
         new_status_data = self.test_data['statuses']['new']
-        response = self.client.post(reverse('create_status'), )
-
+        response = self.client.post(reverse(
+            'create_status'), new_status_data)
         self.assertRedirects(response, reverse('statuses'))
         created_status = Status.objects.get(name=new_status_data['name'])
         self.assertStatus(created_status, new_status_data)
@@ -55,8 +55,8 @@ class StatusTest(TestCase):
     def test_update_status(self):
         self.client.force_login(self.user)
         new_status_data = self.test_data['statuses']['new']
-        response = self.client.post(reverse('update_status', args=[self.status.pk]), )
-
+        response = self.client.post(reverse(
+            'update_status', args=[self.status.pk]), new_status_data)
         self.assertRedirects(response, reverse('statuses'))
         updated_status = Status.objects.get(name=new_status_data['name'])
         self.assertStatus(updated_status, new_status_data)

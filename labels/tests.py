@@ -39,7 +39,7 @@ class LabelTest(TestCase):
     def test_create_label(self):
         self.client.force_login(self.user)
         new_label_data = self.test_data['labels']['new']
-        response = self.client.post(reverse('create_label'), )
+        response = self.client.post(reverse('create_label'), new_label_data)
 
         self.assertRedirects(response, reverse('labels'))
         created_status = Label.objects.get(name=new_label_data['name'])
@@ -56,8 +56,9 @@ class LabelTest(TestCase):
     def test_update_label(self):
         self.client.force_login(self.user)
         new_label_data = self.test_data['labels']['new']
-        response = self.client.post(reverse('update_label', args=[self.label.pk]), )
-
+        response = self.client.post(
+            reverse('update_label', args=[self.label.pk]), new_label_data
+        )
         self.assertRedirects(response, reverse('labels'))
         updated_status = Label.objects.get(name=new_label_data['name'])
         self.assertLabel(updated_status, new_label_data)
