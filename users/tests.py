@@ -4,7 +4,6 @@ from django.urls import reverse
 from .models import User
 from task_manager.utils import get_test_data
 from task_manager.messages import USER_EXIST_MESSAGE
-from django.utils.translation import gettext as _
 
 
 class UserTest(TestCase):
