@@ -7,7 +7,7 @@ from task_manager.messages import USER_EXIST_MESSAGE
 
 
 class UserTest(TestCase):
-    fixtures = ['users.json', 'statuses.json', 'tasks.json']
+    fixtures = ['users.json', 'statuses.json', 'tasks.json', 'labels.json']
 
     def setUp(self):
         self.client = Client()

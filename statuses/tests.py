@@ -8,12 +8,13 @@ from users.models import User
 
 
 class StatusTest(TestCase):
-    fixtures = ['statuses.json', 'users.json', 'tasks.json']
+    fixtures = ['statuses.json', 'users.json', 'tasks.json', 'labels.json']
 
     @classmethod
     def setUpTestData(cls):
         cls.test_data = get_test_data()
         cls.status = Status.objects.get(pk=1)
+        cls.used_status = Status.objects.get(pk=3)
         cls.user = User.objects.get(pk=1)
         cls.task = Task.objects.get(pk=1)
 
@@ -73,7 +74,14 @@ class StatusTest(TestCase):
     def test_delete(self):
         self.client.force_login(self.user)
         response = self.client.post(reverse(
-            'delete_status', args=(self.user.pk,)))
+            'delete_status', args=(self.status.pk,)))
         self.assertRedirects(response, reverse('statuses'))
         with self.assertRaises(ObjectDoesNotExist):
             Status.objects.get(name=self.status.name)
+
+    def test_delete_used_status(self):
+        self.client.force_login(self.user)
+        response = self.client.post(reverse(
+            'delete_status', args=(self.used_status.pk,)))
+        self.assertRedirects(response, reverse('statuses'))
+        assert self.used_status in Status.objects.all()

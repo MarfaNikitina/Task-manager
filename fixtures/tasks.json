@@ -5,7 +5,7 @@
     "fields": {
       "name": "The Alien",
       "description": null,
-      "status": null,
+      "status": 3,
       "author": 2,
       "executor": 2,
       "time_create": "2022-11-16"
@@ -34,13 +34,21 @@
       "executor": 3,
       "time_create": "2022-11-19"
     }
-  }
-//  {
-//    "model": "tasks.labelfortask",
-//    "pk": 2,
-//    "fields": {
-//        "task": 1,
-//        "labels": 2
-//    }
-//}
+  },
+  {
+    "model": "tasks.labelfortask",
+    "pk": 1,
+    "fields": {
+      "task": 1,
+      "labels": 2
+    }
+  },
+  {
+    "model": "tasks.labelfortask",
+    "pk": 3,
+    "fields": {
+        "task": 2,
+        "labels": 3
+    }
+}
 ]

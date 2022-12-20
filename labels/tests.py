@@ -83,10 +83,10 @@ class LabelTest(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             Label.objects.get(name=self.label.name)
 
-    # def test_delete_using_label(self):
-    #     self.client.force_login(self.user)
-    #     response = self.client.post(reverse(
-    #         'delete_label',
-    #         args=(self.label2.pk,)), )
-    #     self.assertRedirects(response, reverse('labels'))
-    #     assert self.label2 in Label.objects.all()
+    def test_delete_using_label(self):
+        self.client.force_login(self.user)
+        response = self.client.post(reverse(
+            'delete_label',
+            args=(self.label2.pk,)), )
+        self.assertRedirects(response, reverse('labels'))
+        assert self.label2 in Label.objects.all()
