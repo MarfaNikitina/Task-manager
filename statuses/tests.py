@@ -3,17 +3,19 @@ from django.test import TestCase
 from django.urls import reverse
 from statuses.models import Status
 from task_manager.utils import get_test_data
+from tasks.models import Task
 from users.models import User
 
 
 class StatusTest(TestCase):
-    fixtures = ['statuses.json', 'users.json']
+    fixtures = ['statuses.json', 'users.json', 'tasks.json']
 
     @classmethod
     def setUpTestData(cls):
         cls.test_data = get_test_data()
         cls.status = Status.objects.get(pk=1)
         cls.user = User.objects.get(pk=1)
+        cls.task = Task.objects.get(pk=1)
 
     def assertStatus(self, status, status_data):
         self.assertEqual(status.__str__(), status_data['name'])

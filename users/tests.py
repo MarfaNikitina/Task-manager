@@ -22,6 +22,7 @@ class UserTest(TestCase):
         self.assertTrue(User.objects.count() == 3)
 
     def assertUser(self, user, user_data):
+        self.assertEqual(user.username, user_data['username'])
         self.assertEqual(user.first_name, user_data['first_name'])
         self.assertEqual(user.last_name, user_data['last_name'])
 
@@ -62,6 +63,9 @@ class UserTest(TestCase):
             reverse('users:update', args=(self.user2.pk, ))
         )
         self.assertEqual(response.status_code, 200)
+
+    def test_update_no_permission(self):
+        self.client.force_login(self.user2)
         response_no_permission = self.client.get(
             reverse('users:update', args=(self.user.pk, ))
         )

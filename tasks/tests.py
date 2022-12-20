@@ -13,6 +13,7 @@ class TaskTest(TestCase):
     def setUpTestData(cls):
         cls.test_data = get_test_data()
         cls.task = Task.objects.get(pk=1)
+        cls.task2 = Task.objects.get(pk=2)
         cls.user = User.objects.get(pk=2)
 
     def assertTask(self, task, task_data):
@@ -76,3 +77,11 @@ class TaskTest(TestCase):
         self.assertRedirects(response, reverse('tasks'))
         with self.assertRaises(ObjectDoesNotExist):
             Task.objects.get(name=self.task.name)
+
+    def test_delete_no_permission(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            reverse('delete_task', args=(self.task2.pk,))
+        )
+        self.assertRedirects(response, reverse('tasks'))
+        assert self.task2 in Task.objects.all()

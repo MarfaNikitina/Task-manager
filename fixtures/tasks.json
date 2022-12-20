@@ -35,4 +35,12 @@
       "time_create": "2022-11-19"
     }
   }
+//  {
+//    "model": "tasks.labelfortask",
+//    "pk": 2,
+//    "fields": {
+//        "task": 1,
+//        "labels": 2
+//    }
+//}
 ]

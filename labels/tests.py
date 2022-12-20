@@ -3,17 +3,20 @@ from django.test import TestCase
 from django.urls import reverse
 from labels.models import Label
 from task_manager.utils import get_test_data
+from tasks.models import Task
 from users.models import User
 
 
 class LabelTest(TestCase):
-    fixtures = ['statuses.json', 'users.json', 'labels.json']
+    fixtures = ['statuses.json', 'users.json', 'labels.json', 'tasks.json']
 
     @classmethod
     def setUpTestData(cls):
         cls.test_data = get_test_data()
         cls.label = Label.objects.get(pk=1)
+        cls.label2 = Label.objects.get(pk=2)
         cls.user = User.objects.get(pk=1)
+        cls.Task = Task.objects.get(pk=1)
 
     def assertLabel(self, label, label_data):
         self.assertEqual(label.__str__(), label_data['name'])
@@ -79,3 +82,11 @@ class LabelTest(TestCase):
         self.assertRedirects(response, reverse('labels'))
         with self.assertRaises(ObjectDoesNotExist):
             Label.objects.get(name=self.label.name)
+
+    # def test_delete_using_label(self):
+    #     self.client.force_login(self.user)
+    #     response = self.client.post(reverse(
+    #         'delete_label',
+    #         args=(self.label2.pk,)), )
+    #     self.assertRedirects(response, reverse('labels'))
+    #     assert self.label2 in Label.objects.all()
