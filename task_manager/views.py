@@ -25,4 +25,4 @@ class LogoutUser(SuccessMessageMixin, LogoutView):
 
     def get(self, request, *args, **kwargs):
         messages.success(self.request, SUCCESS_LOGOUT_MESSAGE)
-        return super().post(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)

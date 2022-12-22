@@ -5,8 +5,13 @@ from django.utils.translation import gettext as _
 
 
 class UserRegistrationForm(UserCreationForm):
-    first_name = forms.CharField(required=True, label=_('Name'))
-    last_name = forms.CharField(required=True, label=_('Surname'))
+    # first_name = forms.CharField(required=True, label=_('Name'))
+    # last_name = forms.CharField(required=True, label=_('Surname'))
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.fields['last_name'].required = True
+        self.fields['first_name'].requred = True
 
     class Meta:
         model = User

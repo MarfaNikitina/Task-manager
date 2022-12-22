@@ -16,7 +16,7 @@ from task_manager.messages import NO_PERMISSION_MESSAGE,\
 
 class StatusListView(LoginRequiredMixin, ListView):
     model = Status
-    template_name = 'lists/statushtml'
+    template_name = 'lists/status.html'
 
     def handle_no_permission(self):
         messages.warning(self.request, NO_PERMISSION_MESSAGE)
