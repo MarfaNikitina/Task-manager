@@ -1,3 +1,5 @@
+<h1>Task manager</h1> - tutorial web application using django framework
+
 ### Hexlet tests and linter status:
 [![Maintainability](https://api.codeclimate.com/v1/badges/d273c9da9a6dd70b8454/maintainability)](https://codeclimate.com/github/MarfaNikitina/python-project-52/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d273c9da9a6dd70b8454/test_coverage)](https://codeclimate.com/github/MarfaNikitina/python-project-52/test_coverage)
@@ -20,22 +22,22 @@
 make setup
 ```
 
-#Run server
+# Run server
 ```shell
 make setup
 ```
 
-#Run linter
+# Run linter
 ```shell
 make lint
 ```
 
-#Run tests
+# Run tests
 ```shell
 make test
 ```
 
-#Run tests with coverage report
+# Run tests with coverage report
 ```shell
 make test-coverage
 ```
