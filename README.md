@@ -8,3 +8,39 @@
 
 [DEMO on RAILWAY](https://python-project-52-production-908d.up.railway.app/)
 
+<h1>Requirements</h1>
+
+* Python 3,8+
+* Poetry
+* GNU Make
+
+# Setup
+
+```shell
+make setup
+```
+
+#Run server
+```shell
+make setup
+```
+
+#Run linter
+```shell
+make lint
+```
+
+#Run tests
+```shell
+make test
+```
+
+#Run tests with coverage report
+```shell
+make test-coverage
+```
+
+
+
+
+

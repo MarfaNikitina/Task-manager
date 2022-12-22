@@ -42,19 +42,6 @@ class UserUpdateView(UserPermissionMixin,
     success_message = USER_UPDATE_MESSAGE
     login_url = reverse_lazy('login')
 
-    # def test_func(self):
-    #     user = self.get_object()
-    #     return self.request.user.id == user.id
-    #
-    # def handle_no_permission(self):
-    #     if self.request.user.is_authenticated:
-    #         messages.warning(self.request, NO_USER_PERMISSION_MESSAGE)
-    #         url = reverse_lazy('users:users')
-    #     else:
-    #         url = self.login_url
-    #         messages.warning(self.request, NO_AUTHORIZATION_MESSAGE)
-    #     return redirect(url)
-
 
 class UserDeleteView(UserPermissionMixin,
                      SuccessMessageMixin,
@@ -66,32 +53,9 @@ class UserDeleteView(UserPermissionMixin,
     login_url = reverse_lazy('login')
     success_message = USER_DELETE_MESSAGE
 
-    # def test_func(self):
-    #     user = self.get_object()
-    #     return self.request.user.id == user.id
-    #
-    # def handle_no_permission(self):
-    #     if self.request.user.is_authenticated:
-    #         messages.warning(self.request, NO_USER_PERMISSION_MESSAGE)
-    #         url = reverse_lazy('users:users')
-    #     else:
-    #         url = self.login_url
-    #         messages.warning(self.request, NO_AUTHORIZATION_MESSAGE)
-    #     return redirect(url)
-
     def post(self, request, *args, **kwargs):
         authors_and_executors = Task.objects.values_list('author', 'executor')
         if self.request.user.id in authors_and_executors:
             messages.warning(self.request, PROTECTED_ERROR_MESSAGE)
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
-
-    # def form_valid(self, form):
-    #     success_url = self.get_success_url()
-    #     try:
-    #         self.object.delete()
-    #         messages.success(self.request, USER_DELETE_MESSAGE)
-    #         return redirect(self.success_url)
-    #     except ProtectedError:
-    #         messages.warning(self.request, PROTECTED_ERROR_MESSAGE)
-    #         return redirect(success_url)
