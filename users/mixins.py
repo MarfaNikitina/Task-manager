@@ -4,7 +4,8 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
 from task_manager import messages
-from task_manager.messages import NO_USER_PERMISSION_MESSAGE, NO_AUTHORIZATION_MESSAGE
+from task_manager.messages import NO_USER_PERMISSION_MESSAGE,\
+    NO_AUTHORIZATION_MESSAGE
 
 
 class UserPermissionMixin(LoginRequiredMixin, UserPassesTestMixin):
