@@ -2,8 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, \
     UserPassesTestMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-
-from task_manager import messages
+from django.contrib import messages
 from task_manager.messages import NO_USER_PERMISSION_MESSAGE,\
     NO_AUTHORIZATION_MESSAGE
 
