@@ -5,7 +5,7 @@ from task_manager.settings import BASE_DIR
 
 def get_fixture_path(file_name):
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(current_dir, BASE_DIR/'fixtures', file_name)
+    return os.path.join(current_dir, BASE_DIR, 'fixtures', file_name)
 
 
 def read(file_path):
