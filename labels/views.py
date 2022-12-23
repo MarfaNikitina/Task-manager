@@ -25,37 +25,36 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     login_url = 'login'
     extra_context = {'title': _('Create label'),
                      'button_text': _('Create')}
-
-    def get_success_url(self):
-        messages.success(self.request, LABEL_CREATE_MESSAGE)
-        return reverse_lazy('labels')
+    success_message = LABEL_CREATE_MESSAGE
+    success_url = reverse_lazy('labels')
 
     def handle_no_permission(self):
         messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
 
-class LabelUpdateView(LoginRequiredMixin, UpdateView):
+class LabelUpdateView(LoginRequiredMixin,
+                      SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
     template_name = 'edit.html'
     extra_context = {'title': _('Update label'),
                      'button_text': _('Update')}
-
-    def get_success_url(self):
-        messages.success(self.request, LABEL_UPDATE_MESSAGE)
-        return reverse_lazy('labels')
+    success_message = LABEL_UPDATE_MESSAGE
+    success_url = reverse_lazy('labels')
 
     def handle_no_permission(self):
         messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
 
-class LabelDeleteView(LoginRequiredMixin, DeleteView):
+class LabelDeleteView(LoginRequiredMixin,
+                      SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'delete.html'
     extra_context = {'title': _('Delete label')}
     success_url = reverse_lazy('labels')
+    success_message = LABEL_DELETE_MESSAGE
 
     def handle_no_permission(self):
         messages.warning(self.request, NO_PERMISSION_MESSAGE)

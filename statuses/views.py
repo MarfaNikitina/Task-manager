@@ -31,17 +31,16 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         'title': _('Create status'),
         'button_text': _('Create')
     }
-
-    def get_success_url(self):
-        messages.success(self.request, STATUS_CREATE_MESSAGE)
-        return reverse_lazy('statuses')
+    success_message = STATUS_CREATE_MESSAGE
+    success_url = reverse_lazy('statuses')
 
     def handle_no_permission(self):
         messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
 
-class StatusUpdateView(LoginRequiredMixin, UpdateView):
+class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin,
+                       UpdateView):
     model = Status
     form_class = StatusForm
     template_name = 'edit.html'
@@ -49,23 +48,24 @@ class StatusUpdateView(LoginRequiredMixin, UpdateView):
         'title': _('Update status'),
         'button_text': _('Update')
     }
-
-    def get_success_url(self):
-        messages.success(self.request, STATUS_UPDATE_MESSAGE)
-        return reverse_lazy('statuses')
+    success_message = STATUS_UPDATE_MESSAGE
+    success_url = reverse_lazy('statuses')
 
     def handle_no_permission(self):
         messages.warning(self.request, NO_PERMISSION_MESSAGE)
         return redirect(self.login_url)
 
 
-class StatusDeleteView(LoginRequiredMixin, DeleteView):
+class StatusDeleteView(LoginRequiredMixin,
+                       SuccessMessageMixin,
+                       DeleteView):
     model = Status
     template_name = 'delete.html'
     extra_context = {
         'title': _('Delete status')
     }
     success_url = reverse_lazy('statuses')
+    success_message = STATUS_DELETE_MESSAGE
 
     def handle_no_permission(self):
         messages.warning(self.request, NO_PERMISSION_MESSAGE)

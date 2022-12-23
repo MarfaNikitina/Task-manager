@@ -11,7 +11,7 @@ from django.utils.translation import gettext as _
 from task_manager.messages import USER_CREATE_MESSAGE, USER_UPDATE_MESSAGE,\
     USER_DELETE_MESSAGE, PROTECTED_ERROR_MESSAGE
 from users.forms import UserRegistrationForm
-from users.mixins import UserPermissionMixin
+from users.mixins import UserPermissionMixin, MyLoginRequiredMixin
 from users.models import User
 from tasks.models import Task
 
@@ -31,7 +31,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('login')
 
 
-class UserUpdateView(UserPermissionMixin,
+class UserUpdateView(MyLoginRequiredMixin, UserPermissionMixin,
                      SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserRegistrationForm
@@ -43,7 +43,8 @@ class UserUpdateView(UserPermissionMixin,
     login_url = reverse_lazy('login')
 
 
-class UserDeleteView(UserPermissionMixin,
+class UserDeleteView(MyLoginRequiredMixin,
+                     UserPermissionMixin,
                      SuccessMessageMixin,
                      DeleteView):
     model = User
