@@ -31,7 +31,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('login')
 
 
-class UserUpdateView(MyLoginRequiredMixin, UserPermissionMixin,
+class UserUpdateView(UserPermissionMixin, MyLoginRequiredMixin,
                      SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserRegistrationForm
@@ -43,8 +43,8 @@ class UserUpdateView(MyLoginRequiredMixin, UserPermissionMixin,
     login_url = reverse_lazy('login')
 
 
-class UserDeleteView(MyLoginRequiredMixin,
-                     UserPermissionMixin,
+class UserDeleteView(UserPermissionMixin,
+                     MyLoginRequiredMixin,
                      SuccessMessageMixin,
                      DeleteView):
     model = User
