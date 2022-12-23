@@ -1,16 +1,15 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import ProtectedError
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
 from labels.forms import LabelForm
 from labels.models import Label
-from task_manager.messages import LABEL_CREATE_MESSAGE, NO_PERMISSION_MESSAGE,\
+from task_manager.messages import LABEL_CREATE_MESSAGE, \
     LABEL_UPDATE_MESSAGE, LABEL_DELETE_MESSAGE, NO_DELETE_LABEL_MESSAGE
+from users.mixins import MyLoginRequiredMixin
 
 
 class LabelListView(ListView):
@@ -18,7 +17,8 @@ class LabelListView(ListView):
     template_name = 'lists/label.html'
 
 
-class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class LabelCreateView(MyLoginRequiredMixin,
+                      SuccessMessageMixin, CreateView):
     form_class = LabelForm
     model = Label
     template_name = 'edit.html'
@@ -28,12 +28,8 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = LABEL_CREATE_MESSAGE
     success_url = reverse_lazy('labels')
 
-    def handle_no_permission(self):
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
-        return redirect(self.login_url)
 
-
-class LabelUpdateView(LoginRequiredMixin,
+class LabelUpdateView(MyLoginRequiredMixin,
                       SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
@@ -43,22 +39,14 @@ class LabelUpdateView(LoginRequiredMixin,
     success_message = LABEL_UPDATE_MESSAGE
     success_url = reverse_lazy('labels')
 
-    def handle_no_permission(self):
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
-        return redirect(self.login_url)
 
-
-class LabelDeleteView(LoginRequiredMixin,
+class LabelDeleteView(MyLoginRequiredMixin,
                       SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'delete.html'
     extra_context = {'title': _('Delete label')}
     success_url = reverse_lazy('labels')
     success_message = LABEL_DELETE_MESSAGE
-
-    def handle_no_permission(self):
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
-        return redirect(self.login_url)
 
     def form_valid(self, form):
         success_url = self.get_success_url()

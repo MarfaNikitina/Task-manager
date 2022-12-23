@@ -59,14 +59,6 @@ class TaskDeleteView(TaskPassesTestMixin,
     success_url = reverse_lazy('tasks')
     success_message = TASK_DELETE_MESSAGE
 
-    # def test_func(self):
-    #     return self.get_object().author == self.request.user
-    #
-    # def handle_no_permission(self):
-    #     url = reverse_lazy('tasks')
-    #     messages.warning(self.request, NO_DELETE_TASK_MESSAGE)
-    #     return redirect(url)
-
 
 class TaskDetail(MyLoginRequiredMixin, DetailView):
     template_name = 'tasks/detail_task.html'

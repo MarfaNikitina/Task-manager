@@ -1,29 +1,25 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import ProtectedError
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from statuses.forms import StatusForm
 from statuses.models import Status
 from django.utils.translation import gettext as _
-from task_manager.messages import NO_PERMISSION_MESSAGE,\
-    STATUS_CREATE_MESSAGE, STATUS_UPDATE_MESSAGE,\
+from task_manager.messages import STATUS_CREATE_MESSAGE,\
+    STATUS_UPDATE_MESSAGE,\
     STATUS_DELETE_MESSAGE, NO_DELETE_STATUS_MESSAGE
+from users.mixins import MyLoginRequiredMixin
 
 
-class StatusListView(LoginRequiredMixin, ListView):
+class StatusListView(MyLoginRequiredMixin, ListView):
     model = Status
     template_name = 'lists/status.html'
 
-    def handle_no_permission(self):
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
-        return redirect(self.login_url)
 
-
-class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class StatusCreateView(MyLoginRequiredMixin,
+                       SuccessMessageMixin, CreateView):
     form_class = StatusForm
     model = Status
     template_name = 'edit.html'
@@ -34,12 +30,9 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = STATUS_CREATE_MESSAGE
     success_url = reverse_lazy('statuses')
 
-    def handle_no_permission(self):
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
-        return redirect(self.login_url)
 
-
-class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin,
+class StatusUpdateView(MyLoginRequiredMixin,
+                       SuccessMessageMixin,
                        UpdateView):
     model = Status
     form_class = StatusForm
@@ -51,12 +44,8 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin,
     success_message = STATUS_UPDATE_MESSAGE
     success_url = reverse_lazy('statuses')
 
-    def handle_no_permission(self):
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
-        return redirect(self.login_url)
 
-
-class StatusDeleteView(LoginRequiredMixin,
+class StatusDeleteView(MyLoginRequiredMixin,
                        SuccessMessageMixin,
                        DeleteView):
     model = Status
@@ -66,10 +55,6 @@ class StatusDeleteView(LoginRequiredMixin,
     }
     success_url = reverse_lazy('statuses')
     success_message = STATUS_DELETE_MESSAGE
-
-    def handle_no_permission(self):
-        messages.warning(self.request, NO_PERMISSION_MESSAGE)
-        return redirect(self.login_url)
 
     def form_valid(self, form):
         success_url = self.get_success_url()
