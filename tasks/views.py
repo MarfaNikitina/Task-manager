@@ -1,14 +1,10 @@
-from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.db.models import ProtectedError
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.utils.translation import gettext as _
 from django_filters.views import FilterView
 from task_manager.messages import TASK_CREATE_MESSAGE, \
-    TASK_UPDATE_MESSAGE, NO_DELETE_TASK_MESSAGE, TASK_DELETE_MESSAGE
+    TASK_UPDATE_MESSAGE, TASK_DELETE_MESSAGE
 from tasks.filter import TaskFilter
 from tasks.forms import TaskForm
 from tasks.models import Task
