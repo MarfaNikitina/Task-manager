@@ -10,9 +10,14 @@ from task_manager.messages import NO_USER_PERMISSION_MESSAGE,\
 class MyLoginRequiredMixin(LoginRequiredMixin):
     redirect_field_name = reverse_lazy('login')
 
-    def dispatch(self, request, *args, **kwargs):
+    # def dispatch(self, request, *args, **kwargs):
+    #     messages.warning(self.request, NO_AUTHORIZATION_MESSAGE)
+    #     return super().dispatch(request, *args, **kwargs)
+
+    def handle_no_permission(self):
         messages.warning(self.request, NO_AUTHORIZATION_MESSAGE)
-        return super().dispatch(request, *args, **kwargs)
+        url = reverse_lazy('login')
+        return redirect(url)
 
 
 class UserPermissionMixin(UserPassesTestMixin):
