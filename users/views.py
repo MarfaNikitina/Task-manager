@@ -38,8 +38,8 @@ class UserUpdateView(MyLoginRequiredMixin, UserPermissionMixin,
     template_name = 'edit.html'
     extra_context = {'title': _('Update user'),
                      'button_text': _('Update')}
-    success_url = reverse_lazy('users:users')
     success_message = USER_UPDATE_MESSAGE
+    success_url = reverse_lazy('users:users')
     login_url = reverse_lazy('login')
 
 

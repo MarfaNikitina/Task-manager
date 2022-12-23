@@ -39,7 +39,7 @@
     "model": "tasks.labelfortask",
     "pk": 1,
     "fields": {
-      "task": 1,
+      "task": 2,
       "labels": 2
     }
   },
