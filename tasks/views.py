@@ -12,7 +12,7 @@ from task_manager.messages import TASK_CREATE_MESSAGE, \
 from tasks.filter import TaskFilter
 from tasks.forms import TaskForm
 from tasks.models import Task
-from users.mixins import MyLoginRequiredMixin
+from users.mixins import MyLoginRequiredMixin, TaskPassesTestMixin
 
 
 class TaskListView(FilterView):
@@ -54,7 +54,7 @@ class TaskUpdateView(MyLoginRequiredMixin,
 
 
 class TaskDeleteView(MyLoginRequiredMixin,
-                     UserPassesTestMixin,
+                     TaskPassesTestMixin,
                      SuccessMessageMixin,
                      DeleteView):
     model = Task
@@ -63,23 +63,13 @@ class TaskDeleteView(MyLoginRequiredMixin,
     success_url = reverse_lazy('tasks')
     success_message = TASK_DELETE_MESSAGE
 
-    def test_func(self):
-        return self.get_object().author == self.request.user
-
-    def handle_no_permission(self):
-        url = reverse_lazy('tasks')
-        messages.warning(self.request, NO_DELETE_TASK_MESSAGE)
-        return redirect(url)
-
-    def form_valid(self, form):
-        try:
-            self.object.delete()
-            messages.success(self.request, TASK_DELETE_MESSAGE)
-            return redirect(self.success_url)
-        except ProtectedError:
-            messages.warning(self.request,
-                             NO_DELETE_TASK_MESSAGE)
-            return redirect(self.success_url)
+    # def test_func(self):
+    #     return self.get_object().author == self.request.user
+    # 
+    # def handle_no_permission(self):
+    #     url = reverse_lazy('tasks')
+    #     messages.warning(self.request, NO_DELETE_TASK_MESSAGE)
+    #     return redirect(url)
 
 
 class TaskDetail(MyLoginRequiredMixin, DetailView):

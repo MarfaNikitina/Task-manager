@@ -70,8 +70,6 @@ class UserTest(TestCase):
             reverse('users:update', args=(self.user.pk, ))
         )
         self.assertRedirects(response_no_permission, reverse('users:users'))
-        # self.assertContains(
-        #     response_no_permission, text=NO_USER_PERMISSION_MESSAGE)
 
     def test_update(self):
         self.client.force_login(self.user)
