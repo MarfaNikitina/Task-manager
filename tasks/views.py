@@ -35,10 +35,6 @@ class TaskCreateView(MyLoginRequiredMixin,
     success_message = TASK_CREATE_MESSAGE
     success_url = reverse_lazy('tasks')
 
-    # def handle_no_permission(self):
-    #     messages.warning(self.request, NO_PERMISSION_MESSAGE)
-    #     return redirect(reverse_lazy('login'))
-
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)

@@ -37,7 +37,7 @@
       "description": "lalala",
       "status": 3,
       "executor": 2,
-      "labels": [1, 2]
+      "labels": [2, 3]
     }
   }
 }
