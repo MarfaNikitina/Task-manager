@@ -61,7 +61,7 @@ class TaskDeleteView(MyLoginRequiredMixin,
 
     # def test_func(self):
     #     return self.get_object().author == self.request.user
-    # 
+    #
     # def handle_no_permission(self):
     #     url = reverse_lazy('tasks')
     #     messages.warning(self.request, NO_DELETE_TASK_MESSAGE)
