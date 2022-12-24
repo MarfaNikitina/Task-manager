@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
@@ -9,7 +8,8 @@ from labels.forms import LabelForm
 from labels.models import Label
 from task_manager.messages import LABEL_CREATE_MESSAGE, \
     LABEL_UPDATE_MESSAGE, LABEL_DELETE_MESSAGE, NO_DELETE_LABEL_MESSAGE
-from users.mixins import MyLoginRequiredMixin
+from tasks.models import LabelForTask
+from task_manager.mixins import MyLoginRequiredMixin
 
 
 class LabelListView(ListView):
@@ -48,12 +48,8 @@ class LabelDeleteView(MyLoginRequiredMixin,
     success_url = reverse_lazy('labels')
     success_message = LABEL_DELETE_MESSAGE
 
-    def form_valid(self, form):
-        success_url = self.get_success_url()
-        try:
-            self.object.delete()
-            messages.success(self.request, LABEL_DELETE_MESSAGE)
-        except ProtectedError:
-            messages.error(self.request, NO_DELETE_LABEL_MESSAGE)
-        finally:
-            return HttpResponseRedirect(success_url)
+    def post(self, request, *args, **kwargs):
+        if LabelForTask.objects.filter(labels_id=self.kwargs['pk']):
+            messages.warning(self.request, NO_DELETE_LABEL_MESSAGE)
+            return redirect(self.success_url)
+        return super().post(request, *args, **kwargs)

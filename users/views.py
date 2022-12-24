@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 from task_manager.messages import USER_CREATE_MESSAGE, USER_UPDATE_MESSAGE,\
     USER_DELETE_MESSAGE, PROTECTED_ERROR_MESSAGE
 from users.forms import UserRegistrationForm
-from users.mixins import UserPermissionMixin, MyLoginRequiredMixin
+from task_manager.mixins import UserPermissionMixin, MyLoginRequiredMixin
 from users.models import User
 from tasks.models import Task
 
@@ -52,8 +52,8 @@ class UserDeleteView(UserPermissionMixin,
     success_message = USER_DELETE_MESSAGE
 
     def post(self, request, *args, **kwargs):
-        authors_and_executors = Task.objects.values_list('author', 'executor')
-        if self.request.user.id in authors_and_executors:
+        if Task.objects.filter(
+                executor_id=self.kwargs['pk'], author_id=self.kwargs['pk']):
             messages.warning(self.request, PROTECTED_ERROR_MESSAGE)
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)

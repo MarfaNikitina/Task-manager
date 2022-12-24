@@ -8,7 +8,7 @@ from task_manager.messages import TASK_CREATE_MESSAGE, \
 from tasks.filter import TaskFilter
 from tasks.forms import TaskForm
 from tasks.models import Task
-from users.mixins import MyLoginRequiredMixin, TaskPassesTestMixin
+from task_manager.mixins import MyLoginRequiredMixin, TaskPassesTestMixin
 
 
 class TaskListView(FilterView):

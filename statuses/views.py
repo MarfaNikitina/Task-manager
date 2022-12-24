@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from statuses.forms import StatusForm
@@ -10,7 +9,8 @@ from django.utils.translation import gettext as _
 from task_manager.messages import STATUS_CREATE_MESSAGE,\
     STATUS_UPDATE_MESSAGE,\
     STATUS_DELETE_MESSAGE, NO_DELETE_STATUS_MESSAGE
-from users.mixins import MyLoginRequiredMixin
+from tasks.models import Task
+from task_manager.mixins import MyLoginRequiredMixin
 
 
 class StatusListView(MyLoginRequiredMixin, ListView):
@@ -56,12 +56,8 @@ class StatusDeleteView(MyLoginRequiredMixin,
     success_url = reverse_lazy('statuses')
     success_message = STATUS_DELETE_MESSAGE
 
-    def form_valid(self, form):
-        success_url = self.get_success_url()
-        try:
-            self.object.delete()
-            messages.success(self.request, STATUS_DELETE_MESSAGE)
-        except ProtectedError:
-            messages.error(self.request, NO_DELETE_STATUS_MESSAGE)
-        finally:
-            return HttpResponseRedirect(success_url)
+    def post(self, request, *args, **kwargs):
+        if Task.objects.filter(status_id=self.kwargs['pk']):
+            messages.warning(self.request, NO_DELETE_STATUS_MESSAGE)
+            return redirect(self.success_url)
+        return super().post(request, *args, **kwargs)
