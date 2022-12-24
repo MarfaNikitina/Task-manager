@@ -49,8 +49,8 @@ class TaskUpdateView(MyLoginRequiredMixin,
     success_url = reverse_lazy('tasks')
 
 
-class TaskDeleteView(MyLoginRequiredMixin,
-                     TaskPassesTestMixin,
+class TaskDeleteView(TaskPassesTestMixin,
+                     MyLoginRequiredMixin,
                      SuccessMessageMixin,
                      DeleteView):
     model = Task
