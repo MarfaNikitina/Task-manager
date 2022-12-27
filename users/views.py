@@ -11,6 +11,7 @@ from users.forms import UserRegistrationForm
 from task_manager.mixins import UserPermissionMixin, MyLoginRequiredMixin
 from users.models import User
 from tasks.models import Task
+from django.db.models import Q
 
 
 class UserListView(ListView):
@@ -53,7 +54,8 @@ class UserDeleteView(UserPermissionMixin,
 
     def post(self, request, *args, **kwargs):
         if Task.objects.filter(
-                executor_id=self.kwargs['pk'], author_id=self.kwargs['pk']):
+                Q(executor_id=self.kwargs['pk']) |
+                Q(author_id=self.kwargs['pk'])):
             messages.warning(self.request, PROTECTED_ERROR_MESSAGE)
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)

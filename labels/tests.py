@@ -1,3 +1,4 @@
+from django.contrib.messages import get_messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from django.urls import reverse
@@ -17,6 +18,7 @@ class LabelTest(TestCase):
         cls.label2 = Label.objects.get(pk=2)
         cls.user = User.objects.get(pk=1)
         cls.Task = Task.objects.get(pk=1)
+        cls.labels_url = reverse('labels')
 
     def assertLabel(self, label, label_data):
         self.assertEqual(label.__str__(), label_data['name'])
@@ -24,7 +26,7 @@ class LabelTest(TestCase):
 
     def test_label_page(self):
         self.client.force_login(self.user)
-        response = self.client.get(reverse('labels'))
+        response = self.client.get(self.labels_url)
         self.assertEqual(response.status_code, 200)
 
         statuses = Label.objects.all()
@@ -44,7 +46,7 @@ class LabelTest(TestCase):
         new_label_data = self.test_data['labels']['new']
         response = self.client.post(reverse('create_label'), new_label_data)
 
-        self.assertRedirects(response, reverse('labels'))
+        self.assertRedirects(response, self.labels_url)
         created_status = Label.objects.get(name=new_label_data['name'])
         self.assertLabel(created_status, new_label_data)
 
@@ -62,7 +64,7 @@ class LabelTest(TestCase):
         response = self.client.post(
             reverse('update_label', args=[self.label.pk]), new_label_data
         )
-        self.assertRedirects(response, reverse('labels'))
+        self.assertRedirects(response, self.labels_url)
         updated_status = Label.objects.get(name=new_label_data['name'])
         self.assertLabel(updated_status, new_label_data)
 
@@ -79,7 +81,7 @@ class LabelTest(TestCase):
         response = self.client.post(reverse(
             'delete_label',
             args=(self.label.pk,)), )
-        self.assertRedirects(response, reverse('labels'))
+        self.assertRedirects(response, self.labels_url)
         with self.assertRaises(ObjectDoesNotExist):
             Label.objects.get(name=self.label.name)
 
@@ -88,5 +90,6 @@ class LabelTest(TestCase):
         response = self.client.post(reverse(
             'delete_label',
             args=(self.label2.pk,)), )
-        self.assertRedirects(response, reverse('labels'))
+        self.assertRedirects(response, self.labels_url)
         assert self.label2 in Label.objects.all()
+        self.assertEqual(1, len(list(get_messages(response.wsgi_request))))

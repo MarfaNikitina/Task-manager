@@ -1,3 +1,4 @@
+from django.contrib.messages import get_messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from django.urls import reverse
@@ -17,6 +18,7 @@ class StatusTest(TestCase):
         cls.used_status = Status.objects.get(pk=3)
         cls.user = User.objects.get(pk=1)
         cls.task = Task.objects.get(pk=1)
+        cls.statuses_url = reverse('statuses')
 
     def assertStatus(self, status, status_data):
         self.assertEqual(status.__str__(), status_data['name'])
@@ -24,7 +26,7 @@ class StatusTest(TestCase):
 
     def test_status_page(self):
         self.client.force_login(self.user)
-        response = self.client.get(reverse('statuses'))
+        response = self.client.get(self.statuses_url)
         self.assertEqual(response.status_code, 200)
 
         statuses = Status.objects.all()
@@ -44,7 +46,7 @@ class StatusTest(TestCase):
         new_status_data = self.test_data['statuses']['new']
         response = self.client.post(reverse(
             'create_status'), new_status_data)
-        self.assertRedirects(response, reverse('statuses'))
+        self.assertRedirects(response, self.statuses_url)
         created_status = Status.objects.get(name=new_status_data['name'])
         self.assertStatus(created_status, new_status_data)
 
@@ -60,7 +62,7 @@ class StatusTest(TestCase):
         new_status_data = self.test_data['statuses']['new']
         response = self.client.post(reverse(
             'update_status', args=[self.status.pk]), new_status_data)
-        self.assertRedirects(response, reverse('statuses'))
+        self.assertRedirects(response, self.statuses_url)
         updated_status = Status.objects.get(name=new_status_data['name'])
         self.assertStatus(updated_status, new_status_data)
 
@@ -75,7 +77,7 @@ class StatusTest(TestCase):
         self.client.force_login(self.user)
         response = self.client.post(reverse(
             'delete_status', args=(self.status.pk,)))
-        self.assertRedirects(response, reverse('statuses'))
+        self.assertRedirects(response, self.statuses_url)
         with self.assertRaises(ObjectDoesNotExist):
             Status.objects.get(name=self.status.name)
 
@@ -83,5 +85,6 @@ class StatusTest(TestCase):
         self.client.force_login(self.user)
         response = self.client.post(reverse(
             'delete_status', args=(self.used_status.pk,)))
-        self.assertRedirects(response, reverse('statuses'))
+        self.assertRedirects(response, self.statuses_url)
         assert self.used_status in Status.objects.all()
+        self.assertEqual(1, len(list(get_messages(response.wsgi_request))))

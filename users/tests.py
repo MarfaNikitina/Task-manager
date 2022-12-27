@@ -1,3 +1,4 @@
+from django.contrib.messages import get_messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -14,9 +15,9 @@ class UserTest(TestCase):
 
         self.user = User.objects.get(pk=1)
         self.user2 = User.objects.get(pk=2)
-        self.users_list = reverse('users:users')
+        self.users_url = reverse('users:users')
         self.test_data = get_test_data()
-        self.login = reverse('login')
+        self.login_url = reverse('login')
 
     def test_user_exists(self):
         self.assertTrue(User.objects.count() == 3)
@@ -27,7 +28,7 @@ class UserTest(TestCase):
         self.assertEqual(user.last_name, user_data['last_name'])
 
     def test_user_list(self):
-        response = self.client.get(reverse('users:users'))
+        response = self.client.get(self.users_url)
         self.assertEqual(response.status_code, 200)
         users = User.objects.all()
         self.assertQuerysetEqual(
@@ -45,7 +46,7 @@ class UserTest(TestCase):
         new_user_data = self.test_data["users"]["new"]
         post_response = self.client.post(create_user,
                                          new_user_data, follow=True)
-        self.assertRedirects(post_response, self.login)
+        self.assertRedirects(post_response, self.login_url)
         self.assertTrue(User.objects.get(username=new_user_data['username']))
 
     def test_create_exist_user(self):
@@ -69,7 +70,10 @@ class UserTest(TestCase):
         response_no_permission = self.client.get(
             reverse('users:update', args=(self.user.pk, ))
         )
-        self.assertRedirects(response_no_permission, reverse('users:users'))
+        self.assertRedirects(response_no_permission, self.users_url)
+        self.assertEqual(1, len(list(
+            get_messages(response_no_permission.wsgi_request)))
+                         )
 
     def test_update(self):
         self.client.force_login(self.user)
@@ -77,7 +81,7 @@ class UserTest(TestCase):
             reverse('users:update', args=(self.user.pk, )),
             self.test_data["users"]["new"]
         )
-        self.assertRedirects(response, reverse('users:users'))
+        self.assertRedirects(response, self.users_url)
         updated_user = User.objects.get(
             first_name=self.test_data["users"]["new"]['first_name']
         )
@@ -92,13 +96,16 @@ class UserTest(TestCase):
         response_no_permission = self.client.get(
             reverse('users:delete', args=(self.user2.pk,))
         )
-        self.assertRedirects(response_no_permission, reverse('users:users'))
+        self.assertRedirects(response_no_permission, self.users_url)
+        self.assertEqual(1, len(list(
+            get_messages(response_no_permission.wsgi_request)))
+                         )
 
     def test_delete(self):
         self.client.force_login(self.user)
         response = self.client.post(
             reverse('users:delete', args=(self.user.pk, ))
         )
-        self.assertRedirects(response, reverse('users:users'))
+        self.assertRedirects(response, self.users_url)
         with self.assertRaises(ObjectDoesNotExist):
             User.objects.get(username=self.user.username)
