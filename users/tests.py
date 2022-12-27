@@ -72,7 +72,7 @@ class UserTest(TestCase):
         self.assertRaises(ValidationError)
         wrong2_user_data = self.test_data["users"]["wrong_user2"]
         post_response2 = self.client.post(create_user,
-                                         wrong2_user_data, follow=True)
+                                          wrong2_user_data, follow=True)
         errors = post_response2.context['form'].errors
         self.assertIn('first_name', errors)
         self.assertEqual(
