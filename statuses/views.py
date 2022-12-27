@@ -9,7 +9,7 @@ from django.utils.translation import gettext as _
 from task_manager.messages import STATUS_CREATE_MESSAGE,\
     STATUS_UPDATE_MESSAGE,\
     STATUS_DELETE_MESSAGE, NO_DELETE_STATUS_MESSAGE
-from tasks.models import Task
+# from tasks.models import Task
 from task_manager.mixins import MyLoginRequiredMixin
 
 

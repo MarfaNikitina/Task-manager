@@ -8,7 +8,7 @@ from labels.forms import LabelForm
 from labels.models import Label
 from task_manager.messages import LABEL_CREATE_MESSAGE, \
     LABEL_UPDATE_MESSAGE, LABEL_DELETE_MESSAGE, NO_DELETE_LABEL_MESSAGE
-from tasks.models import LabelForTask
+# from tasks.models import LabelForTask
 from task_manager.mixins import MyLoginRequiredMixin
 
 
