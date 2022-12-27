@@ -53,8 +53,9 @@ class UserDeleteView(UserPermissionMixin,
     success_message = USER_DELETE_MESSAGE
 
     def post(self, request, *args, **kwargs):
+        self_id = self.kwargs['pk']
         if Task.objects.filter(
-                Q(executor_id=self.kwargs['pk']) | Q(author_id=self.kwargs['pk'])):
+                Q(executor_id=self_id) | Q(author_id=self_id)):
             messages.warning(self.request, PROTECTED_ERROR_MESSAGE)
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
