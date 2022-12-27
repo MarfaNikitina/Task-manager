@@ -113,7 +113,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db2.sqlite3'
     }
 }
-# 
+
 # DATABASES = {
 #     'default': dj_database_url.config(conn_max_age=600)
 # }
