@@ -8,7 +8,6 @@ from labels.forms import LabelForm
 from labels.models import Label
 from task_manager.messages import LABEL_CREATE_MESSAGE, \
     LABEL_UPDATE_MESSAGE, LABEL_DELETE_MESSAGE, NO_DELETE_LABEL_MESSAGE
-# from tasks.models import LabelForTask
 from task_manager.mixins import MyLoginRequiredMixin
 
 
@@ -49,7 +48,6 @@ class LabelDeleteView(MyLoginRequiredMixin,
     success_message = LABEL_DELETE_MESSAGE
 
     def post(self, request, *args, **kwargs):
-        # if LabelForTask.objects.filter(labels_id=self.kwargs['pk']):
         if self.get_object().task_set.count():
             messages.warning(self.request, NO_DELETE_LABEL_MESSAGE)
             return redirect(self.success_url)
