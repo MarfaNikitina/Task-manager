@@ -72,8 +72,7 @@ class UserTest(TestCase):
         )
         self.assertRedirects(response_no_permission, self.users_url)
         self.assertEqual(1, len(list(
-            get_messages(response_no_permission.wsgi_request)))
-                         )
+            get_messages(response_no_permission.wsgi_request))))
 
     def test_update(self):
         self.client.force_login(self.user)
@@ -98,8 +97,7 @@ class UserTest(TestCase):
         )
         self.assertRedirects(response_no_permission, self.users_url)
         self.assertEqual(1, len(list(
-            get_messages(response_no_permission.wsgi_request)))
-                         )
+            get_messages(response_no_permission.wsgi_request))))
 
     def test_delete(self):
         self.client.force_login(self.user)
