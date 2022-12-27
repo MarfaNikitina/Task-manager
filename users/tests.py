@@ -70,16 +70,6 @@ class UserTest(TestCase):
             errors['last_name']
         )
         self.assertRaises(ValidationError)
-        wrong2_user_data = self.test_data["users"]["wrong_user2"]
-        post_response2 = self.client.post(create_user,
-                                          wrong2_user_data, follow=True)
-        errors = post_response2.context['form'].errors
-        self.assertIn('first_name', errors)
-        self.assertEqual(
-            [VALIDATION_ERROR_MESSAGE],
-            errors['first_name']
-        )
-        self.assertRaises(ValidationError)
 
     def test_update_page(self):
         self.client.force_login(self.user2)
