@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-15 23:24+0300\n"
+"POT-Creation-Date: 2022-12-27 23:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,9 @@ msgstr ""
 
 #: labels/forms.py:11 statuses/forms.py:11
 #: task_manager/templates/lists/label.html:21
-#: task_manager/templates/lists/task.html:28 tasks/forms.py:11 users/forms.py:8
-#: users/forms.py:15
+#: task_manager/templates/lists/status.html:21
+#: task_manager/templates/lists/task.html:28 tasks/forms.py:11
+#: users/forms.py:17
 msgid "Name"
 msgstr "Имя"
 
@@ -31,36 +32,37 @@ msgstr "Имя"
 msgid "Create label"
 msgstr "Создать метку"
 
-#: labels/views.py:27 statuses/views.py:32 tasks/views.py:31
+#: labels/views.py:27 statuses/views.py:28 tasks/views.py:30
 msgid "Create"
 msgstr "Создать"
 
-#: labels/views.py:42
+#: labels/views.py:37
 msgid "Update label"
 msgstr "Изменение метки"
 
-#: labels/views.py:43 statuses/views.py:50
+#: labels/views.py:38 statuses/views.py:42
 #: task_manager/templates/lists/label.html:33
+#: task_manager/templates/lists/status.html:33
 #: task_manager/templates/lists/task.html:46
 #: task_manager/templates/lists/user.html:34
-#: tasks/templates/tasks/detail_task.html:28 tasks/views.py:54
-#: users/views.py:43
+#: tasks/templates/tasks/detail_task.html:28 tasks/views.py:47
+#: users/views.py:38
 msgid "Update"
 msgstr "Изменить"
 
-#: labels/views.py:57
+#: labels/views.py:47
 msgid "Delete label"
 msgstr "Удаление метки"
 
-#: statuses/views.py:31
+#: statuses/views.py:27 task_manager/templates/lists/status.html:15
 msgid "Create status"
 msgstr "Создать статус"
 
-#: statuses/views.py:49
+#: statuses/views.py:41
 msgid "Update status"
 msgstr "Изменение статуса"
 
-#: statuses/views.py:66
+#: statuses/views.py:54
 msgid "Delete status"
 msgstr "Удаление статуса"
 
@@ -148,11 +150,15 @@ msgstr "Метка успешно изменена"
 msgid "Label deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: task_manager/settings.py:155
+#: task_manager/messages.py:34
+msgid "This field is required."
+msgstr "Заполните это поле."
+
+#: task_manager/settings.py:151
 msgid "English"
 msgstr ""
 
-#: task_manager/settings.py:156
+#: task_manager/settings.py:152
 msgid "Russian"
 msgstr ""
 
@@ -172,6 +178,8 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: task_manager/templates/base-layout.html:29
+#: task_manager/templates/lists/status.html:7
+#: task_manager/templates/lists/status.html:12
 msgid "Statuses"
 msgstr "Статусы"
 
@@ -198,7 +206,7 @@ msgstr "Выход"
 msgid "Log in"
 msgstr "Вход"
 
-#: task_manager/templates/base-layout.html:51 users/views.py:27
+#: task_manager/templates/base-layout.html:51 users/views.py:26
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -225,12 +233,14 @@ msgid "Learn more"
 msgstr "Узнать больше"
 
 #: task_manager/templates/lists/label.html:20
+#: task_manager/templates/lists/status.html:20
 #: task_manager/templates/lists/task.html:27
 #: task_manager/templates/lists/user.html:19
 msgid "ID"
 msgstr "ID"
 
 #: task_manager/templates/lists/label.html:22
+#: task_manager/templates/lists/status.html:22
 #: task_manager/templates/lists/task.html:32
 #: task_manager/templates/lists/user.html:22
 #: tasks/templates/tasks/detail_task.html:19
@@ -238,13 +248,14 @@ msgid "Date of creation"
 msgstr "Дата создания"
 
 #: task_manager/templates/lists/label.html:35
+#: task_manager/templates/lists/status.html:35
 #: task_manager/templates/lists/task.html:48
 #: task_manager/templates/lists/user.html:36
 #: tasks/templates/tasks/detail_task.html:30
 msgid "Delete"
 msgstr "Удалить"
 
-#: task_manager/templates/lists/task.html:15 tasks/views.py:30
+#: task_manager/templates/lists/task.html:15 tasks/views.py:29
 msgid "Create task"
 msgstr "Создать задачу"
 
@@ -301,31 +312,27 @@ msgstr "Удаление задачи"
 msgid "Task view"
 msgstr "Просмотр задачи"
 
-#: tasks/views.py:53
+#: tasks/views.py:46
 msgid "Update task"
 msgstr "Изменение задачи"
 
-#: users/forms.py:9 users/forms.py:16
-msgid "Surname"
-msgstr "Фамилия"
-
-#: users/forms.py:14
+#: users/forms.py:16
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: users/tests.py:58
-msgid "Пользователь с таким именем уже существует."
-msgstr ""
+#: users/forms.py:18
+msgid "Surname"
+msgstr "Фамилия"
 
-#: users/views.py:28
+#: users/views.py:27
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: users/views.py:42
+#: users/views.py:37
 msgid "Update user"
 msgstr "Изменение пользователя"
 
-#: users/views.py:68
+#: users/views.py:50
 msgid "Delete user"
 msgstr "Удаление пользователя"
 

@@ -57,7 +57,10 @@ class StatusDeleteView(MyLoginRequiredMixin,
     success_message = STATUS_DELETE_MESSAGE
 
     def post(self, request, *args, **kwargs):
-        if Task.objects.filter(status_id=self.kwargs['pk']):
+        # if Task.objects.filter(status_id=self.kwargs['pk']):
+        if self.get_object().task_set.count():
             messages.warning(self.request, NO_DELETE_STATUS_MESSAGE)
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
+
+        # if Task.objects.filter(status__in=(self.get_object(),)).count():

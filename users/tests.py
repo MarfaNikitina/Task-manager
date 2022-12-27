@@ -1,10 +1,10 @@
 from django.contrib.messages import get_messages
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.test import TestCase, Client
 from django.urls import reverse
 from .models import User
 from task_manager.utils import get_test_data
-from task_manager.messages import USER_EXIST_MESSAGE
+from task_manager.messages import USER_EXIST_MESSAGE, VALIDATION_ERROR_MESSAGE
 
 
 class UserTest(TestCase):
@@ -57,6 +57,29 @@ class UserTest(TestCase):
         self.assertEqual(post_response.status_code, 200)
         self.assertContains(
             post_response, text=USER_EXIST_MESSAGE)
+
+    def test_create_wrong_user(self):
+        create_user = reverse('users:create')
+        wrong_user_data = self.test_data["users"]["wrong_user"]
+        post_response = self.client.post(create_user,
+                                         wrong_user_data, follow=True)
+        errors = post_response.context['form'].errors
+        self.assertIn('last_name', errors)
+        self.assertEqual(
+            [VALIDATION_ERROR_MESSAGE],
+            errors['last_name']
+        )
+        self.assertRaises(ValidationError)
+        wrong2_user_data = self.test_data["users"]["wrong_user2"]
+        post_response = self.client.post(create_user,
+                                         wrong2_user_data, follow=True)
+        errors = post_response.context['form'].errors
+        self.assertIn('first_name', errors)
+        self.assertEqual(
+            [VALIDATION_ERROR_MESSAGE],
+            errors['first_name']
+        )
+        self.assertRaises(ValidationError)
 
     def test_update_page(self):
         self.client.force_login(self.user2)

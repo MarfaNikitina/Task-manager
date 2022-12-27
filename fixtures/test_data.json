@@ -13,6 +13,20 @@
       "password1": "NewPassword1234",
       "password2": "NewPassword1234",
       "username": "Michail"
+    },
+    "wrong_user": {
+      "first_name": "Garry",
+      "last_name": "",
+      "password1": "NewPassword1234",
+      "password2": "NewPassword1234",
+      "username": "Garry"
+    },
+    "wrong_user2": {
+      "first_name": "",
+      "last_name": "Nolan",
+      "password1": "NewPassword1234",
+      "password2": "NewPassword1234",
+      "username": "Nemo"
     }
   },
   "statuses": {

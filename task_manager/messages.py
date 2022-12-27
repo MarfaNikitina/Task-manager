@@ -30,3 +30,5 @@ NO_DELETE_LABEL_MESSAGE = _("Can't delete label because it's in use")
 LABEL_CREATE_MESSAGE = _("Label created successfully")
 LABEL_UPDATE_MESSAGE = _("Label updated successfully")
 LABEL_DELETE_MESSAGE = _("Label deleted successfully")
+
+VALIDATION_ERROR_MESSAGE = _('This field is required.')
