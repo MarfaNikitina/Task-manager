@@ -63,12 +63,9 @@ class UserTest(TestCase):
         wrong_user_data = self.test_data["users"]["wrong_user"]
         post_response = self.client.post(create_user,
                                          wrong_user_data, follow=True)
-        errors = post_response.context['form'].errors
-        self.assertIn('last_name', errors)
-        self.assertEqual(
-            [VALIDATION_ERROR_MESSAGE],
-            errors['last_name']
-        )
+        self.assertEqual(post_response.status_code, 200)
+        self.assertContains(
+            post_response, text=VALIDATION_ERROR_MESSAGE)
         self.assertRaises(ValidationError)
 
     def test_update_page(self):
